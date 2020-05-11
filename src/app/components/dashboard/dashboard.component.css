@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+}
+
+.container-row {
+  width: 100%;
+  /* margin: 1.5em; */
+}
+
+.value-card {
+  /* width: 100%; */
+  height: 13.750em;
+  margin: 1.5em 1.5em 1em 0.5em;
+  /* margin-right: 1.5em;
+  margin-bottom: 1.5em; */
+}
+
+
+mat-card.mat-card {
+  padding: 0 !important;
+  border-radius: 0.5em;
+  height: 100%;
+}
+
+
+.title-div {
+  height: 3em !important;
+  padding: 1em !important;
+}
+
+.content_div {
+
+  height: 10.750em !important;
+  padding: 1em !important;
+
+}
+
+.value-showcase {
+  font-size: 3em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  /* line-height: 4em; */
+  color: #323232;
+}
+
+.card_title {
+  font-size: 1em;
+  margin: 0 !important;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.divider {
+  border: 1px solid rgb(240, 235, 235);
+  /* margin-top:15px; */
+}
+table {
+    border-collapse: collapse;
+    width: 90%;
+    background-color: white;
+    font-size: 1em;
+    font-weight: 400;
+  }
+  
+  th {
+    /* padding: 8px; */
+    text-align: left;
+    border-bottom: 1px solid #000;
+    font-size: 14px;
+    text-transform: capitalize;
+    border-right: 1px solid #000;
+    background-color: #ddd;
+    min-width: 6.2em;
+  }
+  td {
+    /* padding: 8px; */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    /* text-transform: capitalize; */
+    border-right: 1px solid #ddd;
+  }
+
+  

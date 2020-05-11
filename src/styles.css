@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.ngx-pagination{
+    padding: 0 !important;
+  }
+  .ngx-pagination .pagination-previous {
+
+    display: none !important;
+  }
+  .ngx-pagination .current{
+    color: #EC54B4 !important;
+    background-color: white !important;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .ngx-pagination li{
+    border-right: 1px solid #D8D8D8 !important;
+     font-size: 1.1em !important;
+     font-family: getNotoFont(), sans-serif;
+     font-weight: 2em;
+  }
+  .ngx-pagination a:hover{
+    /* border-right: 1px solid rgba(247, 247, 248, 0.815) !important; */
+    background-color: transparent !important;
+  }
+  .ngx-pagination .disabled{
+    display: none !important;
+  }
+  .ngx-pagination .pagination-next{
+    display: none !important;
+  }
+  .ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after{
+    font-size: 1.8em !important;
+    color: #FF008C !important;
+    letter-spacing: 2px !important;
+    display: none !important;
+  }
+  .ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before{
+    font-size: 1.8em !important;
+    color: #FF008C !important;
+    letter-spacing: 2px !important;
+    display: none !important;
+  
+  }
+  .ngx-pagination a, .ngx-pagination button{
+    color: #FF008C !important;
+    outline: none !important;
+  }
+  .mat-table thead{
+
+    /* background-color: #FAFAFA; */
+    color: #000000 !important;
+
+  }
+
+  .mat-toolbar{
+    background-color: white !important;
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff !important;
+}
+.custom-dialog-container .mat-dialog-container {
+  /* add your styles */
+  border-radius: 15px;
+  /* margin-left:15%;
+  margin-right:15%; */
+}

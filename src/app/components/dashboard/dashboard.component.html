@@ -1,0 +1,315 @@
+<div class="container" fxLayout="column">
+
+    <div class="container-row" fxFlex="100" fxLayout="row">
+
+        <div fxFlex="25" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Total Sale </b></h1>
+
+                    <div fxFlex></div>
+
+                    <mat-icon style="cursor: pointer;margin: 0;padding: 0;" [matMenuTriggerFor]="menu">more_vert
+                    </mat-icon>
+
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Daily</button>
+                        <button mat-menu-item>Weekly</button>
+                        <button mat-menu-item>Monthly</button>
+                        <button mat-menu-item>Yearly</button>
+                    </mat-menu>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+                    <h4 class="value-showcase">
+                        5000
+                    </h4>
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+        <div fxFlex="25" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Product Contribution </b></h1>
+                </div>
+
+                <div class="divider"></div>
+
+
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+
+                    <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
+                        [options]="options" [width]="width" [height]="height">
+                    </google-chart>
+
+
+
+                </div>
+
+            </mat-card>
+
+
+        </div>
+
+
+        <div fxFlex="25" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Remaining Customer Payments </b></h1>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+                    <h4 class="value-showcase">
+                        50352
+                    </h4>
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+
+        <div fxFlex="25" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Remaining Vendor Payments </b></h1>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+                    <h4 class="value-showcase">
+                        50352
+                    </h4>
+
+                </div>
+
+            </mat-card>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div class="container-row" fxFlex="100" fxLayout="row">
+
+        <div fxFlex="23" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Total Sale </b></h1>
+
+                    <div fxFlex></div>
+
+                    <mat-icon style="cursor: pointer;margin: 0;padding: 0;" [matMenuTriggerFor]="menu">more_vert
+                    </mat-icon>
+
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Daily</button>
+                        <button mat-menu-item>Weekly</button>
+                        <button mat-menu-item>Monthly</button>
+                        <button mat-menu-item>Yearly</button>
+                    </mat-menu>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+
+                    <table style="border: 1px solid grey;width:100%;">
+                        <th> Sr. No </th>
+                        <th>Invoice Number</th>
+                        <th>Amount</th>
+
+
+
+                        <tr>
+                            <td> 1 </td>
+                            <td> IN-102 </td>
+                            <td> 23423 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 2 </td>
+                            <td> IN-124 </td>
+                            <td> 45343 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 3 </td>
+                            <td> IN-34 </td>
+                            <td> 23432 </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+        <div fxFlex="23" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Product Contribution </b></h1>
+                </div>
+
+                <div class="divider"></div>
+
+
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+
+                    <table style="border: 1px solid grey;width:100%;">
+                        <th> Sr. No </th>
+                        <th>Name</th>
+                        <th>Contribution</th>
+
+
+
+                        <tr>
+                            <td> 1 </td>
+                            <td> Product 1 </td>
+                            <td> 45.0 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 2 </td>
+                            <td> Prod 2 </td>
+                            <td> 26.8 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 3 </td>
+                            <td> Prod 3 </td>
+                            <td> 12.8 </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+
+            </mat-card>
+
+
+        </div>
+
+
+        <div fxFlex="23" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Remaining Customer Payments </b></h1>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+                    <table style="border: 1px solid grey;width:100%;">
+                        <th> Sr. No </th>
+                        <th>Name</th>
+                        <th>Amount</th>
+
+                        <tr>
+                            <td> 1 </td>
+                            <td> Anway Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 2 </td>
+                            <td> Amit Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 3 </td>
+                            <td> Ashutosh Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </mat-card>
+
+        </div>
+
+
+        <div fxFlex="25" class="value-card">
+
+            <mat-card style="height: 100%!important;" class="mat-card">
+
+                <div fxLayout="row" class="title-div" fxLayoutAlign="space-between center">
+                    <h1 class="card_title"><b> Remaining Vendor Payments </b></h1>
+                </div>
+
+                <div class="divider"></div>
+                <div class="content_div" fxLayout="column" fxLayoutAlign="center center">
+
+                    <table style="border: 1px solid grey;width:100%;">
+                        <th> Sr. No </th>
+                        <th>Name</th>
+                        <th>Amount</th>
+
+                        <tr>
+                            <td> 1 </td>
+                            <td> Anway Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 2 </td>
+                            <td> Amit Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+
+                        <tr>
+                            <td> 3 </td>
+                            <td> Ashutosh Kulkarni </td>
+                            <td> 14890 </td>
+                        </tr>
+
+                    </table>
+
+
+
+                </div>
+
+            </mat-card>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</div>

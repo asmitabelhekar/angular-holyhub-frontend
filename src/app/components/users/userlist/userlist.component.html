@@ -1,0 +1,4 @@
+<div style="width: 100%;">
+  <app-table-view [dataTable]="dataArray" [itemsCount]="totalCount" [showView]="1"  (inputChange)="search($event)"  (viewClicked)="view($event)"  [currentPage]="currentPage" [columns]="columnArray" [showAdd]="1" (pageClicked)="paginate($event)" [lastPage]="lastPage"  (addClicked)="add()" (deleteClicked)="delete($event)"></app-table-view>
+</div>
+

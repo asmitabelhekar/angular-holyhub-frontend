@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutAlign="center start" class="width100 height100vh">
+  <div fxLayout="row" fxLayoutAlign="start center" class="width100 height100">
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="50" class="bg-primary height100">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="logo-container">
+        <!-- <mat-icon class="logo">local_library</mat-icon> -->
+        <img src="./assets/box.png" width="40px" height="40px">
+        <p class="logo-text">Holyhub</p>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="width100">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-container">
+        <div fxLayout="row" fxLayoutAlign="start center" class="width100">
+          <h2 class="login-header">Login</h2>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" class="width100">
+          <mat-form-field fxFlex="100">
+            <input matInput [(ngModel)]="login.username" placeholder="Mobile"
+              [formControl]="formControl.username" />
+            <mat-error *ngIf="formControl.username.invalid">Mobile is required</mat-error>
+
+            <!-- <mat-error *ngIf="formControl.username.invalid">Username/Email/Mobile is required</mat-error> -->
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" class="width100">
+          <mat-form-field fxFlex="100">
+            <input matInput type="password" [(ngModel)]="login.password" placeholder="Password"
+              [formControl]="formControl.password" />
+            <mat-error *ngIf="formControl.password.invalid">Password is required</mat-error>
+          </mat-form-field>
+        </div>
+        <ng-container *ngIf="errorMessage">
+          <div fxLayout="row" fxLayoutAlign="start center" class="width100">
+            <mat-error>{{errorMessage}}</mat-error>
+          </div>
+        </ng-container>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="width100">
+          <p class="margin0 forgot-password-text pointer">Forgot Password?</p>
+          <button mat-raised-button color="primary" class="button-content" [disabled]="formControl.username.invalid || formControl.password.invalid" fxFlex="20" (click)="loginUser()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

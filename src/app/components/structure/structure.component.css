@@ -1,0 +1,35 @@
+.width-wrapper {
+
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow-y: hidden !important;
+}
+
+  .side-bar {
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+    width: 5em;
+    overflow-y: scroll;
+  }
+
+  .after-nav-component {
+    height: calc(100vh - 64px);
+    overflow-x: hidden !important;
+    overflow-y: hidden;
+  }
+
+  .content-container {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+.bg-grey-content-container{
+
+    width: calc(100% - 5em);
+    background-color: #F3F5F7 ;
+    /* margin: 1em; */
+    padding: 1em;
+    height: calc(100% - 0.2em);
+    overflow-y: auto;
+}

@@ -1,0 +1,80 @@
+.logo-container {
+  color: #FFFFFF;
+  font-family: Medium;
+
+}
+
+  .logo {
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+  }
+  .logo-text {
+    font-size: 40px;
+    margin: 0;
+  }
+
+
+.login-container {
+  width: 60%;
+  margin: 0 auto;
+}
+  .login-header {
+    font-family: Regular;
+    font-size: 24px;
+  }
+  .forgot-password-text {
+    color: white;
+    font-size: 14px;
+    /* font-family; */
+  
+}
+
+.width100 {
+    width: 100%;
+  }
+  
+  .height100 {
+    height: 100%;
+  }
+  
+  .height100vh {
+    height: 100vh;
+  }
+  
+  /* .bg-grey {
+    background-color: $nad-color-light-gray;
+  }
+   */
+  app-students, app-student-form, app-subject, app-subject-form, app-batch, app-batch-form, app-enquiry, app-enquiry-form, app-dashboard {
+    width: 100%;
+  }
+  
+  .content-title {
+    font-family: Medium;
+  }
+  
+  .padding16 {
+    padding: 16px;
+  }
+  
+  .padding5 {
+    padding: 5px;
+  }
+  
+  .padding510 {
+    padding: 10px 5px;
+  }
+  
+  .bg-primary {
+    background-color: rgb(36, 35, 35);
+  }
+  
+  .button-content {
+    color: #FFFFFF!important;
+  }
+  
+  .table-row-grey {
+    background-color: #f0f0f0;
+  }
+  

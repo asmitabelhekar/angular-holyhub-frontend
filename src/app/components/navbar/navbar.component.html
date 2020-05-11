@@ -1,0 +1,18 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+  <!--<p class="logo">C</p>-->
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="pointer">
+    <!-- <mat-icon color="primary" class="logo">local_library</mat-icon> -->
+    <!-- <img src="../../../assets/trolley.png" width="40px" height="40px"> -->
+    <p>Holyhub</p>
+  </div>
+
+  <div style="cursor: pointer;" fxLayout="row">
+    <mat-icon color="primary" class="pointer" [matMenuTriggerFor]="userOptionsMenu">more_vert</mat-icon>
+    <mat-menu #userOptionsMenu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
