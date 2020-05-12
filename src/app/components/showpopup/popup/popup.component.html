@@ -1,33 +1,53 @@
 
-<form #userForm="ngForm" style="width:100%;margin-top:10px">
- 
+<form #userForm="ngForm" style="width:100%;">
+ <div style="width:100%;">
+  <div fxFlex="95">
+    <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">{{button}} Category</label>
+  </div>
+  <div fxFlex="5">
+    <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
+  </div>
+ </div>
+ <mat-divider style="width:100%;margin-top:15px"></mat-divider>
 
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-form-field style="width:100%">
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
+    <mat-form-field fxFlex="100">
+      <input matInput [(ngModel)]="popup.categoryName" placeholder="Category Name"
+        [formControl]="formControl.categoryName" />
+      <mat-error *ngIf="formControl.categoryName.invalid">Category Name is required</mat-error>
+
+      <!-- <mat-error *ngIf="formControl.username.invalid">Username/Email/Mobile is required</mat-error> -->
+    </mat-form-field>
+   
+    <!-- <mat-form-field style="width:100%">
       <input matInput class="form-control " name="name" [(ngModel)]="categoryName"
         #name="ngModel"  placeholder="Category Name" />
     
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
-
-  <div fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:40px; border-radius:15px">
+  <label>Upload Image</label>
+  <div fxLayout="column" fxLayoutAlign="center center"  style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
       
-    <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:40px;color:rgb(196, 184, 184)">camera_alt
+    <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:20px;color:rgb(196, 184, 184)">camera_alt
     </mat-icon>
     <img *ngIf="firstImage != '' " src="{{firstImage}}"
-    style="width:100%;border-radius:15px; height:100%;" />
+    style="width:60%; height:60%;" />
       <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
 
-  <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"
+  <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"  onclick="document.getElementById('image_upload1').click()"
     fxLayoutAlign="center">
-    <label type="file" style="margin-top:15px">Upload Category Image</label>
+    <label type="file" style="margin-top:15px; color:gray">Upload Category Image</label>
+  </div>
+
+  <div style="position: absolute; top:3px;right:5px;">
+    <mat-icon (click)="removeImage()" style="color:gray">close</mat-icon>
   </div>
   </div>
   </form>
 
-  <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:10px;margin-left:10%; margin-right:10%; width:80%">
-    <button  mat-raised-button (click)="closeDialog()" style="margin-right:15px;font-size:13px">CANCEL</button>
-    <button  mat-raised-button (click)="submit()" class="loginButton" style="font-size:13px" [disabled]="categoryName.invalid">SUBMIT</button>
+  <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:10px;">
+    <!-- <button  mat-raised-button (click)="closeDialog()" style="margin-right:15px;font-size:13px">CANCEL</button> -->
+    <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px" [disabled]="formControl.categoryName.invalid">{{buttonText}}</button>
  
 
   </div>
