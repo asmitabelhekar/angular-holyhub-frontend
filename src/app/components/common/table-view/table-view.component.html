@@ -18,10 +18,37 @@
       </div>
 
 
-      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css">
+      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" [matMenuTriggerFor]="menu">
         <img src="./assets/filter_list-24px.svg" />
         <mat-label class="cl_label_css">FILTER</mat-label>
       </div>
+      <mat-menu #menu="matMenu" >
+        <!-- <mat-selection-list [(ngModel)]= "data">
+          <mat-list-option *ngFor="let item of categoryArray" (click)="filter(item.id)">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+          </mat-list-option>
+        </mat-selection-list> -->
+
+
+        <!-- <mat-selection-list>
+          <mat-list-option  (click)="handleSelection($event, item)" *ngFor="let item of categoryArray" [value]="item">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+          </mat-list-option>
+      </mat-selection-list> -->
+
+
+        <mat-list>
+          <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+           
+          </mat-list-item>
+        </mat-list>
+      
+       
+      </mat-menu>
 
     </div>
   </div>

@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/services/api/api.service';
 
 
 
@@ -26,19 +28,25 @@ export class TableViewComponent implements OnInit {
 
   @Input() dataTable;
 
-@Input() showEdit : any = 0;
-@Input() showDelete : any = 0;
-@Input() showView : any = 0;
+  @Input() showEdit: any = 0;
+  @Input() showDelete: any = 0;
+  @Input() showView: any = 0;
 
 
-  dataSource : any = [];
-config : any;
+  dataSource: any = [];
+  config: any;
   @Output() editClicked = new EventEmitter<any>();
   @Output() deleteClicked = new EventEmitter<any>();
   @Output() viewClicked = new EventEmitter<any>();
   @Output() addClicked = new EventEmitter<any>();
   @Output() pageClicked = new EventEmitter<any>();
   @Output() inputChange = new EventEmitter<any>();
+  @Output() filterClicked = new EventEmitter<any>();
+
+  data = "Dance";
+  categoryId: any;
+  categoryArray : any;
+ 
 
   public maxSize: number = 7;
   public directionLinks: boolean = true;
@@ -53,7 +61,8 @@ config : any;
   };
 
 
-  constructor(private cd: ChangeDetectorRef, private router: Router) {
+  constructor(private cd: ChangeDetectorRef,
+    public apiCall : ApiService, private router: Router) {
     this.config = {
       itemsPerPage: 5,
       currentPage: 0,
@@ -62,7 +71,7 @@ config : any;
   }
 
   ngOnInit() {
-
+    this.getCategory();
     console.log(this.dataTable);
     this.displayedColumns = this.columns;
     //     this.displayedColumns = this.columns.concat(['star']);
@@ -71,15 +80,21 @@ config : any;
     this.dataSource = this.dataTable;
 
     console.log(this.displayedColumns);
-    console.log("check::"+this.dataSource);
+    console.log("check::" + JSON.stringify(this.dataSource));
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = this.dataTable;
-    console.log("display check::"+this.dataSource);
+    console.log("display check::" + JSON.stringify(this.dataSource));
   }
-  add(){
+  add() {
     this.addClicked.emit();
   }
+
+  filter(data) {
+    this.filterClicked.emit(data);
+    this.categoryId = data;
+  }
+
   edit(id) {
 
     this.editClicked.emit(id);
@@ -90,22 +105,45 @@ config : any;
     this.viewClicked.emit(id);
 
   }
-  
+
   delete(id) {
-
     this.deleteClicked.emit(id);
+  }
 
+  getData(data){
+    console.log("show category data:"+JSON.stringify(data));
   }
 
   paginate(event) {
-    console.log("paginate event:"+event);
-   
+    console.log("paginate event:" + event);
+
     this.pageClicked.emit(event);
-   
+
   }
 
-  search(event){
+  search(event) {
     this.inputChange.emit(event);
   }
+
+  getCategory() {
+    let url = environment.main_url + "category/" + 0 + "/sub-category"
+    this.apiCall.get(url).subscribe(MyResponse => {
+      this.categoryArray = MyResponse['result']['list'];
+    },
+      error => {
+       
+      });
+  }
+
+  handleSelection(event, categorySelected) {
+    console.log("check selected:"+event);
+    if (event.selected) {
+        event.source.selectionList.options.toArray().forEach(element => {
+            if (element.value.name!= categorySelected.name) {
+               element.selected = false;
+            }
+       });
+    }
+}
 
 }

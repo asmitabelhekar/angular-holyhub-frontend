@@ -28,6 +28,8 @@ export class AdvertisementlistComponent implements OnInit {
   checkLength : any;
   pageIndex : any = 0;
   lastPage : any = 0;
+  categoryId = "1";
+
 
   url : any; ;
 
@@ -37,7 +39,7 @@ export class AdvertisementlistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
-    this.url = environment.main_url + "categories/" + 4 + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
     this.getAdvertisementList(this.url);
   }
 
@@ -56,7 +58,7 @@ export class AdvertisementlistComponent implements OnInit {
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "categories/" + 4 + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
 
     this.getAdvertisementList(this.url);
 
@@ -65,8 +67,13 @@ export class AdvertisementlistComponent implements OnInit {
 
   add(event) {
     this.showPopup();
-    // console.log("delete event",event);
-    // this.router.navigate(['admin/addcategory']);
+  }
+
+  filter(event) {
+  console.log("show filter data:"+event);
+    this.categoryId = event;
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.getAdvertisementList(this.url);
   }
 
 
@@ -74,11 +81,11 @@ export class AdvertisementlistComponent implements OnInit {
     this.checkLength = event.target.value;
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
-    this.url = environment.main_url + "categories/" + 4 + "/advertisements?search=" + event.target.value;
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?search=" + event.target.value;
 
       this.getAdvertisementList(this.url);
     } else {
-      this.url = environment.main_url + "categories/" + 4 + "/advertisements";
+      this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements";
       this.getAdvertisementList(this.url);
     }
 
@@ -88,7 +95,7 @@ export class AdvertisementlistComponent implements OnInit {
     // let send_data = {};
     // send_data['status'] = "add";
     // const dialogRef = this.dialog.open(LanguagepopupComponent, {
-    //   width: '40%',
+    //   width: 'this.categoryId0%',
     //   panelClass: 'custom-dialog-container',
     //   data: send_data
     // });

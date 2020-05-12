@@ -170,10 +170,20 @@ input:focus {
 }
 
 .min-width{
-  width:300px;
+  min-width:100px;
+  max-width:300px;
 }
 
 
 .max-width{
-  width:500px;
+  min-width:200px;
+  max-width:400px;
+}
+
+.selected-category-back{
+background-color: #f1f4f9;
+}
+
+.category-back{
+background-color: white;;
 }
