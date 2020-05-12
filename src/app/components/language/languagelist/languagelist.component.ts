@@ -19,7 +19,7 @@ export class LanguagelistComponent implements OnInit {
   columnArray: any = [
     // { "name": "No", "key": "id" },
     { "name": "Image", "key": "image" },
-    { "name": "Name", "key": "name" },
+    { "name": "Language Name", "key": "name" },
   ];
   
   currentPage = 0;

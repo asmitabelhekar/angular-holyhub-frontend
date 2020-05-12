@@ -18,7 +18,7 @@ export class CategorylistComponent implements OnInit {
   columnArray: any = [
     // { "name": "No", "key": "id" },
     { "name": "Image", "key": "image" },
-    { "name": "Name", "key": "name" }
+    { "name": "Category Name", "key": "name" }
 
   ];
 

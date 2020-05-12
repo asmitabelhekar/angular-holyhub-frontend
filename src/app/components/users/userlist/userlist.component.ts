@@ -59,7 +59,7 @@ export class UserlistComponent implements OnInit {
   add(event){
 
     console.log("delete event",event);
-    this.router.navigate(['admin/addlanguage']);
+    // this.router.navigate(['admin/addlanguage']);
   }
 
 

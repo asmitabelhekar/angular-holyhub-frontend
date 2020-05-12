@@ -66,7 +66,7 @@ export class AdvertisementlistComponent implements OnInit {
 
 
   add(event) {
-    this.showPopup();
+    // this.showPopup();
   }
 
   filter(event) {

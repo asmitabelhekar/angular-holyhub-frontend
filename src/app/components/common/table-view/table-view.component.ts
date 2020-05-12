@@ -31,6 +31,10 @@ export class TableViewComponent implements OnInit {
   @Input() showEdit: any = 0;
   @Input() showDelete: any = 0;
   @Input() showView: any = 0;
+  @Input() showAdd: any = 0;
+  @Input() showFilter: any = 0;
+
+  
 
 
   dataSource: any = [];

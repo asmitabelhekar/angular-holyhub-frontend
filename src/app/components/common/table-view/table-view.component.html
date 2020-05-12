@@ -10,15 +10,18 @@
       </div>
     </div>
 
-    <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end">
+    <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
 
-      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css">
+      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" *ngIf="showAdd == 1">
         <mat-icon>add_circle_outline</mat-icon>
         <mat-label class="cl_label_css">ADD</mat-label>
       </div>
+      <div fxLayout="row" fxLayoutAlign="end end" class="cl_css"  *ngIf="showFilter == 0">
+        <!-- <img src="./assets/filter_list-24px.svg" /> -->
+        <mat-label style="color:white">FILTER</mat-label>
+      </div>
 
-
-      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" [matMenuTriggerFor]="menu">
+      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" [matMenuTriggerFor]="menu" *ngIf="showFilter == 1">
         <img src="./assets/filter_list-24px.svg" />
         <mat-label class="cl_label_css">FILTER</mat-label>
       </div>
@@ -29,14 +32,6 @@
             <h3 matLine> {{item.name}} </h3>
           </mat-list-option>
         </mat-selection-list> -->
-
-
-        <!-- <mat-selection-list>
-          <mat-list-option  (click)="handleSelection($event, item)" *ngFor="let item of categoryArray" [value]="item">
-            <img matListAvatar src="{{item.image}}" alt="...">
-            <h3 matLine> {{item.name}} </h3>
-          </mat-list-option>
-      </mat-selection-list> -->
 
 
         <mat-list>
@@ -67,6 +62,8 @@
         <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
           <img *ngIf="col.key == 'image' " style="width:50px; height:40px" src="{{cust.image}}" />
           <img *ngIf="col.key == 'images' " style="width:80px; height:50px" src="{{cust.images[0]}}" />
+          <label *ngIf="col.name == 'Category Name' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Language Name' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Name' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Email' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Mobile' ">{{cust[col.key]}}</label>
