@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material';
+import { LanguagepopupComponent } from '../../showpopup/languagepopup/languagepopup.component';
 
 @Component({
   selector: 'app-languagelist',
@@ -30,13 +32,14 @@ export class LanguagelistComponent implements OnInit {
 
 
   constructor(public router : Router,
+    public dialog : MatDialog,
     public apiCall : ApiService) { }
 
   ngOnInit() {
-    this.getCategoryList();
+    this.getLanguagesList();
   }
 
-  getCategoryList(){
+  getLanguagesList(){
 
     this.apiCall.get(this.url).subscribe((response)=>{
 
@@ -47,9 +50,44 @@ export class LanguagelistComponent implements OnInit {
   }
 
 
-  add(event){
+  add(event) {
+    this.showPopup();
+    // console.log("delete event",event);
+    // this.router.navigate(['admin/addcategory']);
+  }
 
-    console.log("delete event",event);
-    this.router.navigate(['admin/addlanguage']);
+  showPopup() {
+    let send_data = {};
+    send_data['status'] = "add";
+    const dialogRef = this.dialog.open(LanguagepopupComponent, {
+      width: '40%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getLanguagesList();
+    });
+  }
+
+  edit(event){
+    console.log("show edit event:"+JSON.stringify(event));
+
+    let send_data = {};
+    send_data['status'] = "update";
+    send_data['id'] = event.id;
+    send_data['name'] = event.name;
+    send_data['image'] = event.image;
+    
+    const dialogRef = this.dialog.open(LanguagepopupComponent, {
+      width: '35%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getLanguagesList();
+    });
+   
   }
 }

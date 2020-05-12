@@ -98,7 +98,7 @@ config : any;
   }
 
   paginate(event) {
-    console.log(event);
+    console.log("paginate event:"+event);
    
     this.pageClicked.emit(event);
    

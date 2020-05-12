@@ -26,16 +26,17 @@ export class UserlistComponent implements OnInit {
   pageIndex : any = 0;
   lastPage : any = 0;
 
-  url = environment.main_url + "users" ;
+  url : any ;
 
   constructor(public router : Router,
     public apiCall : ApiService) { }
 
   ngOnInit() {
-    this.getCategoryList(this.url);
+    this.url = environment.main_url + "users?page=" + this.currentPage + "&size=10";
+    this.getUsersList(this.url);
   }
 
-  getCategoryList(url){
+  getUsersList(url){
 
     this.apiCall.get(url).subscribe((response)=>{
 
@@ -46,12 +47,12 @@ export class UserlistComponent implements OnInit {
   }
 
   paginate(event) {
-    // console.log(event);
+    console.log("currentPage::" +event);
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "users?page=" + this.currentPage + "&size=100";;
-    this.getCategoryList(this.url);
+    this.url = environment.main_url + "users?page=" + this.currentPage + "&size=10";
+    this.getUsersList(this.url);
 
   }
 
@@ -67,10 +68,10 @@ export class UserlistComponent implements OnInit {
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
       this.url = environment.main_url +  "users?search=" + event.target.value;
-      this.getCategoryList(this.url);
+      this.getUsersList(this.url);
     } else {
       this.url = environment.main_url + "users";
-      this.getCategoryList(this.url);
+      this.getUsersList(this.url);
     }
 
   }
