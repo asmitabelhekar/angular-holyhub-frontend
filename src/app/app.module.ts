@@ -47,6 +47,7 @@ import { LanguagelistComponent } from './components/language/languagelist/langua
 import { UserlistComponent } from './components/users/userlist/userlist.component';
 import { PopupComponent } from './components/showpopup/popup/popup.component';
 import { LanguagepopupComponent } from './components/showpopup/languagepopup/languagepopup.component';
+import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { LanguagepopupComponent } from './components/showpopup/languagepopup/lan
     LanguagelistComponent,
     UserlistComponent,
     PopupComponent,
-    LanguagepopupComponent
+    LanguagepopupComponent,
+    AdvertisementlistComponent
   ],
   imports: [
     BrowserModule,

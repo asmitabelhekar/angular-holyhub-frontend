@@ -9,6 +9,7 @@ import { AddcategoryComponent } from './components/category/addcategory/addcateg
 import { CategorylistComponent } from './components/category/categorylist/categorylist.component';
 import { LanguagelistComponent } from './components/language/languagelist/languagelist.component';
 import { UserlistComponent } from './components/users/userlist/userlist.component';
+import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
 
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
       {path: 'addlanguage', component: AddlanguageComponent},
 
       {path: 'userlist', component: UserlistComponent},
+      {path: 'advertisementlist', component: AdvertisementlistComponent},
 
 
 

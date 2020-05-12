@@ -18,8 +18,8 @@ export class LanguagelistComponent implements OnInit {
   totalCount = 0;
   columnArray: any = [
     // { "name": "No", "key": "id" },
-    { "name": "Language Name", "key": "name" },
-    { "name": "Image", "key": "image" }
+    { "name": "Image", "key": "image" },
+    { "name": "Name", "key": "name" },
   ];
   
   currentPage = 0;

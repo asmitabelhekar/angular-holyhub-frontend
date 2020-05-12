@@ -17,8 +17,9 @@ export class CategorylistComponent implements OnInit {
   totalCount = 0;
   columnArray: any = [
     // { "name": "No", "key": "id" },
-    { "name": "Category Name", "key": "name" },
-    { "name": "Image", "key": "image" }
+    { "name": "Image", "key": "image" },
+    { "name": "Name", "key": "name" }
+
   ];
 
   currentPage = 0;

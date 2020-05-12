@@ -30,15 +30,24 @@
   <div class="cl_margin_top2">
 
     <table>
-      <tr>
+      <tr >
         <th *ngFor="let col of displayedColumns">{{col.name}}</th>
-        <th>Action</th>
+        <th >Action</th>
 
       </tr>
-      <tr *ngFor="let cust of dataSource | paginate: { itemsPerPage: 10, currentPage: currentPage,totalItems: itemsCount };let i = index">
+      <tr  *ngFor="let cust of dataSource | paginate: { itemsPerPage: 10, currentPage: currentPage,totalItems: itemsCount };let i = index">
 
-        <td *ngFor="let col of displayedColumns">{{cust[col.key]}}</td>
+        <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
+          <img *ngIf="col.key == 'image' " style="width:50px; height:40px" src="{{cust.image}}" />
+          <img *ngIf="col.key == 'images' " style="width:80px; height:50px" src="{{cust.images[0]}}" />
+          <label *ngIf="col.name == 'Name' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Email' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Mobile' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Description' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Address' ">{{cust[col.key]}}</label>
 
+        </td>
+      
         <td>
           <span>
             <button *ngIf="showEdit == 1" mat-raised-button class="EditButton" (click)="edit(cust)">Edit</button>

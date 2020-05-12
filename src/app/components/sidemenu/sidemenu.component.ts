@@ -30,11 +30,11 @@ export class SidemenuComponent implements OnInit {
       name: 'Users',
       url: '/admin/userlist'
     },
-    // {
-    //   icon: 'description',
-    //   name: 'Invoices',
-    //   url: '/admin/sales-list'
-    // },
+    {
+      icon: 'description',
+      name: 'Advertisement',
+      url: '/admin/advertisementlist'
+    },
     // {
     //   icon: 'swap_vert',
     //   name: 'Purchase Order',
