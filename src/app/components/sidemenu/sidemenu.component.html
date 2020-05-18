@@ -5,7 +5,7 @@
     <div>
         <img src="../../../assets/LOGO.png" style="width:70px; height:70px; margin-left:10px;margin-top:15px"/>
     </div>
-      <div fxLayout="column" fxLayoutAlign="center center" class="side_bar_content_box" [ngClass]="{active:indexActive == i}" *ngFor="let side of menuItems;let i = index" (click)="activeIndex(i, side.name)" routerLink="{{side.url}}">
+      <div fxLayout="row" fxLayoutAlign="center center" class="side_bar_content_box" [ngClass]="{active:indexActive == i}" *ngFor="let side of menuItems;let i = index" (click)="activeIndex(i, side.name)" routerLink="{{side.url}}">
           <div fxLayout="column" fxLayoutAlign="center center" class=" sidebar-img">
           
               <i class="material-icons"  id="img-col-size">

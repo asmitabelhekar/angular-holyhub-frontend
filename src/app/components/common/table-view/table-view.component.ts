@@ -69,7 +69,7 @@ export class TableViewComponent implements OnInit {
     public apiCall : ApiService, private router: Router) {
     this.config = {
       itemsPerPage: 5,
-      currentPage: 0,
+      currentPage: 1,
       totalItems: this.itemsCount
     };
   }

@@ -57,11 +57,11 @@
         <th *ngIf="showAction == 0"></th>
 
       </tr>
-      <tr  *ngFor="let cust of dataSource | paginate: { itemsPerPage: 10, currentPage: currentPage,totalItems: itemsCount };let i = index">
+      <tr  *ngFor="let cust of dataSource | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index">
 
         <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
-          <img *ngIf="col.key == 'image' " style="width:100px; height:60px" src="{{cust.image}}" />
-          <img *ngIf="col.key == 'images' " style="width:110px; height:70px" src="{{cust.images[0]}}" />
+          <img *ngIf="col.key == 'image' " style="width:60px; height:40px" src="{{cust.image}}" />
+          <img *ngIf="col.key == 'images' " style="width:100px; height:60px" src="{{cust.images[0]}}" />
           <label *ngIf="col.name == 'Category Name' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Language Name' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Name' ">{{cust[col.key]}}</label>
@@ -95,13 +95,13 @@
     </div>
   
     <div fxLayout="row" class="paginator-content" fxLayoutAlign="center center">
-        <div class="paginator-element" fxLayout="row" [ngClass]="{'selected-page': currentPage == 0}"
+        <div class="paginator-element" fxLayout="row" [ngClass]="{'selected-page': currentPage == 1}"
             (click)="paginate(1)" fxLayoutAlign="center center">
             <!-- <i class="material-icons icon-font primary">
                 arrow_back_ios
             </i> -->
-            <img *ngIf="currentPage == 0" src="./assets/backword.png" width="30px" height="35px">
-            <img title="Go to first" *ngIf="currentPage != 0" src="./assets/Abackword.png" width="30px" height="35px">
+            <img *ngIf="currentPage == 1" src="./assets/backword.png" width="30px" height="35px">
+            <img title="Go to first" *ngIf="currentPage != 1" src="./assets/Abackword.png" width="30px" height="35px">
   
   
         </div>

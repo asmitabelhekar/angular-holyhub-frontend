@@ -38,7 +38,7 @@ export class AdvertisementlistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
-    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
     this.getAdvertisementList(this.url);
   }
 
@@ -48,7 +48,7 @@ export class AdvertisementlistComponent implements OnInit {
 
       this.dataArray = response['result']['list'];
       this.totalCount = response['result']['count'];
-      this.lastPage = Math.ceil(this.totalCount / 10);
+      this.lastPage = Math.ceil(this.totalCount / 5);
     })
   }
 
@@ -57,7 +57,7 @@ export class AdvertisementlistComponent implements OnInit {
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
 
     this.getAdvertisementList(this.url);
 
@@ -71,7 +71,7 @@ export class AdvertisementlistComponent implements OnInit {
   filter(event) {
   console.log("show filter data:"+event);
     this.categoryId = event;
-    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
     this.getAdvertisementList(this.url);
   }
 

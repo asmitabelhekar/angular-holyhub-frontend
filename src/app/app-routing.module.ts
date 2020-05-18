@@ -10,6 +10,7 @@ import { CategorylistComponent } from './components/category/categorylist/catego
 import { LanguagelistComponent } from './components/language/languagelist/languagelist.component';
 import { UserlistComponent } from './components/users/userlist/userlist.component';
 import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
+import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,8 @@ const routes: Routes = [
 
       {path: 'userlist', component: UserlistComponent},
       {path: 'advertisementlist', component: AdvertisementlistComponent},
+      {path: 'updateprice', component: UpdatepriceComponent},
+
 
 
 

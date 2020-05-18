@@ -80,6 +80,7 @@ th, td {
 .cl_div_background{
   background: white;
   padding: 20px;
+  height:100%;
 }
 
 .cl_filter_css{

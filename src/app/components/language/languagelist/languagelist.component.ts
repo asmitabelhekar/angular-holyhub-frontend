@@ -35,16 +35,19 @@ export class LanguagelistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
-    this.getLanguagesList();
+    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+
+    this.getLanguagesList(this.url);
+
   }
 
-  getLanguagesList(){
+  getLanguagesList(url){
 
-    this.apiCall.get(this.url).subscribe((response)=>{
+    this.apiCall.get(url).subscribe((response)=>{
 
       this.dataArray = response['result']['list'];
       this.totalCount = response['result']['count'];
-      this.lastPage = Math.ceil(this.totalCount / 10);
+      this.lastPage = Math.ceil(this.totalCount / 5);
     })
   }
 
@@ -65,8 +68,19 @@ export class LanguagelistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getLanguagesList();
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.getLanguagesList(this.url);
     });
+  }
+
+
+  paginate(event) {
+    console.log("currentPage::" +event);
+
+    this.currentPage = event;
+    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+    this.getLanguagesList(this.url);
+
   }
 
   edit(event){
@@ -85,7 +99,8 @@ export class LanguagelistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getLanguagesList();
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.getLanguagesList(this.url);
     });
    
   }

@@ -48,6 +48,8 @@ import { UserlistComponent } from './components/users/userlist/userlist.componen
 import { PopupComponent } from './components/showpopup/popup/popup.component';
 import { LanguagepopupComponent } from './components/showpopup/languagepopup/languagepopup.component';
 import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
+import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
+import { UpdatepricepopupComponent } from './components/showpopup/updatepricepopup/updatepricepopup.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { AdvertisementlistComponent } from './components/advertisement/advertise
     UserlistComponent,
     PopupComponent,
     LanguagepopupComponent,
-    AdvertisementlistComponent
+    AdvertisementlistComponent,
+    UpdatepriceComponent,
+    UpdatepricepopupComponent
   ],
   imports: [
     BrowserModule,

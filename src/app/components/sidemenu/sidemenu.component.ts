@@ -18,6 +18,16 @@ export class SidemenuComponent implements OnInit {
     },
     {
       icon: 'description',
+      name: 'Advertisement',
+      url: '/admin/advertisementlist'
+    },
+    {
+      icon: 'description',
+      name: 'Pricing',
+      url: '/admin/updateprice'
+    },
+    {
+      icon: 'description',
       name: 'Category',
       url: '/admin/categorylist'
     },
@@ -30,12 +40,7 @@ export class SidemenuComponent implements OnInit {
       icon: 'people',
       name: 'Users',
       url: '/admin/userlist'
-    },
-    {
-      icon: 'description',
-      name: 'Advertisement',
-      url: '/admin/advertisementlist'
-    },
+    }
    
   ]
 

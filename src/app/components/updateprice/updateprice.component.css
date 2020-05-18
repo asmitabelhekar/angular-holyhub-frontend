@@ -1,0 +1,19 @@
+.cl_background{
+    width:100%;
+    height:95%;
+    /* background-color: white; */
+}
+.mat-card {
+
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 0px;
+    border-radius: 2px;
+
+}
+
+.cl_update:hover{
+    /* color:green; */
+    cursor: pointer;
+}

@@ -27,7 +27,7 @@ export class CategorylistComponent implements OnInit {
   pageIndex: any = 0;
   lastPage: any = 0;
 
-  url = environment.main_url + "category/" + 0 + "/sub-category";
+  url;
 
 
   constructor(public router: Router,
@@ -35,20 +35,22 @@ export class CategorylistComponent implements OnInit {
     public apiCall: ApiService) { }
 
   ngOnInit() {
-    this.getCategoryList();
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
+    this.getCategoryList(this.url);
   }
 
-  getCategoryList() {
+  getCategoryList(url) {
 
     this.apiCall.get(this.url).subscribe((response) => {
 
       this.dataArray = response['result']['list'];
       this.totalCount = response['result']['count'];
-      this.lastPage = Math.ceil(this.totalCount / 10);
+      this.lastPage = Math.ceil(this.totalCount / 5);
     })
   }
   ngOnChanges() {
-    this.getCategoryList();
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
+    this.getCategoryList(this.url);
   }
 
   add(event) {
@@ -56,6 +58,20 @@ export class CategorylistComponent implements OnInit {
     // console.log("delete event",event);
     // this.router.navigate(['admin/addcategory']);
   }
+
+
+
+  paginate(event) {
+    console.log("currentPage::" +event);
+
+    this.currentPage = event;
+
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
+
+    this.getCategoryList(this.url);
+
+  }
+
 
   showPopup() {
     let send_data = {};
@@ -67,7 +83,8 @@ export class CategorylistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getCategoryList();
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
+      this.getCategoryList(this.url);
     });
   }
 
@@ -87,7 +104,8 @@ export class CategorylistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getCategoryList();
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
+      this.getCategoryList(this.url);
     });
    
   }

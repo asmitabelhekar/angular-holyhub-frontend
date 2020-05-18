@@ -41,7 +41,7 @@ export class UserlistComponent implements OnInit {
 
       this.dataArray = response['result']['list'];
       this.totalCount = response['result']['count'];
-      this.lastPage = Math.ceil(this.totalCount / 10);
+      this.lastPage = Math.ceil(this.totalCount / 1);
     })
   }
 
