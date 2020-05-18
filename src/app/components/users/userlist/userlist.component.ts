@@ -14,10 +14,9 @@ export class UserlistComponent implements OnInit {
   config : any;
   totalCount = 0;
   columnArray: any = [
-    // { "name": "No", "key": "id" },
     { "name": "Name", "key": "name" },
-    { "name": "Email", "key": "email" },
-    { "name": "Mobile", "key": "mobile" }
+    { "name": "Mobile", "key": "mobile" },
+    { "name": "Email", "key": "email" }
   ];
   
   currentPage = 0;

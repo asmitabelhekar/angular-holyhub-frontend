@@ -17,9 +17,8 @@ export class LanguagelistComponent implements OnInit {
   config : any;
   totalCount = 0;
   columnArray: any = [
-    // { "name": "No", "key": "id" },
-    { "name": "Image", "key": "image" },
     { "name": "Language Name", "key": "name" },
+    { "name": "Image", "key": "image" }
   ];
   
   currentPage = 0;
@@ -60,7 +59,7 @@ export class LanguagelistComponent implements OnInit {
     let send_data = {};
     send_data['status'] = "add";
     const dialogRef = this.dialog.open(LanguagepopupComponent, {
-      width: '40%',
+      width: '25%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });
@@ -80,7 +79,7 @@ export class LanguagelistComponent implements OnInit {
     send_data['image'] = event.image;
     
     const dialogRef = this.dialog.open(LanguagepopupComponent, {
-      width: '35%',
+      width: '25%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });

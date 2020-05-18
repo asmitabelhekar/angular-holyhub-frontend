@@ -1,3 +1,12 @@
 .button-content {
     color: #FFFFFF!important;
   }
+
+  .button-cancel{
+    border:1px solid gray;
+    background-color: white;
+    color:gray;
+    padding-left:15px;
+    padding-right:15px;
+}
+

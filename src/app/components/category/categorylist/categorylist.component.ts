@@ -16,9 +16,8 @@ export class CategorylistComponent implements OnInit {
   config: any;
   totalCount = 0;
   columnArray: any = [
-    // { "name": "No", "key": "id" },
-    { "name": "Image", "key": "image" },
-    { "name": "Category Name", "key": "name" }
+    { "name": "Category Name", "key": "name" },
+    { "name": "Image", "key": "image" }
 
   ];
 
@@ -62,7 +61,7 @@ export class CategorylistComponent implements OnInit {
     let send_data = {};
     send_data['status'] = "add";
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '40%',
+      width: '25%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });
@@ -82,7 +81,7 @@ export class CategorylistComponent implements OnInit {
     send_data['image'] = event.image;
     
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '35%',
+      width: '25%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });

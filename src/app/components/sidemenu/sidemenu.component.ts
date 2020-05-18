@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidemenuComponent implements OnInit {
 
   indexActive: any = 0;
-
+  title : any;
   menuItems = [
     {
       icon: 'dashboard',
@@ -35,55 +36,28 @@ export class SidemenuComponent implements OnInit {
       name: 'Advertisement',
       url: '/admin/advertisementlist'
     },
-    // {
-    //   icon: 'swap_vert',
-    //   name: 'Purchase Order',
-    //   url: '/admin/purchase-order-list'
-    // },
-    // {
-    //   icon: 'compare_arrows',
-    //   name: 'GRN',
-    //   url: '/admin/grn-list'
-    // },
-    // {
-    //   icon: 'people',
-    //   name: 'Vendor',
-    //   url: '/admin/vendor-list'
-    // },
-    // {
-    //   icon: 'drag_indicator',
-    //   name: 'Product',
-    //   url: '/admin/product-list'
-    // },
-
-    // {
-    //   icon: 'people',
-    //   name: 'Customer',
-    //   url: '/admin/customer-list'
-    // },
-    // {
-    //   icon: 'compare_arrows',
-    //   name: 'Customer Passbook',
-    //   url: '/admin/passbook-list'
-    // },
-    // {
-    //   icon: 'compare_arrows',
-    //   name: 'Vendor Passbook',
-    //   url: '/admin/vendor-passbook-list'
-    // },
-    // {
-    //   icon: 'compare_arrows',
-    //   name: 'Reports',
-    //   url: '/admin/reports'
-    // }
+   
   ]
 
-  constructor() { }
+  constructor(public messageService : MessageService) { }
 
   ngOnInit() {
   }
-  activeIndex(index) {
+  activeIndex(index,title) {
     this.indexActive = index;
+    this.title = title;
+    console.log("show sidemenu url:"+title);
+    this.broadCastMessage();
   }
+
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage(this.title);
+ }
+
+ removeMessages(): void {
+   // clear messages
+   this.messageService.removeMessages();
+ }
 
 }

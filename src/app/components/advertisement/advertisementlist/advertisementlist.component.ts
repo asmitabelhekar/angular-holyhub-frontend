@@ -15,9 +15,8 @@ export class AdvertisementlistComponent implements OnInit {
   config : any;
   totalCount = 0;
   columnArray: any = [
-    // { "name": "No", "key": "id" },
-    { "name": "Image", "key": "images" },
     { "name": "Name", "key": "title" },
+    { "name": "Image", "key": "images" },
     { "name": "Description", "key": "description" },
     { "name": "Address", "key": "address" },
     

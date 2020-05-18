@@ -2,7 +2,7 @@
   <div class="side_bar_inner_contanor">
     
 
-      <div fxLayout="column" fxLayoutAlign="center center" class="side_bar_content_box" [ngClass]="{active:indexActive == i}" *ngFor="let side of menuItems;let i = index" (click)="activeIndex(i)" routerLink="{{side.url}}">
+      <div fxLayout="column" fxLayoutAlign="center center" class="side_bar_content_box" [ngClass]="{active:indexActive == i}" *ngFor="let side of menuItems;let i = index" (click)="activeIndex(i, side.name)" routerLink="{{side.url}}">
           <div fxLayout="column" fxLayoutAlign="center center" class=" sidebar-img">
           
               <i class="material-icons"  id="img-col-size">

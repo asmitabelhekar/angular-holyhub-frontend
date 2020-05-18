@@ -33,7 +33,7 @@ export class TableViewComponent implements OnInit {
   @Input() showView: any = 0;
   @Input() showAdd: any = 0;
   @Input() showFilter: any = 0;
-
+  @Input() showAction: any = 1;
   
 
 

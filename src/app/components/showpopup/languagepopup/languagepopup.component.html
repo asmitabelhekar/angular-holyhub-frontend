@@ -1,5 +1,72 @@
 
- <div style="width:100%;margin:auto">
+<form #userForm="ngForm" style="width:100%;" fxLayout="column">
+  <div style="width:100%;">
+   <div fxFlex="95">
+     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">{{button}} Language</label>
+   </div>
+   <div fxFlex="5">
+     <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
+   </div>
+  </div>
+  <mat-divider style="width:100%;margin-top:15px"></mat-divider>
+ 
+   <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
+     <mat-form-field fxFlex="100">
+       <mat-label>Language Name</mat-label>
+       <input matInput [(ngModel)]="popup.languageName"
+         [formControl]="formControl.languageName" />
+       <mat-error *ngIf="formControl.languageName.invalid">Language Name is required</mat-error>
+ 
+       <!-- <mat-error *ngIf="formControl.username.invalid">Username/Email/Mobile is required</mat-error> -->
+     </mat-form-field>
+   
+   </div>
+   <label style="margin-top:5px">Upload Image</label>
+   <div fxLayout="column" fxLayoutAlign="center center"  style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
+       
+     <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:20px;color:rgb(196, 184, 184)">camera_alt
+     </mat-icon>
+     <img *ngIf="firstImage != '' " src="{{firstImage}}"
+     style="width:60%; height:60%;" />
+       <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
+ 
+   <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"  onclick="document.getElementById('image_upload1').click()"
+     fxLayoutAlign="center">
+     <label type="file" style="margin-top:15px; color:gray">Upload Language Image</label>
+   </div>
+ 
+   <div style="position: absolute; top:3px;right:5px;">
+     <mat-icon (click)="removeImage()" style="color:gray">close</mat-icon>
+   </div>
+   </div>
+ 
+   <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top:25px;" fxFlex="100">
+     <!-- <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px" [disabled]="formControl.languageName.invalid">{{buttonText}}</button> -->
+     <div fxFlex="49"  fxLayoutAlign="end center">
+       <button mat-raised-button (click)="closeDialog()" class="button-cancel" style="font-size:13px; width:70%"
+       >CANCEL</button>
+     </div>
+     <div fxFlex="3"></div>
+     <div fxFlex="48" fxLayoutAlign="start center">
+       
+     <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
+     [disabled]="formControl.languageName.invalid">SUBMIT</button>
+     </div>
+    
+ 
+   </div>
+   </form>
+ 
+ 
+ 
+ 
+
+
+
+
+
+<!-- 
+ <div style="width:100%;margin:auto" fxLayout="column">
   <div fxFlex="95">
     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">{{button}} Language</label>
   </div>
@@ -17,14 +84,8 @@
          [formControl]="formControl.languageName" />
        <mat-error *ngIf="formControl.languageName.invalid">Language Name is required</mat-error>
  
-       <!-- <mat-error *ngIf="formControl.username.invalid">Username/Email/Mobile is required</mat-error> -->
      </mat-form-field>
-    
-     <!-- <mat-form-field style="width:100%">
-       <input matInput class="form-control " name="name" [(ngModel)]="categoryName"
-         #name="ngModel"  placeholder="Category Name" />
-     
-     </mat-form-field> -->
+  
    </div>
    <label style="margin-top:5px">Upload Image</label>
    <div fxLayout="column" fxLayoutAlign="center center"  style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
@@ -44,14 +105,22 @@
      <mat-icon (click)="removeImage()" style="color:gray; font-size:20px">close</mat-icon>
    </div>
    </div>
+
+ 
    </form>
  
-   <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:10px;">
-     <!-- <button  mat-raised-button (click)="closeDialog()" style="margin-right:15px;font-size:13px">CANCEL</button> -->
-     <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px" [disabled]="formControl.languageName.invalid">{{buttonText}}</button>
-  
- 
-   </div>
- 
- 
- 
+   <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top:25px;" fxFlex="100">
+    <div fxFlex="49"  fxLayoutAlign="end center">
+      <button mat-raised-button (click)="closeDialog()" class="button-cancel" style="font-size:13px; width:70%"
+      >CANCEL</button>
+    </div>
+    <div fxFlex="3"></div>
+    <div fxFlex="48" fxLayoutAlign="start center">
+      
+    <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
+    [disabled]="formControl.languageName.invalid">SUBMIT</button>
+    </div>
+   
+
+  </div>
+   -->
