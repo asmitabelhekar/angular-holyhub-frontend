@@ -11,6 +11,8 @@ import { LanguagelistComponent } from './components/language/languagelist/langua
 import { UserlistComponent } from './components/users/userlist/userlist.component';
 import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
 import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
+import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.component';
+import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
 
 const routes: Routes = [
 
@@ -32,6 +34,9 @@ const routes: Routes = [
       {path: 'userlist', component: UserlistComponent},
       {path: 'advertisementlist', component: AdvertisementlistComponent},
       {path: 'updateprice', component: UpdatepriceComponent},
+
+      {path: 'bannerlist', component: BannerlistComponent},
+      {path: 'bannerupdate', component: BannerupdateComponent},
 
 
 

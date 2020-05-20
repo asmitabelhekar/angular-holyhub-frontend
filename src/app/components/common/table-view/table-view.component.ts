@@ -139,6 +139,7 @@ export class TableViewComponent implements OnInit {
       });
   }
 
+
   handleSelection(event, categorySelected) {
     console.log("check selected:"+event);
     if (event.selected) {

@@ -8,6 +8,20 @@
         <input placeholder="Search here.." (input)="search($event)" style="background: white;width: 100%;height: 30px;"/>
         <mat-icon>search</mat-icon>
       </div>
+
+      <!-- <div fxLayoutAlign="start center" style="width: 80%;">
+      <mat-form-field style="width:20%; height:82px; margin-right:10px; " appearance="outline">
+        <mat-select 
+        name="type" 
+        (selectionChange)="selectCategory(selectedCategory)"
+        class="filter-select" 
+        [(value)]="selectedCategory">
+          <mat-option *ngFor="let item of categoryArray" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div> -->
     </div>
 
     <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
@@ -58,7 +72,6 @@
 
       </tr>
       <tr  *ngFor="let cust of dataSource | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index">
-
         <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
           <img *ngIf="col.key == 'image' " style="width:60px; height:40px" src="{{cust.image}}" />
           <img *ngIf="col.key == 'images' " style="width:100px; height:60px" src="{{cust.images[0]}}" />

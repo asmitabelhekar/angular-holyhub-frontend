@@ -22,7 +22,7 @@
   
   </div>
   <label style="margin-top:5px">Upload Image</label>
-  <div fxLayout="column" fxLayoutAlign="center center"  style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
+  <div fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
       
     <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:20px;color:rgb(196, 184, 184)">camera_alt
     </mat-icon>
@@ -30,7 +30,7 @@
     style="width:60%; height:60%;" />
       <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
 
-  <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"  onclick="document.getElementById('image_upload1').click()"
+  <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px" 
     fxLayoutAlign="center">
     <label type="file" style="margin-top:15px; color:gray">Upload Category Image</label>
   </div>

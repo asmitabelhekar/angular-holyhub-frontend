@@ -1,0 +1,112 @@
+<div>
+
+  
+  <mat-card style="border-radius: 10px;padding-bottom:20px">
+   
+
+        <div fxLayout="row" fxLayoutAlign="center center" style="width:100%; height:100%;margin-top:2%">
+          <mat-form-field style="width:46%;">
+            <input matInput class="form-control " name="name" required [(ngModel)]="bannerModel.name"
+              #name="ngModel" pattern="[a-zA-z   ]+$" placeholder="Title" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                 Title Is Requird
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width:46%; margin-left:4%">
+            <mat-label>Select Week</mat-label>
+            <mat-select (selectionChange)="selectWeek(productId)"
+              [(value)]="weekId">
+              <mat-option *ngFor="let type of weekList" [value]="type"> {{type}}</mat-option>
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
+       
+
+      
+       
+     
+
+      <!-- <div fxLayout="row" style="width:100%; height:100%;margin-top:2%">
+
+          <mat-form-field style="width:50%;">
+            <input matInput class="form-control " type="number" name="price" 
+              id="price" required [(ngModel)]="bannerModel.price" #price="ngModel" pattern="[0-9.₹, ]+$"
+              placeholder="Price" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="price.invalid && (price.dirty || price.touched)">
+                  Price Is Requird
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+      
+          <mat-form-field style="width:48%; margin-left:2%;">
+            <input matInput class="form-control " type="number" name="gst" 
+              id="gst" required [(ngModel)]="bannerModel.gst" #gst="ngModel" pattern="[0-9. ]+$"
+              placeholder="GST Percentage" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="gst.invalid && (gst.dirty || gst.touched)">
+                  GST Percentage Is Requird
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+     
+
+
+      </div> -->
+      <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 20px;">
+        <mat-form-field style="width:46%; margin-top:15px">
+          <input matInput class="form-control " name="description" required [(ngModel)]="bannerModel.description"
+            #description="ngModel" pattern="[a-zA-z   ]+$" placeholder="Description" />
+          <mat-error>
+            <div class="form-group">
+              <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                Description Is Requird
+              </div>
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width:46%; margin-top:15px; margin-left:4%" >
+          <mat-label style="color:gray; background-color: white;">Address</mat-label>
+          <input matInput placeholder="Location" [(ngModel)]="loc.location" ngx-google-places-autocomplete
+            [options]='options' #placesRef="ngx-places" name="city"
+            (onAddressChange)="handleAddressChange($event)"/>
+        </mat-form-field>
+      </div>
+
+      <div class="a" fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:330px;width:96%; border : 1px solid #ced3da; margin-top:45px; border-radius:15px; margin-left:2%; margin-right:2%">
+      
+        <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:40px;color:rgb(196, 184, 184)">camera_alt
+        </mat-icon>
+        <img class="img" *ngIf="firstImage != '' " src="{{firstImage}}"
+        style="width:100%;border-radius:15px; height:100%;" />
+          <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
+
+      <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"
+        fxLayoutAlign="center">
+        <label type="file" style="margin-top:15px">Upload Product Image</label>
+      </div>
+      </div>
+
+  
+    <div fxLayout="row" fxLayoutAlign="center center" class="cl_inputfield_margintop" style="padding-bottom:10px">
+      <button mat-raised-button class="cancelButton" (click)="cancel()">Cancel</button>
+      <button [disabled]="name.invalid || description.invalid " mat-raised-button
+        class="ViewButton" (click)="updateBanner(bannerModel)">Submit</button>
+
+    </div>
+  </mat-card>
+</div>

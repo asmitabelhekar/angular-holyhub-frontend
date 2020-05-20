@@ -50,7 +50,9 @@ import { LanguagepopupComponent } from './components/showpopup/languagepopup/lan
 import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
 import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
 import { UpdatepricepopupComponent } from './components/showpopup/updatepricepopup/updatepricepopup.component';
-
+import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.component';
+import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   entryComponents:[PopupComponent, LanguagepopupComponent],
@@ -71,7 +73,9 @@ import { UpdatepricepopupComponent } from './components/showpopup/updatepricepop
     LanguagepopupComponent,
     AdvertisementlistComponent,
     UpdatepriceComponent,
-    UpdatepricepopupComponent
+    UpdatepricepopupComponent,
+    BannerlistComponent,
+    BannerupdateComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +121,7 @@ import { UpdatepricepopupComponent } from './components/showpopup/updatepricepop
     MatNativeDateModule,
     Ng2SearchPipeModule,
     EditorModule,
+    GooglePlaceModule,
     NgxPaginationModule,
     Ng4LoadingSpinnerModule.forRoot(),
     GoogleChartsModule.forRoot(),

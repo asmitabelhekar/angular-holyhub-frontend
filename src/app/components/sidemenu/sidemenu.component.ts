@@ -23,6 +23,11 @@ export class SidemenuComponent implements OnInit {
     },
     {
       icon: 'description',
+      name: 'Banner',
+      url: '/admin/bannerlist'
+    },
+    {
+      icon: 'description',
       name: 'Pricing',
       url: '/admin/updateprice'
     },
