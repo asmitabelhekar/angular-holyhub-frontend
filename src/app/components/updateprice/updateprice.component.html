@@ -1,51 +1,87 @@
 <div class="cl_background">
 
 
-  <div fxLayout="row" style="margin-top:20px">
+  <div fxLayout="row" style="margin-top:20px; width:100%">
 
 
-<div>
+<div style="width:25%">
 
-  <mat-card style="width:350px; height:auto; border-radius:10px; padding-bottom:30px">
+  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px">
     <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <div style="height:60px;width:100%; font-size:20px;border-radius:10px; color:#2aacb3" fxLayoutAlign="center center">
+      <!-- <div style="height:60px;width:100%; font-size:20px;border-radius:10px; color:#2aacb3" fxLayoutAlign="center center">
       <label style="font-family:  'Times New Roman', Times, serif;">Banner</label>
-      </div>
+      </div> -->
      
    
-      <div fxLayout="row" style="width:100%;font-size:30px; margin-top:15px;color:#2aacb3" fxLayoutAlign="center center">
-       <label>₹</label>
-       <label>1000</label>
+      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:#2aacb3" fxLayoutAlign="center center">
+        <div fxFlex="70" fxLayoutAlign="start center">
+         <label  style="font-family: sans-serif; font-size:22px">First Week -</label>
+        </div>
+      
+        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
+          <label>$</label>
+          <label>{{bannerFirstWeekPrice}}</label>
+        </div>    
+       
+      </div>
+
+      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:40px;color:#2aacb3" fxLayoutAlign="center center">
+        <div fxFlex="70" fxLayoutAlign="start center">
+         <label  style="font-family: sans-serif; font-size:22px">Further Week -</label>
+        </div>
+      
+        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
+          <label>$</label>
+          <label>{{bannerNextWeekPrice}}</label>
+        </div>    
+       
       </div>
   
 
-      <div fxLayout="row" style="width:100%; margin-top:30px" fxLayoutAlign="center center">
+      <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
         <!-- <label class="cl_update" >Update Price</label> -->
-        <button  mat-raised-button  style="padding:5px;width:90%;background-color: #2aacb3;color:white">UPDATE PRICE</button>
+        <button  mat-raised-button  style="padding:5px;width:90%;background-color: #2aacb3;color:white;font-size:22px" (click)="upDateBannerPrice()">Update Banner Price</button>
 
         </div>
     </div>
    
   </mat-card>
 </div>
-<div style="margin-left:20px">
+<div style="margin-left:20px;width:25%">
 
-  <mat-card style="width:350px; height:auto; border-radius:10px; padding-bottom:30px">
+  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px">
     <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <div style="height:60px;width:100%; font-size:30px;border-radius:10px; color:#2aacb3" fxLayoutAlign="center center">
-      <label style="font-family: 'Times New Roman', Times, serif;">Advertisement</label>
-      </div>
+      <!-- <div style="height:60px;width:100%; font-size:30px;border-radius:10px; color:#2aacb3" fxLayoutAlign="center center">
+      <label style="font-family: sans-serif">Advertisement</label>
+      </div> -->
      
-   
-      <div fxLayout="row" style="width:100%;font-size:25px; margin-top:20px;color:#2aacb3" fxLayoutAlign="center center">
-       <label>₹</label>
-       <label>2000</label>
+      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:#2aacb3" fxLayoutAlign="center center">
+        <div fxFlex="70" fxLayoutAlign="start center">
+         <label style="font-family: sans-serif; font-size:22px">First Week -</label>
+        </div>
+      
+        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
+          <label>$</label>
+          <label>{{addFirstWeekPrice}}</label>
+        </div>    
+       
       </div>
-  
 
-      <div fxLayout="row" style="width:100%; margin-top:30px" fxLayoutAlign="center center">
+      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:40px;color:#2aacb3" fxLayoutAlign="center center">
+        <div fxFlex="70" fxLayoutAlign="start center">
+         <label  style="font-family: sans-serif; font-size:22px">Further Week -</label>
+        </div>
+      
+        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
+          <label>$</label>
+          <label>{{addNextWeekPrice}}</label>
+        </div>    
+       
+      </div>
+
+      <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
         <!-- <label class="cl_update" >Update Price</label> -->
-        <button  mat-raised-button  style="padding:5px;width:90%;background-color: #2aacb3;color:white">UPDATE PRICE</button>
+        <button  mat-raised-button  style="padding:5px;width:90%;background-color: #2aacb3;color:white; font-size:22px" (click)="upDateAdvertisementPrice()">Update Advertisement Price</button>
 
         </div>
     </div>

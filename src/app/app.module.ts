@@ -55,7 +55,7 @@ import { BannerupdateComponent } from './components/banner/bannerupdate/bannerup
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
-  entryComponents:[PopupComponent, LanguagepopupComponent],
+  entryComponents:[PopupComponent, LanguagepopupComponent, UpdatepricepopupComponent],
   declarations: [
     AppComponent,
     StructureComponent,
