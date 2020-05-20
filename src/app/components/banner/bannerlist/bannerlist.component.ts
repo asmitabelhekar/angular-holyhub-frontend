@@ -18,7 +18,7 @@ export class BannerlistComponent implements OnInit {
   totalCount = 0;
   columnArray: any = [
     { "name": "Name", "key": "title" },
-    { "name": "Image", "key": "image" },
+    { "name": "Banner Image", "key": "image" },
     { "name": "Description", "key": "description" },
     { "name": "Address", "key": "city" },
     

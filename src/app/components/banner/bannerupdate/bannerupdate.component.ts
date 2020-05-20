@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/services/api/api.service';
 import { MatSnackBar } from '@angular/material';
 import { MessageService } from 'src/app/services/messages/message.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-bannerupdate',
@@ -16,7 +17,7 @@ export class BannerupdateComponent implements OnInit {
   loc: any = {};
   weekList = ['1','2','3','4','5'];
   bannerModel : any = {};
-
+  selectedWeek : any;
   mobileCheck : string;
   lattitude: any;
   longitude: any;
@@ -30,6 +31,9 @@ export class BannerupdateComponent implements OnInit {
   bannerId: any;
   startDateTime : any;
   endDateTime: any;
+  selectedBannerWeek : any;
+  todayDate: any;
+  endBannerDate : any;
 
   constructor(
     public changeDetectorRef : ChangeDetectorRef,
@@ -52,11 +56,58 @@ export class BannerupdateComponent implements OnInit {
   this.longitude = this.bannerData.lng;
   this.startDateTime = this.bannerData.startDateTime;
   this.endDateTime = this.bannerData.endDateTime;
-  
+  this.selectedWeek = this.getBannerDate(this.startDateTime, this.endDateTime);
+    this.weekId = this.selectedWeek.toString();
+    console.log("selected weekId:"+this.weekId);
+  }
+
+ getBannerDate(start, end) {
+    //get from date
+    var ts_ms = start * 1000;
+    var date_ob = new Date(ts_ms);
+    var year = date_ob.getFullYear();
+    var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    var date = ("0" + date_ob.getDate()).slice(-2);
+    let getStartDate = month + "/" + date + "/" + year;
+    var dateToday = new Date(year, parseInt(month), parseInt(date));
+
+
+    //get end date
+    var end_date_ob_ts_ms = end * 1000;
+    var end_date_ob = new Date(end_date_ob_ts_ms);
+    var end_date_ob_year = end_date_ob.getFullYear();
+    var end_date_ob_month = ("0" + (end_date_ob.getMonth() + 1)).slice(-2);
+    var end_date_ob_date = ("0" + end_date_ob.getDate()).slice(-2);
+    let getEndDate = end_date_ob_month + "/" + end_date_ob_date + "/" + end_date_ob_year;
+
+    console.log("show first date: " + getStartDate + "  ,  " + "show second date:" + getEndDate);
+
+
+    let weeks = this.calculateBannerNumberOfWeeks(getStartDate, getEndDate);
+    console.log("show weeks:" + weeks);
+
+    return Math.abs(weeks);
 
   }
 
+  calculateBannerNumberOfWeeks = function (d1, d2) {
+    var format = "MM/DD/YYYY";
+    if (d1 == '' || d2 == '') {
+      return '';
+    }
+    if (moment(d1, format).isValid() && moment(d2, format).isValid()) {
+      d1 = moment(d1, format);
+      d2 = moment(d2, format);
 
+      this.w = (d1.diff(d2, 'days') / 7).toFixed(1);
+      if (this.w < 1) {
+        this.w = this.w;
+      }
+      // this.selectedNoOfWeek = this.w;
+     
+      return this.w;
+    }
+  }
 
   handleAddressChange(data) {
 
@@ -99,10 +150,10 @@ export class BannerupdateComponent implements OnInit {
     send_date['image'] = this.firstImage;
     send_date['title'] = this.bannerModel['name'];
     send_date['description'] = this.bannerModel['description'];
-    send_date['startDateTime'] = this.bannerData.startDateTime;
-    send_date['endDateTime'] = this.bannerData.endDateTime;
-    send_date['lat'] = this.bannerData.lat;
-    send_date['lng'] = this.bannerData.lng;
+    send_date['startDateTime'] = this.startDateTime;
+    send_date['endDateTime'] = this.endDateTime;
+    send_date['lat'] = this.lattitude;
+    send_date['lng'] = this.longitude;
     send_date['isActive'] = 1;
     send_date['city'] = this.cityName;
     send_date['advertisementId'] = this.bannerData.advertisementId;
@@ -129,5 +180,27 @@ export class BannerupdateComponent implements OnInit {
       horizontalPosition: 'right',
       verticalPosition: 'top'
     });
+  }
+
+  selectBannerNoOfWeeksType(type) {
+    this.selectedBannerWeek = type;
+    this.todayDate = new Date();
+    console.log("show no of week value::" + type);
+    this.endBannerDate = moment(this.todayDate).add(type, 'weeks').format('MM/DD/YYYY');
+
+    let startDateTime = this.toTimestamp(this.todayDate);
+    let endDateTime = this.toTimestamp(this.endBannerDate);
+    this.startDateTime = startDateTime;
+    this.endDateTime = endDateTime;
+    console.log("start date timestamp:" + startDateTime);
+    console.log("end date timestamp:" + endDateTime);
+
+
+    console.log("show next date:" + moment(this.todayDate).add(type, 'weeks').format('MM/DD/YYYY'));
+  }
+
+  toTimestamp(strDate) {
+    var datum = Date.parse(strDate);
+    return datum / 1000;
   }
 }

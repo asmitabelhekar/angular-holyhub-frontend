@@ -73,7 +73,8 @@
       </tr>
       <tr  *ngFor="let cust of dataSource | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index">
         <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
-          <img *ngIf="col.key == 'image' " style="width:60px; height:40px" src="{{cust.image}}" />
+          <img *ngIf="col.key == 'image' && col.name == 'Image' " style="width:60px; height:40px" src="{{cust.image}}" />
+          <img *ngIf="col.key == 'image' && col.name == 'Banner Image' " style="width:100px; height:60px" src="{{cust.image}}" />
           <img *ngIf="col.key == 'images' " style="width:100px; height:60px" src="{{cust.images[0]}}" />
           <label *ngIf="col.name == 'Category Name' ">{{cust[col.key]}}</label>
           <label *ngIf="col.name == 'Language Name' ">{{cust[col.key]}}</label>
