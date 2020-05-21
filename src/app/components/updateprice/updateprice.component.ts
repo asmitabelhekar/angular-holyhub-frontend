@@ -68,7 +68,7 @@ export class UpdatepriceComponent implements OnInit {
     send_data['subscriptionId'] = this.bannerSubscriptionId;
 
     const dialogRef = this.dialog.open(UpdatepricepopupComponent, {
-      width: '30%',
+      width: '27%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });
@@ -88,7 +88,7 @@ export class UpdatepriceComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(UpdatepricepopupComponent, {
-      width: '30%',
+      width: '27%',
       panelClass: 'custom-dialog-container',
       data: send_data
     });
