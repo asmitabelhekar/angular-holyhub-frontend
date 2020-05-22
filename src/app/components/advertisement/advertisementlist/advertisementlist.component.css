@@ -50,6 +50,9 @@
   margin-bottom:1%;
 }
 
+.advertisementcard:hover{
+  box-shadow: 0 10px 21px 0 rgba(0, 0, 0, 0.21);
+}
 
 .cl_margin_top{
   margin-top:2%;
