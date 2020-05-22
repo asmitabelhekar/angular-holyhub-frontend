@@ -4,18 +4,78 @@
   <mat-card style="border-radius: 10px;padding-bottom:20px">
    
 
-        <div fxLayout="row" fxLayoutAlign="center center" style="width:100%; height:100%;margin-top:2%">
-          <mat-form-field style="width:46%;">
-            <input matInput class="form-control " name="name" required [(ngModel)]="bannerModel.name"
-              #name="ngModel" pattern="[a-zA-z   ]+$" placeholder="Title" />
-            <mat-error>
-              <div class="form-group">
-                <div *ngIf="name.invalid && (name.dirty || name.touched)">
-                 Title Is Requird
+        <div fxLayout="row" fxLayoutAlign="center center" style="width:100%; height:100%;">
+          <div fxLayout="column" fxFlex="49">
+            <div class="a" fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:350px;width:95%; border : 1px solid #ced3da; margin-top:45px; border-radius:15px; margin-left:5%">
+      
+              <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:40px;color:rgb(196, 184, 184)">camera_alt
+              </mat-icon>
+              <img class="img" *ngIf="firstImage != '' " src="{{firstImage}}"
+              style="width:100%;border-radius:15px; height:100%;" />
+                <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
+      
+            <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"
+              fxLayoutAlign="center">
+              <label type="file" style="margin-top:15px">Upload Product Image</label>
+            </div>
+            </div>
+          </div>
+          <div fxFlex="2"></div>
+
+          <div fxLayout="column" fxFlex="49" fxLayoutAlign="end center" style="margin-top:3%">
+            <mat-form-field style="width:90%;">
+              <input matInput class="form-control " name="name" required [(ngModel)]="bannerModel.name"
+                #name="ngModel" pattern="[a-zA-z   ]+$" placeholder="Title" />
+              <mat-error>
+                <div class="form-group">
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                   Title Is Requird
+                  </div>
                 </div>
-              </div>
-            </mat-error>
-          </mat-form-field>
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field style="width:90%; margin-top:15px;" >
+              <mat-label style="color:gray; background-color: white;">Address</mat-label>
+              <input matInput placeholder="Location" [(ngModel)]="loc.location" ngx-google-places-autocomplete
+                [options]='options' #placesRef="ngx-places" name="city"
+                (onAddressChange)="handleAddressChange($event)"/>
+            </mat-form-field>
+
+
+            <mat-form-field style="width:90%;">
+              <mat-label>From Date</mat-label>
+              <input matInput #input="ngModel" [(ngModel)]="bannerModel.fromDate"
+                [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+  
+            <mat-form-field style="width:90%; ">
+              <mat-label>To Date</mat-label>
+              <input matInput #input="ngModel" [(ngModel)]="bannerModel.toDate"
+                [matDatepicker]="pickersecond" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="pickersecond"></mat-datepicker-toggle>
+              <mat-datepicker #pickersecond></mat-datepicker>
+            </mat-form-field>
+
+
+            <mat-form-field style="width:90%; margin-top:15px">
+              <input matInput class="form-control " name="description" required [(ngModel)]="bannerModel.description"
+                #description="ngModel" placeholder="Description" />
+              <mat-error>
+                <div class="form-group">
+                  <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                    Description Is Requird
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+       
+        
 
           <!-- <mat-form-field style="width:46%; margin-left:4%">
             <mat-label>Select Week</mat-label>
@@ -26,32 +86,13 @@
 
           </mat-form-field> -->
 
-          <mat-form-field style="width:46%; margin-top:15px; margin-left:4%" >
-            <mat-label style="color:gray; background-color: white;">Address</mat-label>
-            <input matInput placeholder="Location" [(ngModel)]="loc.location" ngx-google-places-autocomplete
-              [options]='options' #placesRef="ngx-places" name="city"
-              (onAddressChange)="handleAddressChange($event)"/>
-          </mat-form-field>
+       
         </div>
 
        
         <div fxLayout="row" fxLayoutAlign="center center" style="width:100%; height:100%;margin-top:2%">
 
-          <mat-form-field style="width:46%;">
-            <mat-label>From Date</mat-label>
-            <input matInput #input="ngModel" [(ngModel)]="bannerModel.fromDate"
-              [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field style="width:46%; margin-left:4%">
-            <mat-label>To Date</mat-label>
-            <input matInput #input="ngModel" [(ngModel)]="bannerModel.toDate"
-              [matDatepicker]="pickersecond" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #pickersecond></mat-datepicker>
-          </mat-form-field>
+         
         </div>
       
        
@@ -90,34 +131,12 @@
 
       </div> -->
       <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 20px;">
-        <mat-form-field style="width:46%; margin-top:15px">
-          <input matInput class="form-control " name="description" required [(ngModel)]="bannerModel.description"
-            #description="ngModel" placeholder="Description" />
-          <mat-error>
-            <div class="form-group">
-              <div *ngIf="description.invalid && (description.dirty || description.touched)">
-                Description Is Requird
-              </div>
-            </div>
-          </mat-error>
-        </mat-form-field>
+      
 
      <div style="width:50%"></div>
       </div>
 
-      <div class="a" fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:350px;width:50%; border : 1px solid #ced3da; margin-top:45px; border-radius:15px; margin-left:25%; margin-right:25%">
-      
-        <mat-icon fxLayoutAlign="center center" *ngIf="firstImage == '' " style="font-size:60px; margin-top:40px;color:rgb(196, 184, 184)">camera_alt
-        </mat-icon>
-        <img class="img" *ngIf="firstImage != '' " src="{{firstImage}}"
-        style="width:100%;border-radius:15px; height:100%;" />
-          <input style="display: none;" id="image_upload1" type="file" (change)="detectEventGallery($event)">
-
-      <div *ngIf="firstImage == '' " style="margin-top:12px;color: black;width:100%;margin-bottom:15px"
-        fxLayoutAlign="center">
-        <label type="file" style="margin-top:15px">Upload Product Image</label>
-      </div>
-      </div>
+     
 
   
     <div fxLayout="row" fxLayoutAlign="center center" class="cl_inputfield_margintop" style="padding-bottom:10px">
