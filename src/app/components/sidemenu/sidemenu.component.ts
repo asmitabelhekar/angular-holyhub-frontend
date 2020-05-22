@@ -45,6 +45,10 @@ export class SidemenuComponent implements OnInit {
       icon: 'people',
       name: 'Users',
       url: '/admin/userlist'
+    }, {
+      icon: 'notification',
+      name: 'Notification',
+      url: '/admin/notifications'
     }
    
   ]

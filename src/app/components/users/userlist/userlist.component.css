@@ -1,0 +1,55 @@
+
+.cl_div_background{
+    background: white;
+    padding: 20px;
+    height:95%;
+  }
+
+
+  .cl_margin_top{
+    margin-top: 1%;;
+  }
+
+.cl_margin_top2{
+    margin-top:2%;
+  }
+
+
+.cl_div_w_h{
+    width:50%;
+     height:100%;
+  }
+
+
+.cl_add_course_css{
+    border: 1px solid grey;
+    padding:5px 10px 5px 10px;
+    border-radius: 5px;
+     /* margin-right:20px; */
+     cursor: pointer;
+  }
+
+
+.cl_filter_css{
+    border: 1px solid grey;
+    padding:5px 10px 5px 10px;
+    border-radius: 5px;
+    margin-left:2%;
+  }
+  
+
+  
+
+  input {
+    border: none;
+  }
+  
+  
+  input:focus {
+    outline: none;
+  }
+
+  .row_padding{
+      padding-top:15px;
+      padding-bottom:15px;
+  }

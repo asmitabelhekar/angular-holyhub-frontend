@@ -14,6 +14,19 @@
         <mat-icon>search</mat-icon>
       </div>
 
+      <!-- <div fxLayoutAlign="start center" style="width: 80%;">
+      <mat-form-field style="width:20%; height:82px; margin-right:10px; " appearance="outline">
+        <mat-select 
+        name="type" 
+        (selectionChange)="selectCategory(selectedCategory)"
+        class="filter-select" 
+        [(value)]="selectedCategory">
+          <mat-option *ngFor="let item of categoryArray" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div> -->
     </div>
 
     <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
@@ -22,14 +35,22 @@
         <mat-icon>add_circle_outline</mat-icon>
         <mat-label class="cl_label_css">ADD</mat-label>
       </div>
-    
+      <!-- <div fxLayout="row" fxLayoutAlign="end end" class="cl_css"  *ngIf="showFilter == 0">
+        <mat-label style="color:white">FILTER</mat-label>
+      </div> -->
 
       <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" [matMenuTriggerFor]="menu" *ngIf="showFilter == 1">
         <img src="./assets/filter_list-24px.svg" />
         <mat-label class="cl_label_css">FILTER</mat-label>
       </div>
-      <!-- <mat-menu #menu="matMenu" >
-       
+      <mat-menu #menu="matMenu" >
+        <!-- <mat-selection-list [(ngModel)]= "data">
+          <mat-list-option *ngFor="let item of categoryArray" (click)="filter(item.id)">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+          </mat-list-option>
+        </mat-selection-list> -->
+
 
         <mat-list>
           <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
@@ -40,7 +61,7 @@
         </mat-list>
       
        
-      </mat-menu> -->
+      </mat-menu>
 
     </div>
   </div>
@@ -50,19 +71,33 @@
 
     <table>
       <tr >
-        <th *ngFor="let col of columnArray">{{col.name}}</th>
-      
+        <th *ngFor="let col of displayedColumns">{{col.name}}</th>
+        <th *ngIf="showAction == 1">Action</th>
+        <th *ngIf="showAction == 0"></th>
 
       </tr>
-      <tr  *ngFor="let cust of dataArray | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index" >
-        <td *ngFor="let col of columnArray" class="row_padding">
+      <tr  *ngFor="let cust of dataArray | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index" style="padding:20px">
+        <td *ngFor="let col of displayedColumns" class="row_padding">
       
         
           <label>{{cust[col.key]}}</label>
          
+          <!-- <label *ngIf="col.name == 'Description' ">{{cust[col.key]}}</label> -->
 
         </td>
       
+        <td>
+          <span>
+            <button *ngIf="showEdit == 1" mat-raised-button class="EditButton" (click)="edit(cust)">Edit</button>
+            &nbsp;
+            <button *ngIf="showView == 1" mat-raised-button class="ViewButton" (click)="view(cust)">View</button>
+
+            &nbsp;
+            <button *ngIf="showDelete == 1" mat-raised-button class="ViewButton" (click)="delete(cust)">Delete</button>
+
+
+          </span>
+        </td>
       </tr>
     </table>
 

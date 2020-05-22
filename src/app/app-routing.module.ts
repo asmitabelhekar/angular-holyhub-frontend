@@ -13,6 +13,7 @@ import { AdvertisementlistComponent } from './components/advertisement/advertise
 import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
 import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.component';
 import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const routes: Routes = [
 
@@ -37,6 +38,8 @@ const routes: Routes = [
 
       {path: 'bannerlist', component: BannerlistComponent},
       {path: 'bannerupdate', component: BannerupdateComponent},
+
+      {path: 'notifications', component: NotificationsComponent},
 
 
 
