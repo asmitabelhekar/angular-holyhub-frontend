@@ -89,6 +89,7 @@ input:-webkit-autofill:active {
   padding-left:0px;
   padding-right:0px;
   padding-top:0px;
+  padding-bottom:10px;
   /* margin-left:15%;
   margin-right:15%; */
 }

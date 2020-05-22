@@ -37,7 +37,7 @@ export class SidemenuComponent implements OnInit {
       url: '/admin/categorylist'
     },
     {
-      icon: 'swap_vert',
+      icon: 'language',
       name: 'Language',
       url: '/admin/languagelist'
     },
@@ -46,7 +46,7 @@ export class SidemenuComponent implements OnInit {
       name: 'Users',
       url: '/admin/userlist'
     }, {
-      icon: 'notification',
+      icon: 'notifications_none',
       name: 'Notification',
       url: '/admin/notifications'
     }
