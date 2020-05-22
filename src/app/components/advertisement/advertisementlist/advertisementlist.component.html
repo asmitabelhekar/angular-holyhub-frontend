@@ -16,34 +16,45 @@
 
     </div>
 
-    <!-- <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
+    <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
 
-      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" >
+      <!-- <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" >
         <mat-icon>add_circle_outline</mat-icon>
         <mat-label class="cl_label_css">ADD</mat-label>
-      </div>
+      </div> -->
      
-      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" >
+      <div fxLayout="row" fxLayoutAlign="end end" [matMenuTriggerFor]="menu" class="cl_add_course_css" >
         <img src="./assets/filter_list-24px.svg" />
-        <mat-label class="cl_label_css">FILTER</mat-label>
+        <mat-label class="cl_label_css">Filter</mat-label>
       </div>
+      <mat-menu #menu="matMenu" >
     
+        <mat-list>
+          <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+           
+          </mat-list-item>
+        </mat-list>
+      
+       
+      </mat-menu>
 
-    </div> -->
+    </div>
   </div>
   <mat-divider class="cl_margin_top2"></mat-divider>
 
 
   <div  *ngFor="let item of dataArray" >
-  <div fxLayout="row" class="column" style="position:relative; margin-top:15px">
+  <div fxLayout="row" class="column main_div">
     <div fxLayoutAlign="center center" style="width:100%; height:100%;">
-      <div  fxLayout="column" fxLayoutAlign="start start" style="border: 1px solid #dbdde0;width:95%;height:100%; padding-bottom:5px; border-radius:5px">
-        <img src={{item.images[0]}} fxLayoutAlign="center center" style="width:100%;height:180px" (click)="showAdvertisementDetail(image, item.id)"/>
+      <div  fxLayout="column" fxLayoutAlign="start start" class="cl_card_css">
+        <img src={{item.images[0]}} fxLayoutAlign="center center" class="cl_image_css" (click)="showAdvertisementDetail(image, item.id)"/>
        <div fxLayout="row" fxFlex="100" style="padding:8px; width:100%">
-        <div fxLayout="column" fxFlex="100" style=" width:100%; height:auto">
-          <label  style="font-family:sans-serif;margin-top:5px; font-size:20px" fxLayoutAlign="start start">₹{{item.price}}</label>
+        <div fxLayout="column" fxFlex="100" style="width:100%; height:auto">
+          <label class="cl_price_css" fxLayoutAlign="start start">₹{{item.price}}</label>
 
-          <label fxLayoutAlign="start start" style="font-family:sans-serif;font-size:16px;margin-top:5px;word-break: break-all;color:rgb(73, 72, 72)">
+          <label fxLayoutAlign="start start" class="cl_title_css">
             {{item.title}}
           </label>
           <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>

@@ -16,13 +16,11 @@
 
     <div fxLayout="column" fxFlex="100" class="cl_text_css">
 
-      <label class="cl_price_css" fxLayoutAlign="start start">₹{{price}}</label>
+      <label *ngIf="type != 'Banner'" class="cl_price_css" fxLayoutAlign="start start">₹{{price}}</label>
 
       <label fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
 
-      <label fxLayoutAlign="start start" class="cl_description_label" (click)="viewDetail()">{{description}} test test
-        fgfhjghg hghgh jhghg ghjgfhj ghjfhg fhg fhfhg fhgfhgf ggcgc fghfgh fghfghf ghfghgh ghcc ttctr tdreses serserd
-        regcgvhj h ihi </label>
+      <label fxLayoutAlign="start start" class="cl_description_label" (click)="viewDetail()">{{description}} </label>
 
     </div>
 

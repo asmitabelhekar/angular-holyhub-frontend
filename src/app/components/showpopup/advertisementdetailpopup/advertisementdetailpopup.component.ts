@@ -13,6 +13,7 @@ import { AdvertisementlistComponent } from '../../advertisement/advertisementlis
 })
 export class AdvertisementdetailpopupComponent implements OnInit {
 
+  type : any;
   image: any;
   title: any;
   description: any;
@@ -30,6 +31,7 @@ export class AdvertisementdetailpopupComponent implements OnInit {
 
 
   ngOnInit() {
+    this.type = this.data.type;
     this.title= this.data.title;
     this.description= this.data.description;
     this.image= this.data.image;

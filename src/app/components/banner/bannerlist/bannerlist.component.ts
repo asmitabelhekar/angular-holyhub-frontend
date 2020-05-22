@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { BannerupdateComponent } from '../bannerupdate/bannerupdate.component';
 import { MessageService } from 'src/app/services/messages/message.service';
+import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 @Component({
   selector: 'app-bannerlist',
   templateUrl: './bannerlist.component.html',
@@ -31,7 +32,7 @@ export class BannerlistComponent implements OnInit {
   lastPage : any = 0;
   categoryId = "1";
   broadCastStatus : any;
-
+  categoryArray : any;
   url : any; ;
 
 
@@ -41,6 +42,7 @@ export class BannerlistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.getCategory();
     this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
     this.getBannerList(this.url);
   }
@@ -71,6 +73,16 @@ export class BannerlistComponent implements OnInit {
     // this.showPopup();
   }
 
+  getCategory() {
+    let url = environment.main_url + "category/" + 0 + "/sub-category"
+    this.apiCall.get(url).subscribe(MyResponse => {
+      this.categoryArray = MyResponse['result']['list'];
+    },
+      error => {
+       
+      });
+  }
+
   filter(event) {
   console.log("show filter data:"+event);
     this.categoryId = event;
@@ -93,6 +105,30 @@ export class BannerlistComponent implements OnInit {
 
   }
 
+  viewDetail(item){
+    console.log("show advertisement detail:"+JSON.stringify(item));
+
+    let send_data = {};
+    send_data['type'] = "Banner";
+    send_data['image'] = item.image;
+    send_data['title'] = item.title;
+    send_data['description'] = item.description;
+    send_data['price'] = "";
+
+    const dialogRef = this.dialog.open(AdvertisementdetailpopupComponent, {
+      width: '30%',
+      panelClass: 'custom-ad-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
+    
+      this.getBannerList(this.url);
+    });
+  }
+
+
   showPopup() {
     // let send_data = {};
     // send_data['status'] = "add";
@@ -112,6 +148,13 @@ export class BannerlistComponent implements OnInit {
     this.broadCastMessage();
     console.log("show banner id for edit:"+JSON.stringify(event));
   this.router.navigate(['admin/bannerupdate', { bannerData : JSON.stringify(event)}]);
+  }
+
+  editBanner(item){
+    this.broadCastStatus = "update";
+    this.broadCastMessage();
+    console.log("show banner date for edit:"+JSON.stringify(item));
+    this.router.navigate(['admin/bannerupdate', { bannerData : JSON.stringify(item)}]);
   }
 
   broadCastMessage(): void {

@@ -28,8 +28,8 @@ export class AdvertisementlistComponent implements OnInit {
   checkLength : any;
   pageIndex : any = 0;
   lastPage : any = 0;
-  categoryId = "1";
-
+  categoryId = 4;
+  categoryArray : any;
 
   url : any; ;
 
@@ -39,6 +39,7 @@ export class AdvertisementlistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.getCategory();
     this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
     this.getAdvertisementList(this.url);
   }
@@ -77,6 +78,16 @@ export class AdvertisementlistComponent implements OnInit {
     this.getAdvertisementList(this.url);
   }
 
+  getCategory() {
+    let url = environment.main_url + "category/" + 0 + "/sub-category"
+    this.apiCall.get(url).subscribe(MyResponse => {
+      this.categoryArray = MyResponse['result']['list'];
+    },
+      error => {
+       
+      });
+  }
+
 
   search(event) {
     this.checkLength = event.target.value;
@@ -96,6 +107,7 @@ export class AdvertisementlistComponent implements OnInit {
     console.log("show advertisement detail:"+JSON.stringify(item));
 
     let send_data = {};
+    send_data['type'] = "Advertisement";
     send_data['image'] = item.images[0];
     send_data['title'] = item.title;
     send_data['description'] = item.description;
