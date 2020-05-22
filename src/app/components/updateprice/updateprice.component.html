@@ -1,17 +1,72 @@
 <div class="cl_background">
+  <div fxLayout="row">
+    <div class="container" style="width:20%">
+      <div class="column">
+          <div class="col-md-3 col-sm-6">
+              <div class="pricingTable">
+                  <h3 class="bannertitle">Banner</h3>
+                
+                  <h3 class="title" style="margin-top:15%">First Week</h3>
+                  <div class="price-value">
+                      <span class="amount">${{bannerFirstWeekPrice}}
+                      </span>
+                  </div>
+                  <h3 class="title">Further Weeks</h3>
+  
+                  <div class="price-value">
+                    <span class="amount">${{bannerNextWeekPrice}}
+                    </span>
+                </div>
+                <label  class="pricingTable-signup" (click)="upDateBannerPrice()" style="cursor:pointer"><u>Update Now</u></label>
+              </div>
+          </div>
+   
+     
+      </div>
+  </div>
 
+  <div class="container" style="width:20%; margin-left:20px">
+    <div class="column">
+        <div class="col-md-3 col-sm-6">
+            <div class="pricingTable">
+                <h3 class="title">Advertisement</h3>
+                <!-- <div class="month">30
+                    <span>Days</span>
+                </div> -->
+                <h3 class="title" style="margin-top:15%">First Week</h3>
+                <div class="price-value">
+                    <span class="amount">${{addFirstWeekPrice}}
+                        <!-- <span class="currency">$</span> -->
+                    </span>
+                </div>
+                <h3 class="title">Further Weeks</h3>
 
-  <div fxLayout="row" style="margin-top:10px; width:100%">
+                <div class="price-value">
+                  <span class="amount">${{addNextWeekPrice}}
+                      <!-- <span class="currency">$</span> -->
+                  </span>
+              </div>
+              <label  class="pricingTable-signup" (click)="upDateAdvertisementPrice()"  style="cursor:pointer"><u>Update Now</u></label>
+                <!-- <a href="components/showpopup/updatepricepopup" class="pricingTable-signup">Update Now</a> -->
+            </div>
+        </div>
+ 
+   
+    </div>
+</div>
+  </div>
+ 
+  <!-- <div fxLayout="row" style="margin-top:10px; width:100%">
 
 
 <div style="width:25%">
 
-  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px">
-    <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <!-- <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
+  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px"> -->
+    <!-- <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
+      <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
       <label style="font-family:  'Times New Roman', Times, serif;">Banner</label>
       </div>
-      -->
+     
    
       <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
         <div fxFlex="70" fxLayoutAlign="start center">
@@ -39,21 +94,27 @@
   
 
       <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
-        <!-- <label class="cl_update" >Update Price</label> -->
         <button  mat-raised-button  style="padding:5px;width:90%;background-color: rgb(54, 53, 53);color:white;font-size:22px" (click)="upDateBannerPrice()">Update</button>
 
         </div>
-    </div>
-   
-  </mat-card>
+    </div> -->
+   <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+    <label style="font-family:sans-serif;font-weight:normal; font-size:25px; margin-top:16px">First week</label>
+    <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$7</label>
+    <label style="font-family:sans-serif;font-weight:normal;  font-size:25px; margin-top:16px">Further week</label>
+    <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$5</label>
+    <button mat-raised-button style="width:90%; margin-top:25px; padding:5px; font-size:22px; background-color: rgb(54, 53, 53); color:white;" >Update Banner Price</button>
+ 
+   </div> -->
+  <!-- </mat-card>
 </div>
 <div style="margin-left:20px;width:25%">
 
-  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px">
-    <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <!-- <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
+  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px"> -->
+    <!-- <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
+      <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
       <label style="font-family: sans-serif">Advertisement</label>
-      </div> -->
+      </div>
      
       <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
         <div fxFlex="70" fxLayoutAlign="start center">
@@ -80,13 +141,19 @@
       </div>
 
       <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
-        <!-- <label class="cl_update" >Update Price</label> -->
+       
         <button  mat-raised-button  style="padding:5px;width:90%;background-color: rgb(54, 53, 53);color:white; font-size:22px" (click)="upDateAdvertisementPrice()">Update</button>
 
         </div>
+    </div> -->
+    <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+      <label style="font-family:sans-serif;font-weight:normal; font-size:25px; margin-top:16px">First week</label>
+      <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$7</label>
+      <label style="font-family:sans-serif;font-weight:normal;  font-size:25px; margin-top:16px">Further week</label>
+      <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$5</label>
+      <button mat-raised-button style="width:90%; margin-top:25px; padding:5px; font-size:22px; background-color: rgb(54, 53, 53); color:white;" >Update Advertisement Price</button>
     </div>
-   
   </mat-card>
 </div>
-  </div>
+  </div> -->
   </div>
