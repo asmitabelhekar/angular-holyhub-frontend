@@ -1,4 +1,63 @@
-<div style="width: 100%;height:95%">
+<!-- <div style="width: 100%;height:95%">
   <app-table-view [dataTable]="dataArray" [itemsCount]="totalCount" [showFilter]="1" [showAction]="0" [showEdit]="0" (viewClicked)="view($event)" (filterClicked)="filter($event)"  [currentPage]="currentPage" [columns]="columnArray" [showAdd]="1" (inputChange)="search($event)" (pageClicked)="paginate($event)" [lastPage]="lastPage"  (addClicked)="add()" (editClicked)="edit($event)"></app-table-view>
-</div>
+</div> -->
 
+<div style="width:100%;height:98%; background-color: white;border-radius:10px" >
+<div style="width:100%;height:2%"></div>
+
+  <div fxLayout="row" fxLayoutAlign="start end" style="padding:15px">
+
+
+    <div fxLayout="row" class="cl_div_w_h">
+      <div fxLayoutAlign="start center" style="width: 40%;" class="cl_search_css">
+        <input placeholder="Search here.." (input)="search($event)" style="background: white;width: 100%;height: 30px;"/>
+        <mat-icon>search</mat-icon>
+      </div>
+
+    </div>
+
+    <!-- <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
+
+      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" >
+        <mat-icon>add_circle_outline</mat-icon>
+        <mat-label class="cl_label_css">ADD</mat-label>
+      </div>
+     
+      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" >
+        <img src="./assets/filter_list-24px.svg" />
+        <mat-label class="cl_label_css">FILTER</mat-label>
+      </div>
+    
+
+    </div> -->
+  </div>
+  <mat-divider class="cl_margin_top2"></mat-divider>
+
+
+  <div  *ngFor="let item of dataArray" >
+  <div fxLayout="row" class="column" style="position:relative; margin-top:15px">
+    <div fxLayoutAlign="center center" style="width:100%; height:100%;">
+      <div  fxLayout="column" fxLayoutAlign="start start" style="border: 1px solid #dbdde0;width:95%;height:100%; padding-bottom:5px; border-radius:5px">
+        <img src={{item.images[0]}} fxLayoutAlign="center center" style="width:100%;height:180px" (click)="showAdvertisementDetail(image, item.id)"/>
+       <div fxLayout="row" fxFlex="100" style="padding:8px; width:100%">
+        <div fxLayout="column" fxFlex="100" style=" width:100%; height:auto">
+          <label  style="font-family:sans-serif;margin-top:5px; font-size:20px" fxLayoutAlign="start start">₹{{item.price}}</label>
+
+          <label fxLayoutAlign="start start" style="font-family:sans-serif;font-size:16px;margin-top:5px;word-break: break-all;color:rgb(73, 72, 72)">
+            {{item.title}}
+          </label>
+          <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
+        </div>
+
+        <!-- <div fxFlex="5" fxLayoutAlign="end start">
+          <mat-icon style="color:gray; font-size:22px">edit</mat-icon>
+        </div> -->
+    
+       </div>
+      </div>
+     
+    </div>
+   
+  </div>
+  </div>
+</div>

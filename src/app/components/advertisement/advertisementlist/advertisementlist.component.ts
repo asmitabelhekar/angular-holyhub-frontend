@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
+import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 
 @Component({
   selector: 'app-advertisementlist',
@@ -65,6 +66,7 @@ export class AdvertisementlistComponent implements OnInit {
 
 
   add(event) {
+    this.router.navigate(['/']);
     // this.showPopup();
   }
 
@@ -90,18 +92,29 @@ export class AdvertisementlistComponent implements OnInit {
 
   }
 
-  showPopup() {
-    // let send_data = {};
-    // send_data['status'] = "add";
-    // const dialogRef = this.dialog.open(LanguagepopupComponent, {
-    //   width: 'this.categoryId0%',
-    //   panelClass: 'custom-dialog-container',
-    //   data: send_data
-    // });
+  viewDetail(item){
+    console.log("show advertisement detail:"+JSON.stringify(item));
 
-    // dialogRef.afterClosed().subscribe(async result => {
-    //   this.getLanguagesList();
-    // });
+    let send_data = {};
+    send_data['image'] = item.images[0];
+    send_data['title'] = item.title;
+    send_data['description'] = item.description;
+    send_data['price'] = item.price;
+
+    const dialogRef = this.dialog.open(AdvertisementdetailpopupComponent, {
+      width: '30%',
+      panelClass: 'custom-ad-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
+      this.getAdvertisementList(this.url);
+    });
+  }
+
+  showPopup() {
+  
   }
 
   edit(event){

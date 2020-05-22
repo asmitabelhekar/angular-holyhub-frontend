@@ -54,9 +54,10 @@ import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.c
 import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { AdvertisementdetailpopupComponent } from './components/showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 
 @NgModule({
-  entryComponents:[PopupComponent, LanguagepopupComponent, UpdatepricepopupComponent],
+  entryComponents:[PopupComponent, LanguagepopupComponent, UpdatepricepopupComponent, AdvertisementdetailpopupComponent],
   declarations: [
     AppComponent,
     StructureComponent,
@@ -77,7 +78,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     UpdatepricepopupComponent,
     BannerlistComponent,
     BannerupdateComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    AdvertisementdetailpopupComponent
   ],
   imports: [
     BrowserModule,

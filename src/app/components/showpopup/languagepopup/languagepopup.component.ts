@@ -35,6 +35,7 @@ export class LanguagepopupComponent implements OnInit {
     public apiCall: ApiService,
     public router: Router
   ) { }
+  
 
   ngOnInit() {
     console.log("show status of language:" + this.data.id);

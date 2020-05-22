@@ -1,0 +1,35 @@
+<div style="width:100%; height:auto;margin:auto">
+  <!-- <div style="width:100%;padding:10px">
+    <div fxFlex="95">
+      <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Advertisement Detail</label>
+    </div>
+    <div fxFlex="5">
+      <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
+    </div>
+   </div>
+   <mat-divider style="width:100%;margin-top:15px"></mat-divider>
+   -->
+
+  <div fxLayout="column" class="cl_main_div">
+
+    <img src="{{image}}" class="cl_image_css" />
+
+    <div fxLayout="column" fxFlex="100" class="cl_text_css">
+
+      <label class="cl_price_css" fxLayoutAlign="start start">₹{{price}}</label>
+
+      <label fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
+
+      <label fxLayoutAlign="start start" class="cl_description_label" (click)="viewDetail()">{{description}} test test
+        fgfhjghg hghgh jhghg ghjgfhj ghjfhg fhg fhfhg fhgfhgf ggcgc fghfgh fghfghf ghfghgh ghcc ttctr tdreses serserd
+        regcgvhj h ihi </label>
+
+    </div>
+
+    <div class="cl_clode_div">
+      <mat-icon (click)="closeDialog()" class="cl_close_icon">close</mat-icon>
+    </div>
+
+  </div>
+
+</div>
