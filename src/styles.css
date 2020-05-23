@@ -85,7 +85,7 @@ input:-webkit-autofill:active {
 
 .custom-ad-dialog-container .mat-dialog-container {
   /* add your styles */
-  border-radius: 15px;
+  border-radius: 10px;
   padding-left:0px;
   padding-right:0px;
   padding-top:0px;

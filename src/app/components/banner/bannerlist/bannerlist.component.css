@@ -72,14 +72,14 @@ input:focus {
   font-family:sans-serif;
   cursor: pointer;
   font-size:13px;
-   margin-top:5px;
+   margin-top:8px;
    color:rgb(73, 73, 248);
 }
 
 .cl_title_css{
   font-family:sans-serif;
   font-size:16px;
-  margin-top:5px;
+  margin-top:8px;
   word-break: break-all;
   color:rgb(73, 72, 72);
 }

@@ -50,11 +50,11 @@
     <div fxLayoutAlign="center center" style="width:100%; height:100%;">
       <div  fxLayout="column" fxLayoutAlign="start start" class="cl_card_css advertisementcard">
         <img src={{item.images[0]}} fxLayoutAlign="center center" class="cl_image_css" (click)="showAdvertisementDetail(image, item.id)"/>
-       <div fxLayout="row" fxFlex="100" style="padding:8px; width:100%">
+       <div fxLayout="row" fxFlex="100" style="padding:18px; width:100%">
         <div fxLayout="column" fxFlex="100" style="width:100%; height:auto">
           <label class="cl_price_css" fxLayoutAlign="start start">₹{{item.price}}</label>
 
-          <label fxLayoutAlign="start start" class="cl_title_css">
+          <label fxLayoutAlign="start start" class="cl_title_css check_width">
             {{item.title}}
           </label>
           <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
