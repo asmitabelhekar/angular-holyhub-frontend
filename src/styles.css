@@ -94,6 +94,20 @@ input:-webkit-autofill:active {
   margin-right:15%; */
 }
 
+
+
+.add-categorytype-custom-dialog-container .mat-dialog-container {
+  
+  border-radius: 15px;
+  margin-left:70%;
+  position: absolute; 
+  right:40px;
+  top:140px;
+  width:20%;
+  height:auto;
+  
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

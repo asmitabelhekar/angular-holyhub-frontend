@@ -55,9 +55,16 @@ import { BannerupdateComponent } from './components/banner/bannerupdate/bannerup
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { AdvertisementdetailpopupComponent } from './components/showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
+import { CheckaddcategorytypeComponent } from './components/showpopup/checkaddcategorytype/checkaddcategorytype.component';
 
 @NgModule({
-  entryComponents:[PopupComponent, LanguagepopupComponent, UpdatepricepopupComponent, AdvertisementdetailpopupComponent],
+  entryComponents:
+  [
+    PopupComponent, 
+    LanguagepopupComponent, 
+    UpdatepricepopupComponent,
+     AdvertisementdetailpopupComponent,
+    CheckaddcategorytypeComponent],
   declarations: [
     AppComponent,
     StructureComponent,
@@ -79,7 +86,8 @@ import { AdvertisementdetailpopupComponent } from './components/showpopup/advert
     BannerlistComponent,
     BannerupdateComponent,
     NotificationsComponent,
-    AdvertisementdetailpopupComponent
+    AdvertisementdetailpopupComponent,
+    CheckaddcategorytypeComponent
   ],
   imports: [
     BrowserModule,

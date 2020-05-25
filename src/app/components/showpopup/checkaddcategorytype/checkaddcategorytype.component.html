@@ -1,0 +1,23 @@
+<div fxLayout="column">
+  <!-- <label>Check Category Type :</label> -->
+  <!-- <div *ngFor="let type of checkCategoryType" style="margin-top:10px">
+    <label>
+      <input type="checkbox" [value]="type.id" (change)="onCheckboxChange($event,type)" />
+      {{type.name}}
+    </label>
+  </div> -->
+  
+  <mat-form-field style="width:100%;margin-top:10px" >
+    <mat-label>Select Category</mat-label>
+      <mat-select 
+      name="type" 
+      (selectionChange)="selectCategory(selectedCategory)"
+      class="filter-select" 
+      [(value)]="selectedCategory">
+        <mat-option *ngFor="let item of dataArray" [value]="item.id">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+

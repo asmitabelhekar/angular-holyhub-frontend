@@ -1,4 +1,105 @@
-<div style="width: 100%;height:95%">
-  <app-table-view [dataTable]="dataArray" [itemsCount]="totalCount" [showEdit]="1" (viewClicked)="view($event)"  [currentPage]="currentPage" [columns]="columnArray" [showAdd]="1" (pageClicked)="paginate($event)" [lastPage]="lastPage"  (addClicked)="add()" (editClicked)="edit($event)"></app-table-view>
-</div>
+<div class="cl_div_background" fxLayout="column">
 
+  <div class="cl_margin_top" fxLayout="row" style="width:100%">
+
+    <div style="width:50%;" fxLayoutAlign="start center">
+      <div fxLayoutAlign="start center" style="width:70%">
+        <mat-form-field style="width:60%;color:black">
+          <mat-label>Select Parent Category</mat-label>
+
+          <mat-select name="type" (selectionChange)="selectCategory(selectedCategory)" class="filter-select"
+            [(value)]="selectedCategory">
+            <mat-option *ngFor="let item of parentCategoryArray" style="color:black" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div style="width:50%" fxLayoutAlign="end center">
+
+      <div style="width:60%" fxLayoutAlign="end center">
+        <div fxLayoutAlign="start center" style="width: 60%;" class="cl_add_course_css">
+          <input placeholder="Search here.." (input)="search($event)"
+            style="background: white;width: 90%;padding:5px" />
+          <mat-icon>search</mat-icon>
+        </div>
+
+
+      </div>
+
+      <div fxLayout="row" style="width:15%" fxLayoutAlign="end end">
+
+        <div fxLayout="row" fxLayoutAlign="end end" (click)="showPopup()" class="cl_add_course_css">
+          <mat-icon>add_circle_outline</mat-icon>
+          <mat-label class="cl_label_css">ADD</mat-label>
+        </div>
+        <!-- <mat-menu #menu="matMenu" style="padding:10px">
+    <mat-list>
+        <div *ngFor="let type of checkCategoryType">
+          <label>
+            <input type="checkbox" [value]="type.id" (change)="onCheckboxChange($event,type)" />
+            {{type.name}}
+          </label>
+        </div>
+
+        <mat-form-field style="width:100%;" *ngIf="checkType== 1 ">
+          <mat-label>Select Category</mat-label>
+    
+            <mat-select 
+            name="type" 
+            (selectionChange)="selectCategory(selectedCategory)"
+            class="filter-select" 
+            [(value)]="selectedCategory">
+              <mat-option *ngFor="let item of parentCategoryArray" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </mat-list>   
+  </mat-menu> -->
+
+      </div>
+    </div>
+
+  </div>
+  <mat-divider class="cl_margin_top2"></mat-divider>
+
+  <div class="cl_margin_top2">
+
+    <table>
+      <tr>
+        <th *ngFor="let col of columnArray">{{col.name}}</th>
+        <th>Action</th>
+
+
+      </tr>
+      <tr *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
+        <td *ngFor="let col of columnArray" class="min-width">
+          <div ngf="noDataFound == 0 ">
+          <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
+          <label *ngIf="col.key == 'name' ">{{cust[col.key]}}</label>
+</div>
+        </td>
+
+        <td>
+          <div ngf="noDataFound == 0 ">
+          <span>
+            <mat-icon mat-raised-button class="EditButton"  (click)="edit(cust)">edit</mat-icon>
+
+          </span>
+          </div>
+        </td>
+
+
+      </tr>
+
+    </table>
+
+    <!-- <div ngf="noDataFound == 1 ">
+      <h3>No records found</h3>
+    </div> -->
+
+  </div>
+
+</div>

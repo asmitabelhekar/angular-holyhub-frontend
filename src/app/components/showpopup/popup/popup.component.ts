@@ -13,6 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class PopupComponent implements OnInit {
 
+  dataArray : any;
   categoryName: any = "";
   fileToUpload: any;
   urls: any = [];
@@ -20,7 +21,7 @@ export class PopupComponent implements OnInit {
   popup: any = {};
   buttonText = "ADD";
   button = "Add";
-
+  categoryId : any;
   errorMessage: any;
   formControl = {
     categoryName: new FormControl('', [Validators.required]),
@@ -36,13 +37,21 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("show status of category:" + this.data.id);
+  this.getCategoryList();
     if (this.data.status == "add") {
       this.buttonText = "ADD";
       this.button = "Add";
+      this.categoryId = this.data.id;
+      console.log("show status of category:" + this.categoryId);
     } else {
       this.buttonText = "UPDATE";
       this.button = "Update";
+      this.categoryId = this.data.parent_id;
+      if(this.data.parent_id == 0)
+      {
+        this.categoryId = 9;
+      }
+      console.log("show category id:"+this.categoryId);
       this.popup['categoryName'] = this.data.name;
       this.firstImage = this.data.image;
     }
@@ -57,15 +66,39 @@ export class PopupComponent implements OnInit {
     send_date['image'] = this.firstImage;
     send_date['isActive'] = 1;
     send_date['sequenceNumber'] = 0;
-
-    let url = environment.main_url + "category/" + 0 + "/sub-category/" + categoryId;
+if(this.categoryId == 9){
+  this.categoryId = 0;
+}
+    let url = environment.main_url + "category/" + this.categoryId + "/sub-category/" + categoryId;
     this.apiCall.put(url, send_date).subscribe(MyResponse => {
       this.openSnackBar("Category updated successfully.")
-      this.dialogRef.close();
+      this.dialogRef.close(this.categoryId);
     }, error => {
     });
   }
   }
+
+
+  getCategoryList() {
+    let url = environment.main_url + "category/" + 0 + "/sub-category";
+    this.apiCall.get(url).subscribe((response) => {
+
+      this.dataArray = response['result']['list'];
+
+    })
+  }
+
+  selectCategory(selectedCategory) {
+    // console.log(" parent category: " + this.categoryId);
+    if (selectedCategory == 9) {
+      this.categoryId = 0;
+      console.log("selectedCategory parent category: " + selectedCategory);
+    } else {
+      this.categoryId = selectedCategory;
+      console.log("selectedCategory : " + selectedCategory);
+    }
+  }
+
 
   detectEventGallery(event) {
     console.log(event);
@@ -114,15 +147,15 @@ export class PopupComponent implements OnInit {
     } else {
       let send_data = {};
 
-      send_data['name'] = this.categoryName;
+      send_data['name'] = this.popup['categoryName'];
       send_data['image'] = this.firstImage;
       send_data['isActive'] = 1;
       send_data['sequenceNumber'] = 0;
 
-      let url = environment.main_url + "category/" + 0 + "/sub-category";
+      let url = environment.main_url + "category/" + this.categoryId + "/sub-category";
       this.apiCall.post(url, send_data).subscribe(MyResponse => {
 
-        this.dialogRef.close();
+        this.dialogRef.close(this.categoryId);
 
       }, error => {
 

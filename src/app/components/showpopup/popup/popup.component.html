@@ -21,6 +21,21 @@
     </mat-form-field>
   
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field style="width:100%;margin-top:10px" >
+      <mat-label>Select Parent Category</mat-label>
+        <mat-select 
+        name="type" 
+        (selectionChange)="selectCategory(categoryId)"
+        class="filter-select" 
+        [(value)]="categoryId">
+          <mat-option *ngFor="let item of dataArray" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
   <label style="margin-top:5px">Upload Image</label>
   <div fxLayout="column" fxLayoutAlign="center center"  onclick="document.getElementById('image_upload1').click()" style="height:170px;width:100%; border : 1px solid #ced3da; margin-top:20px;position:relative">
       
