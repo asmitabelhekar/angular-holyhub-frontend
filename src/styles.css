@@ -100,7 +100,24 @@ table {
   background-color: white;
 }
 
-th, td {
+
+
+
+th {
+  padding-left: 8px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-right: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  background-color: #f1f4f9;
+  text-transform: capitalize;
+}
+
+
+
+td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
