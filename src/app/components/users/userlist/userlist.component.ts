@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-userlist',
@@ -28,13 +29,20 @@ export class UserlistComponent implements OnInit {
   url : any ;
 
   constructor(public router : Router,
+    public messageService : MessageService,
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.url = environment.main_url + "users?page=" + this.currentPage + "&size=10";
     this.getUsersList(this.url);
   }
 
+
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Users");
+ }
   getUsersList(url){
 
     this.apiCall.get(url).subscribe((response)=>{

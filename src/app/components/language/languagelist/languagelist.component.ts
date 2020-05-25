@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { LanguagepopupComponent } from '../../showpopup/languagepopup/languagepopup.component';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-languagelist',
@@ -32,6 +33,7 @@ export class LanguagelistComponent implements OnInit {
 
   constructor(public router : Router,
     public dialog : MatDialog,
+    public messageService : MessageService,
     public apiCall : ApiService) { }
 
   ngOnInit() {
@@ -40,6 +42,12 @@ export class LanguagelistComponent implements OnInit {
     this.getLanguagesList(this.url);
 
   }
+
+
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Language");
+ }
 
   getLanguagesList(url){
 

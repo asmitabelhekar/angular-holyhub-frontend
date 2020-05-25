@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-notifications',
@@ -28,12 +29,19 @@ export class NotificationsComponent implements OnInit {
   url : any ;
 
   constructor(public router : Router,
+    public messageService : MessageService,
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.url = environment.main_url + "notifications?page=" + this.currentPage + "&size=10";
     this.getNotificationList(this.url);
   }
+
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Notification");
+ }
 
   getNotificationList(url){
 

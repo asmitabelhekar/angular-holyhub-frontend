@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { PopupComponent } from '../../showpopup/popup/popup.component';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-categorylist',
@@ -32,13 +33,20 @@ export class CategorylistComponent implements OnInit {
 
   constructor(public router: Router,
     public dialog: MatDialog,
+    public messageService : MessageService,
     public apiCall: ApiService) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=5";
     this.getCategoryList(this.url);
   }
 
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Category");
+ }
+  
   getCategoryList(url) {
 
     this.apiCall.get(this.url).subscribe((response) => {

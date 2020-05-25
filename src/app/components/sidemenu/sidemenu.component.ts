@@ -9,13 +9,14 @@ import { MessageService } from 'src/app/services/messages/message.service';
 export class SidemenuComponent implements OnInit {
 
   indexActive: any = 0;
-  title : any;
+  url : any;
   menuItems = [
     {
       icon: 'dashboard',
       name: 'Dashboard',
       url: '/admin/dashboard'
     },
+    
     {
       icon: 'description',
       name: 'Advertisement',
@@ -57,16 +58,22 @@ export class SidemenuComponent implements OnInit {
 
   ngOnInit() {
   }
-  activeIndex(index,title) {
+  activeIndex(index,url) {
+    // this.indexActive = index;
+    // this.url = url;
+    // console.log("show sidemenu url:"+url);
+    // this.broadCastMessage();
+
     this.indexActive = index;
-    this.title = title;
-    console.log("show sidemenu url:"+title);
+    this.url = url;
+    console.log("show sidemenu index:"+index);
+    console.log("show sidemenu url:"+url);
     this.broadCastMessage();
   }
 
 
   broadCastMessage(): void {
-    this.messageService.broadCastMessage(this.title);
+    this.messageService.broadCastMessage(this.url);
  }
 
  removeMessages(): void {

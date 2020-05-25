@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-advertisementlist',
@@ -36,13 +37,21 @@ export class AdvertisementlistComponent implements OnInit {
 
   constructor(public router : Router,
     public dialog : MatDialog,
+    public messageService : MessageService,
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.getCategory();
     this.url = environment.main_url + "categories/" + this.categoryId + "/advertisements?page=" + this.currentPage + "&size=5";
     this.getAdvertisementList(this.url);
   }
+
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Advertisement");
+ }
+
 
   getAdvertisementList(url){
 

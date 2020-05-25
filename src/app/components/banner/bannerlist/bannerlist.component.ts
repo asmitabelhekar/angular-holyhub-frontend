@@ -43,6 +43,7 @@ export class BannerlistComponent implements OnInit {
 
   ngOnInit() {
     this.getCategory();
+    this.broadCastMessage();
     this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
     this.getBannerList(this.url);
   }
@@ -163,7 +164,7 @@ export class BannerlistComponent implements OnInit {
     }else if(this.broadCastStatus == "update"){
       this.messageService.broadCastMessage("Update Banner");
     }else{
-      this.messageService.broadCastMessage("Add Banner");
+      this.messageService.broadCastMessage("Banner");
     }
  }
 }

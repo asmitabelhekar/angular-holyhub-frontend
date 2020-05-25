@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/messages/message.service';
+import { SidemenuComponent } from '../sidemenu/sidemenu.component';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class NavbarComponent implements OnInit {
   title = "Dashboard";
   
   constructor(
-    public messageService : MessageService
+    public messageService : MessageService,
+    public sideMenu : SidemenuComponent
   ) { 
     
   }
@@ -33,6 +35,51 @@ export class NavbarComponent implements OnInit {
         this.chat = [];
       }
     });
+  }
+
+
+  goBackWord(name){
+    console.log("check name:"+name);
+    // this.sideMenu.activeIndex("2",this.title);
+    if(name == "Dashboard"){
+
+    }else if(name == "Advertisement"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(1,this.title);
+    }
+    else if(name == "Banner"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex("2",this.title);
+    }
+    else if(name == "Pricing"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(3,this.title);
+    }
+    else if(name == "Category"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(4,this.title);
+    }
+    else if(name == "Language"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(5,this.title);
+    }
+    else if(name == "Users"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(6,this.title);
+    }
+    else if(name == "Notification"){
+      console.log("show navbar  title :" + name);
+      window.history.back();
+      this.sideMenu.activeIndex(7,this.title);
+    }else{
+
+    }
   }
 
   logout(){

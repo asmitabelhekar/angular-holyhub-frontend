@@ -133,7 +133,7 @@ import { AdvertisementdetailpopupComponent } from './components/showpopup/advert
   exports: [
     CdkTableModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, SidemenuComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

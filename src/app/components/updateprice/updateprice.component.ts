@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
+import { MessageService } from 'src/app/services/messages/message.service';
 
 @Component({
   selector: 'app-updateprice',
@@ -24,13 +25,19 @@ export class UpdatepriceComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    public messageService : MessageService,
     public apiService: ApiService,
   ) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.getAllPrice();
   }
 
+
+  broadCastMessage(): void {
+    this.messageService.broadCastMessage("Pricing");
+ }
 
   getAllPrice() {
     let bannerUrl = environment.main_url + "subscriptions";
