@@ -37,6 +37,7 @@ export class LanguagelistComponent implements OnInit {
     public apiCall : ApiService) { }
 
   ngOnInit() {
+    this.broadCastMessage();
     this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
 
     this.getLanguagesList(this.url);
@@ -51,6 +52,7 @@ export class LanguagelistComponent implements OnInit {
 
   getLanguagesList(url){
 
+    
     this.apiCall.get(url).subscribe((response)=>{
 
       this.dataArray = response['result']['list'];

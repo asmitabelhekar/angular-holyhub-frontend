@@ -46,17 +46,17 @@
 
             <mat-form-field style="width:90%;">
               <mat-label>From Date</mat-label>
-              <input matInput #input="ngModel" [(ngModel)]="bannerModel.fromDate"
-                [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <input matInput #input="ngModel"  [(ngModel)]="bannerModel.fromDate"
+                [matDatepicker]="picker" placeholder="Choose a date" disabled>
+              <mat-datepicker-toggle matSuffix [for]="picker" disabled></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
   
             <mat-form-field style="width:90%; ">
               <mat-label>To Date</mat-label>
               <input matInput #input="ngModel" [(ngModel)]="bannerModel.toDate"
-                [matDatepicker]="pickersecond" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="pickersecond"></mat-datepicker-toggle>
+                [matDatepicker]="pickersecond" placeholder="Choose a date" disabled>
+              <mat-datepicker-toggle matSuffix [for]="pickersecond" disabled></mat-datepicker-toggle>
               <mat-datepicker #pickersecond></mat-datepicker>
             </mat-form-field>
 

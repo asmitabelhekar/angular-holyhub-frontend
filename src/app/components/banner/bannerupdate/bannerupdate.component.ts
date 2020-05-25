@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { MatSnackBar } from '@angular/material';
 import { MessageService } from 'src/app/services/messages/message.service';
 import * as moment from 'moment';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-bannerupdate',
@@ -34,6 +35,8 @@ export class BannerupdateComponent implements OnInit {
   selectedBannerWeek : any;
   todayDate: any;
   endBannerDate : any;
+  date1 : any;
+
 
   constructor(
     public changeDetectorRef : ChangeDetectorRef,
@@ -81,8 +84,10 @@ export class BannerupdateComponent implements OnInit {
     let getEndDate = end_date_ob_month + "/" + end_date_ob_date + "/" + end_date_ob_year;
 
     console.log("show first date: " + getStartDate + "  ,  " + "show second date:" + getEndDate);
-
-
+  // this.bannerModel['fromDate'] = getStartDate;
+  this.bannerModel['fromDate'] = new Date(getStartDate);
+  this.bannerModel['toDate'] = new Date(getEndDate);
+ 
     let weeks = this.calculateBannerNumberOfWeeks(getStartDate, getEndDate);
     console.log("show weeks:" + weeks);
 
@@ -145,13 +150,18 @@ export class BannerupdateComponent implements OnInit {
   }
 
   updateBanner(categoryId) {
-    // this.loader.showBlockingLoaderAuth();
+   
+  
+
+    let frondateTimestamp = this.toTimestamp(this.bannerModel['fromDate']);
+    let toDateTimestamp = this.toTimestamp(this.bannerModel['toDate']);
+   
     let send_date = {};
     send_date['image'] = this.firstImage;
     send_date['title'] = this.bannerModel['name'];
     send_date['description'] = this.bannerModel['description'];
-    send_date['startDateTime'] = this.startDateTime;
-    send_date['endDateTime'] = this.endDateTime;
+    send_date['startDateTime'] = frondateTimestamp;
+    send_date['endDateTime'] = toDateTimestamp;
     send_date['lat'] = this.lattitude;
     send_date['lng'] = this.longitude;
     send_date['isActive'] = 1;
@@ -161,15 +171,14 @@ export class BannerupdateComponent implements OnInit {
     this.categoryId = this.bannerData.categoryId;
     this.bannerId = this.bannerData.id;
 
-    // let getBannerId = localStorage.getItem("bannerId");
     let url = environment.main_url  + "category/" + this.categoryId + "/banners/" + this.bannerId;
     this.apiCall.put(url, send_date).subscribe(MyResponse => {
     this.openSnackBar("Banner Updated Successfully");
     this.messageService.broadCastMessage("Banner");
     this.router.navigate(['admin/bannerlist']);
-      // this.loader.hideBlockingLoaderAuth();
+     
     }, error => {
-      // this.loader.hideBlockingLoaderAuth();
+      
     });
 
   }
