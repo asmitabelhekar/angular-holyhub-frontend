@@ -77,17 +77,17 @@
       <tr *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
         <td *ngFor="let col of columnArray" class="min-width">
           <div ngf="noDataFound == 0 ">
-          <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
-          <label *ngIf="col.key == 'name' ">{{cust[col.key]}}</label>
-</div>
+            <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
+            <label *ngIf="col.key == 'name' ">{{cust[col.key]}}</label>
+          </div>
         </td>
 
         <td>
           <div ngf="noDataFound == 0 ">
-          <span>
-            <mat-icon mat-raised-button class="EditButton"  (click)="edit(cust)">edit</mat-icon>
+            <span>
+              <mat-icon mat-raised-button class="EditButton" (click)="edit(cust)">edit</mat-icon>
 
-          </span>
+            </span>
           </div>
         </td>
 
@@ -96,10 +96,12 @@
 
     </table>
 
-    <!-- <div ngf="noDataFound == 1 ">
+    <div *ngIf="noDataFound == 1 ">
       <h3>No records found</h3>
-    </div> -->
+    </div>
 
+
+    <!-- <div  -->
   </div>
 
 </div>

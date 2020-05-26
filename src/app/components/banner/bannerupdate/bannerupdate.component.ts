@@ -14,6 +14,7 @@ import { FormControl } from '@angular/forms';
 })
 export class BannerupdateComponent implements OnInit {
 
+  options : any;
   weekId = "1";
   loc: any = {};
   weekList = ['1','2','3','4','5'];
@@ -36,6 +37,8 @@ export class BannerupdateComponent implements OnInit {
   todayDate: any;
   endBannerDate : any;
   date1 : any;
+  fileToUpload : any;
+urls = [];
 
 
   constructor(
@@ -149,6 +152,43 @@ export class BannerupdateComponent implements OnInit {
     console.log(this.cityName, this.stateName, this.countryName, this.pincode, this.loc['landmark'], this.loc['location']);
   }
 
+
+  detectEventGallery(event) {
+    console.log(event);
+    let files = event.target.files;
+    console.log(files);
+    if (files) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+        }
+        console.log(file);
+        this.fileToUpload = file;
+        reader.readAsDataURL(this.fileToUpload);
+      }
+      this.handleFirstFileInput(this.fileToUpload);
+    }
+    // console.log("file uploaded::"+JSON.stringify(this.fileToUpload));
+  }
+
+  handleFirstFileInput(files: FileList) {
+    if (this.fileToUpload == null || this.fileToUpload == undefined) {
+    }
+    let url = "https://xy2y3lhble.execute-api.ap-south-1.amazonaws.com/dev";
+    console.log("check url : " + url);
+    this.apiCall.callPostApiForImage(url, this.fileToUpload).subscribe(
+      MyResponse => {
+
+        this.urls.push(MyResponse['result'][0])
+        this.firstImage = MyResponse['result'][0];
+        console.log("print url resonce:" + this.firstImage);
+      }, error => {
+        console.log(error);
+
+      }
+
+    );
+  }
   updateBanner(categoryId) {
    
   

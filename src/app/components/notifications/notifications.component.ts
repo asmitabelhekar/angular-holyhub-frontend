@@ -11,10 +11,12 @@ import { MessageService } from 'src/app/services/messages/message.service';
 })
 export class NotificationsComponent implements OnInit {
 
+  showAdd = 0;
   checkLength : any;
   config : any;
   totalCount = 0;
   showAction = 0;
+  showFilter = 0;
   displayedColumns: any = [
     { "name": "Title", "key": "title" },
     { "name": "Description", "key": "description" },

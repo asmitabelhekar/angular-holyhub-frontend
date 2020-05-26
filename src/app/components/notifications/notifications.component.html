@@ -43,14 +43,8 @@
         <img src="./assets/filter_list-24px.svg" />
         <mat-label class="cl_label_css">FILTER</mat-label>
       </div>
-      <mat-menu #menu="matMenu" >
-        <!-- <mat-selection-list [(ngModel)]= "data">
-          <mat-list-option *ngFor="let item of categoryArray" (click)="filter(item.id)">
-            <img matListAvatar src="{{item.image}}" alt="...">
-            <h3 matLine> {{item.name}} </h3>
-          </mat-list-option>
-        </mat-selection-list> -->
-
+      <!-- <mat-menu #menu="matMenu" >
+        
 
         <mat-list>
           <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
@@ -61,7 +55,7 @@
         </mat-list>
       
        
-      </mat-menu>
+      </mat-menu> -->
 
     </div>
   </div>
@@ -76,7 +70,7 @@
         <th *ngIf="showAction == 0"></th>
 
       </tr>
-      <tr  *ngFor="let cust of dataArray | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index" style="padding:20px">
+      <tr  *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
         <td *ngFor="let col of displayedColumns" class="row_padding">
       
         

@@ -35,7 +35,7 @@ export class CategorylistComponent implements OnInit {
   parentCategoryArray: any;
   currentPage = 0;
   dataArray: any = [];
-
+  parentArray = [];
   pageIndex: any = 0;
   lastPage: any = 0;
   checkType = 1;
@@ -50,7 +50,7 @@ export class CategorylistComponent implements OnInit {
   ngOnInit() {
     this.broadCastMessage();
     this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
-    this.getCategoryList(this.url);
+    // this.getCategoryList(this.url);
     this.showParentCategory();
   }
 
@@ -86,10 +86,18 @@ export class CategorylistComponent implements OnInit {
   }
 
   getCategoryList(url) {
-
+    this.dataArray =  [];
     this.apiCall.get(this.url).subscribe((response) => {
 
-      this.dataArray = response['result']['list'];
+      // this.dataArray = response['result']['list'];
+      this.parentArray = response['result']['list'];
+      for(let i=0; i< this.parentArray.length; i++){
+        if(this.parentArray[i]['name'] == "Parent Category"){
+
+        }else{
+          this.dataArray.push(this.parentArray[i]);
+        }
+      }
       this.totalCount = response['result']['count'];
       if (this.totalCount == 0) {
         this.noDataFound = 1;
@@ -103,7 +111,7 @@ export class CategorylistComponent implements OnInit {
   }
   ngOnChanges() {
     this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
-    this.getCategoryList(this.url);
+    // this.getCategoryList(this.url);
     this.showParentCategory();
   }
 
@@ -124,6 +132,9 @@ export class CategorylistComponent implements OnInit {
 
     this.getCategoryList(this.url);
 
+  }
+  search(data){
+    
   }
 
   selectCategory(categoryId) {

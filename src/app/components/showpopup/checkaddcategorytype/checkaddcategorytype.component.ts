@@ -12,7 +12,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CheckaddcategorytypeComponent implements OnInit {
 
-
+selectedCategory: any;
   dataArray: any;
   checkCategoryType = [
     {

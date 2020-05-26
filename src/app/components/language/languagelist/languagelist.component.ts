@@ -62,7 +62,7 @@ export class LanguagelistComponent implements OnInit {
   }
 
 
-  add(event) {
+  add() {
     this.showPopup();
     // console.log("delete event",event);
     // this.router.navigate(['admin/addcategory']);

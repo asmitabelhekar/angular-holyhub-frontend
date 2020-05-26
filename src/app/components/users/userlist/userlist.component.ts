@@ -11,6 +11,8 @@ import { MessageService } from 'src/app/services/messages/message.service';
 })
 export class UserlistComponent implements OnInit {
 
+  showAdd : any = 0;
+  showFilter : any = 0;
   checkLength : any;
   config : any;
   totalCount = 0;

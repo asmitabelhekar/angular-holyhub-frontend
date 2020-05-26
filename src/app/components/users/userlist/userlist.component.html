@@ -54,7 +54,7 @@
       
 
       </tr>
-      <tr  *ngFor="let cust of dataArray | paginate: { itemsPerPage: 5, currentPage: currentPage,totalItems: itemsCount };let i = index" >
+      <tr  *ngFor="let cust of dataArray ;let i = index" >
         <td *ngFor="let col of columnArray" class="row_padding">
       
         
