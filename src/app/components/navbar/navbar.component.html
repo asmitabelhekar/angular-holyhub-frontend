@@ -3,7 +3,7 @@
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="pointer">
     <!-- <mat-icon color="primary" class="logo">local_library</mat-icon> -->
     <!-- <img src="../../../assets/trolley.png" width="40px" height="40px"> -->
-    <mat-icon *ngIf="title != 'Dashboard' " (click)="goBackWord(title)">keyboard_backspace</mat-icon>
+    <mat-icon *ngIf="title != 'Dashboard' " (click)="goBackWord(title)" style="cursor: pointer;">keyboard_backspace</mat-icon>
     <p>{{title}}</p>
   </div>
 

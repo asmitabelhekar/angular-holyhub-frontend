@@ -121,6 +121,8 @@ export class AdvertisementlistComponent implements OnInit {
     send_data['title'] = item.title;
     send_data['description'] = item.description;
     send_data['price'] = item.price;
+    send_data['startDateTime'] = item.startDateTime;
+    send_data['endDateTime'] = item.endDateTime;
 
     const dialogRef = this.dialog.open(AdvertisementdetailpopupComponent, {
       width: '30%',

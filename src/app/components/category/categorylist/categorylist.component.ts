@@ -50,7 +50,7 @@ export class CategorylistComponent implements OnInit {
   ngOnInit() {
     this.broadCastMessage();
     this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
-    // this.getCategoryList(this.url);
+    this.getCategoryList(this.url);
     this.showParentCategory();
   }
 
@@ -175,6 +175,7 @@ export class CategorylistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       this.selectedCategory = result;
       console.log("check categoryId after popup close:"+result);
+      
       this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
       this.getCategoryList(this.url);
     });
@@ -197,7 +198,7 @@ export class CategorylistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
       this.getCategoryList(this.url);
     });
 

@@ -15,13 +15,30 @@
     <img src="{{image}}" class="cl_image_css" />
 
     <div fxLayout="column" fxFlex="100" class="cl_text_css">
-
+      <div fxLayout="row" fxFlex="100">
+     <div fxFlex="30">
       <label *ngIf="type != 'Banner'" class="cl_price_css" fxLayoutAlign="start start">₹{{price}}</label>
+     </div>
+     <div fxFlex="70">
+      <label *ngIf="type != 'Banner'" class="cl_date_css" fxLayoutAlign="end end">{{sdod}} {{sdom | date:'MMM'}} - {{edod}} {{edom | date:'MMM'}} {{edoy}}</label>
+    </div>
 
-      <label fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
+      </div>
+
+      <div fxFlex="100" *ngIf="type == 'Banner'">
+        <div fxFlex="50">
+          <label  fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
+        </div>
+        <div fxFlex="50">
+          <label  class="cl_date_css" fxLayoutAlign="end end">{{sdod}} {{sdom | date:'MMM'}} - {{edod}} {{edom | date:'MMM'}} {{edoy}}</label>
+        </div>
+      </div>
+
+      <label *ngIf="type != 'Banner'" fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
 
       <label fxLayoutAlign="start start" class="cl_description_label">{{description}} </label>
 
+     
     </div>
 
     <div class="cl_clode_div">

@@ -68,7 +68,9 @@ export class PopupComponent implements OnInit {
     send_date['sequenceNumber'] = 0;
 if(this.categoryId == 9){
   this.categoryId = 0;
+  console.log("default categoryid:"+this.categoryId);
 }
+console.log("seleccted categoryid:"+this.categoryId);
     let url = environment.main_url + "category/" + this.categoryId + "/sub-category/" + categoryId;
     this.apiCall.put(url, send_date).subscribe(MyResponse => {
       this.openSnackBar("Category updated successfully.")

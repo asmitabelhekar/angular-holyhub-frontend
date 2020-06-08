@@ -46,3 +46,9 @@
     word-break: break-all;
     font-size:14px;
 }
+
+.cl_date_css{
+    margin-top:8px; 
+    color:gray;
+    font-size:14px;
+}

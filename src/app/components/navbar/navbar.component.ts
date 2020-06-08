@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { SidemenuComponent } from '../sidemenu/sidemenu.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit {
   
   constructor(
     public messageService : MessageService,
-    public sideMenu : SidemenuComponent
+    public sideMenu : SidemenuComponent,
+    public router : Router
   ) { 
     
   }
@@ -83,6 +85,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    
+    this.router.navigate(['/login']);
   }
 }

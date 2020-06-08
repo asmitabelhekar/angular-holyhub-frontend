@@ -23,7 +23,7 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" class="width100">
           <mat-form-field fxFlex="100">
-            <input matInput type="password" [(ngModel)]="login.password" placeholder="Password"
+            <input matInput type="password" [(ngModel)]="login.password" placeholder="Password" style="color:black"
               [formControl]="formControl.password" />
             <mat-error *ngIf="formControl.password.invalid">Password is required</mat-error>
           </mat-form-field>
