@@ -2,7 +2,7 @@
 <form #userForm="ngForm" style="width:100%;" fxLayout="column">
   <div style="width:100%;">
    <div fxFlex="95">
-     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Update {{nameType}} Price</label>
+     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Update {{selectedType}} Plan</label>
    </div>
    <div fxFlex="5">
      <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
@@ -10,18 +10,23 @@
   </div>
   <mat-divider style="width:100%;margin-top:15px"></mat-divider>
  
-   <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
-     <!-- <mat-form-field fxFlex="100">
-       <mat-label>Name</mat-label>
-       <input matInput [(ngModel)]="popup.name"
-         [formControl]="formControl.name" />
-       <mat-error *ngIf="formControl.name.invalid">Name is required</mat-error>
-     </mat-form-field>
-    -->
+   <!-- <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px"> -->
+   
+    <mat-form-field class="cl_matformfield_dropdown cl_select_week" >
+      <label style="color:black;font-size:12px; margin-bottom:10px">Select Type</label>
+      <!-- <select matNativeControl #week (change)="selectAdvertisementNoOfWeeksType(week.value)" style="color:black;width:100%" [(ngModel)]='isAdvertisement'>
+        <option *ngFor="let check of planType" [value]="check" style="color:white"> {{check}}</option>
+      </select> -->
 
+
+        <mat-select matNativeControl #week (selectionChange)="selectPlanType(week.value)" style="width:100% " [(value)]="selectedType">
+          <mat-option *ngFor="let check of planType" [value]="check.id" style="color:black"> {{check.type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
      <mat-form-field style="width:100%">
-      <input matInput class="form-control " name="name" required [(ngModel)]="popup.name" disabled
-        #name="ngModel" pattern="[a-zA-z   ]+$" placeholder="Name" />
+      <input matInput class="form-control " name="name" required [(ngModel)]="popup.name" 
+        #name="ngModel" placeholder="Name" />
       <mat-error>
         <div class="form-group">
           <div *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -30,47 +35,42 @@
         </div>
       </mat-error>
     </mat-form-field>
-   </div>
+   <!-- </div> -->
  
-   <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
-    <!-- <mat-form-field fxFlex="100">
-      <mat-label>First Week Price</mat-label>
-      <input matInput [(ngModel)]="popup.firstPrice"
-        [formControl]="formControl.firstPrice" />
-      <mat-error *ngIf="formControl.firstPrice.invalid">Price is required</mat-error>
-    </mat-form-field> -->
+   <!-- <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px"> -->
+  
   
 
     <mat-form-field style="width:100%;">
-      <input matInput class="form-control " type="number" name="firstPrice" 
-        id="firstPrice" required [(ngModel)]="popup.firstPrice" #firstPrice="ngModel" pattern="[0-9. ]+$"
-        placeholder="First Week Price" />
+      <input matInput class="form-control " type="number" name="noofday" 
+        id="noofday" required [(ngModel)]="popup.noofday" #noofday="ngModel" pattern="[0-9. ]+$"
+        placeholder="No of days" />
       <mat-error>
         <div class="form-group">
-          <div *ngIf="firstPrice.invalid && (firstPrice.dirty || firstPrice.touched)">
-            Price Is Requird
+          <div *ngIf="noofday.invalid && (noofday.dirty || noofday.touched)">
+            Days Is Requird
           </div>
         </div>
       </mat-error>
     </mat-form-field>
-  </div>
+  <!-- </div> -->
 
 
-  <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
+  <!-- <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px"> -->
     <mat-form-field style="width:100%;">
-      <input matInput class="form-control " type="number" name="nextPrice" 
-        id="nextPrice" required [(ngModel)]="popup.nextPrice" #nextPrice="ngModel" pattern="[0-9. ]+$"
-        placeholder="Next Week Price" />
+      <input matInput class="form-control " type="number" name="price" 
+        id="price" required [(ngModel)]="popup.price" #price="ngModel" pattern="[0-9. ]+$"
+        placeholder="Price" />
       <mat-error>
         <div class="form-group">
-          <div *ngIf="nextPrice.invalid && (nextPrice.dirty || nextPrice.touched)">
+          <div *ngIf="price.invalid && (price.dirty || price.touched)">
             Price Is Requird
           </div>
         </div>
       </mat-error>
     </mat-form-field>
   
-  </div>
+  <!-- </div> -->
 
  
    <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top:25px;" fxFlex="100">
@@ -83,7 +83,7 @@
      <div fxFlex="48" fxLayoutAlign="start center">
        
      <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
-     [disabled]="name.invalid || firstPrice.invalid || nextPrice.invalid">UPDATE</button>
+     [disabled]="name.invalid || noofday.invalid || price.invalid">UPDATE</button>
      </div>
     
  

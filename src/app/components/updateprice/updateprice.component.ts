@@ -13,8 +13,28 @@ import { MessageService } from 'src/app/services/messages/message.service';
 })
 export class UpdatepriceComponent implements OnInit {
 
-  url: any;
-  dataArray: any = [];
+ 
+  config : any;
+  totalCount = 0;
+  columnArray: any = [
+    { "name": "Plan Type", "key": "isAdvertisement" },
+    { "name": "Plan Name", "key": "name" },
+    { "name": "Days", "key": "noOfDays" },
+    { "name": "Price", "key": "price" }
+  ];
+  
+  currentPage = 0;
+  dataArray : any = [];
+ 
+  pageIndex : any = 0;
+  lastPage : any = 0;
+
+  url  ;
+
+
+
+  // url: any;
+  // dataArray: any = [];
   bannerFirstWeekPrice: any = "7";
   bannerNextWeekPrice: any = "5";
   bannerSubscriptionId : any ;
@@ -36,7 +56,7 @@ export class UpdatepriceComponent implements OnInit {
 
 
   broadCastMessage(): void {
-    this.messageService.broadCastMessage("Pricing");
+    this.messageService.broadCastMessage("Plans");
  }
 
   getAllPrice() {
@@ -66,6 +86,37 @@ export class UpdatepriceComponent implements OnInit {
     })
   }
 
+  add() {
+    let send_data = {};
+    send_data['status'] = "add";
+   
+
+    const dialogRef = this.dialog.open(UpdatepricepopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getAllPrice();
+    
+    });
+  }
+
+  edit(data){
+    console.log("show edit detail:"+JSON.stringify(data));
+   
+    const dialogRef = this.dialog.open(UpdatepricepopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getAllPrice();
+    
+    });
+  }
 
   upDateBannerPrice() {
     let send_data = {};

@@ -29,7 +29,7 @@ export class SidemenuComponent implements OnInit {
     },
     {
       icon: 'description',
-      name: 'Pricing',
+      name: 'Plans',
       url: '/admin/updateprice'
     },
     {

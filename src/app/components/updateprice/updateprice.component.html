@@ -1,4 +1,95 @@
-<div class="cl_background">
+<!-- <div style="width: 100%;height:95%">
+  <app-table-view [dataTable]="dataArray" [itemsCount]="totalCount" [showView]="0"  (inputChange)="search($event)"  (viewClicked)="view($event)"  [currentPage]="currentPage" [columns]="columnArray" [showFilter]="0" [showAction]="0" [showAdd]="1" (pageClicked)="paginate($event)" [lastPage]="lastPage"  (addClicked)="add()" (deleteClicked)="delete($event)"></app-table-view>
+</div> -->
+
+
+<div class="cl_div_background">
+
+  <div class="cl_margin_top" fxLayout="row" fxLayoutAlign="start end">
+
+
+    <div fxLayout="row" class="cl_div_w_h">
+      <div fxLayoutAlign="start center" style="width: 40%;" class="cl_add_course_css">
+        <input placeholder="Search here.." (input)="search($event)" style="background: white;width: 100%;height: 30px;"/>
+        <mat-icon>search</mat-icon>
+      </div>
+
+    </div>
+
+    <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
+
+      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css">
+        <mat-icon>add_circle_outline</mat-icon>
+        <mat-label class="cl_label_css">ADD</mat-label>
+      </div>
+    
+
+      <div fxLayout="row" fxLayoutAlign="end end" class="cl_filter_css" [matMenuTriggerFor]="menu" *ngIf="showFilter == 1">
+        <img src="./assets/filter_list-24px.svg" />
+        <mat-label class="cl_label_css">FILTER</mat-label>
+      </div>
+      <!-- <mat-menu #menu="matMenu" >
+       
+
+        <mat-list>
+          <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
+            <img matListAvatar src="{{item.image}}" alt="...">
+            <h3 matLine> {{item.name}} </h3>
+           
+          </mat-list-item>
+        </mat-list>
+      
+       
+      </mat-menu> -->
+
+    </div>
+  </div>
+  <mat-divider class="cl_margin_top2"></mat-divider>
+
+  <div class="cl_margin_top2">
+
+    <table>
+      <tr >
+        <th *ngFor="let col of columnArray">{{col.name}}</th>
+        <th>Action</th>
+
+      </tr>
+      <tr  *ngFor="let cust of dataArray ;let i = index" >
+        <td *ngFor="let col of columnArray" class="row_padding">
+      
+        
+          <label *ngIf="col.name != 'Plan Type' ">{{cust[col.key]}}</label>
+          <div  *ngIf="col.name == 'Plan Type' ">
+            <mat-chip-list>
+            <mat-chip *ngIf="cust[col.key] == 0 " style="background-color: rgb(97, 95, 95);" selected>Advertisement</mat-chip>
+            <mat-chip *ngIf="cust[col.key] == 1 " style="background-color: rgb(97, 95, 95); color: white;" selected>Banner</mat-chip>
+          </mat-chip-list>
+            <!-- <label *ngIf="cust[col.key] == 1 ">Advertisement</label>
+            <label *ngIf="cust[col.key] == 0 ">Banner</label> -->
+          </div>
+        
+
+        </td>
+        <td>
+          <span>
+            <mat-icon  mat-raised-button class="EditButton" (click)="edit(cust)">edit</mat-icon>
+            <!-- <button *ngIf="showEdit == 1" mat-raised-button class="EditButton" (click)="edit(cust)">Edit</button> -->
+          
+          </span>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<!-- <div class="cl_background">
   <div fxLayout="row">
     <div class="container" style="width:20%">
       <div class="column">
@@ -30,24 +121,19 @@
         <div class="col-md-3 col-sm-6">
             <div class="pricingTable">
                 <h3 class="title">Advertisement</h3>
-                <!-- <div class="month">30
-                    <span>Days</span>
-                </div> -->
+            
                 <h3 class="title" style="margin-top:15%">First Week</h3>
                 <div class="price-value">
                     <span class="amount">${{addFirstWeekPrice}}
-                        <!-- <span class="currency">$</span> -->
                     </span>
                 </div>
                 <h3 class="title">Further Weeks</h3>
 
                 <div class="price-value">
                   <span class="amount">${{addNextWeekPrice}}
-                      <!-- <span class="currency">$</span> -->
                   </span>
               </div>
               <label  class="pricingTable-signup" (click)="upDateAdvertisementPrice()"  style="cursor:pointer"><u>Update Now</u></label>
-                <!-- <a href="components/showpopup/updatepricepopup" class="pricingTable-signup">Update Now</a> -->
             </div>
         </div>
  
@@ -56,104 +142,4 @@
 </div>
   </div>
  
-  <!-- <div fxLayout="row" style="margin-top:10px; width:100%">
-
-
-<div style="width:25%">
-
-  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px"> -->
-    <!-- <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-      <label style="font-family:  'Times New Roman', Times, serif;">Banner</label>
-      </div>
-     
-   
-      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-        <div fxFlex="70" fxLayoutAlign="start center">
-         <label  style="font-family: sans-serif; font-size:22px">First Week -</label>
-        </div>
-      
-        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
-          <label>$</label>
-          <label>{{bannerFirstWeekPrice}}</label>
-        </div>    
-       
-      </div>
-
-      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:40px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-        <div fxFlex="70" fxLayoutAlign="start center">
-         <label  style="font-family: sans-serif; font-size:22px">Further Week -</label>
-        </div>
-      
-        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
-          <label>$</label>
-          <label>{{bannerNextWeekPrice}}</label>
-        </div>    
-       
-      </div>
-  
-
-      <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
-        <button  mat-raised-button  style="padding:5px;width:90%;background-color: rgb(54, 53, 53);color:white;font-size:22px" (click)="upDateBannerPrice()">Update</button>
-
-        </div>
     </div> -->
-   <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
-    <label style="font-family:sans-serif;font-weight:normal; font-size:25px; margin-top:16px">First week</label>
-    <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$7</label>
-    <label style="font-family:sans-serif;font-weight:normal;  font-size:25px; margin-top:16px">Further week</label>
-    <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$5</label>
-    <button mat-raised-button style="width:90%; margin-top:25px; padding:5px; font-size:22px; background-color: rgb(54, 53, 53); color:white;" >Update Banner Price</button>
- 
-   </div> -->
-  <!-- </mat-card>
-</div>
-<div style="margin-left:20px;width:25%">
-
-  <mat-card style="width:100%; height:auto; border-radius:10px; padding-bottom:30px"> -->
-    <!-- <div fxFlex="100" fxLayout="column" style="width:100%;border-radius:10px" fxLayoutAlign="center center">
-      <div style="height:60px;width:100%; font-size:25px;border-radius:10px; color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-      <label style="font-family: sans-serif">Advertisement</label>
-      </div>
-     
-      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:35px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-        <div fxFlex="70" fxLayoutAlign="start center">
-         <label style="font-family: sans-serif; font-size:22px">First Week -</label>
-        </div>
-      
-        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
-          <label>$</label>
-          <label>{{addFirstWeekPrice}}</label>
-        </div>    
-       
-      </div>
-
-      <div fxLayout="row" style="width:90%;font-size:30px; margin-top:40px;color:rgb(54, 53, 53)" fxLayoutAlign="center center">
-        <div fxFlex="70" fxLayoutAlign="start center">
-         <label  style="font-family: sans-serif; font-size:22px">Further Week -</label>
-        </div>
-      
-        <div fxFlex="30" fxLayoutAlign="end center"  style="font-family: sans-serif; font-size:25px">
-          <label>$</label>
-          <label>{{addNextWeekPrice}}</label>
-        </div>    
-       
-      </div>
-
-      <div fxLayout="row" style="width:100%; margin-top:50px" fxLayoutAlign="center center">
-       
-        <button  mat-raised-button  style="padding:5px;width:90%;background-color: rgb(54, 53, 53);color:white; font-size:22px" (click)="upDateAdvertisementPrice()">Update</button>
-
-        </div>
-    </div> -->
-    <!-- <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
-      <label style="font-family:sans-serif;font-weight:normal; font-size:25px; margin-top:16px">First week</label>
-      <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$7</label>
-      <label style="font-family:sans-serif;font-weight:normal;  font-size:25px; margin-top:16px">Further week</label>
-      <label style="font-family:sans-serif;font-weight:normal;  font-size:30px; margin-top:22px">$5</label>
-      <button mat-raised-button style="width:90%; margin-top:25px; padding:5px; font-size:22px; background-color: rgb(54, 53, 53); color:white;" >Update Advertisement Price</button>
-    </div>
-  </mat-card>
-</div>
-  </div> -->
-  </div>

@@ -13,16 +13,28 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class UpdatepricepopupComponent implements OnInit {
 
-  nameType: any;
+  planType = [
+    {
+      "type": "Advertisement",
+      "id": "0"
+    },
+    {
+      "type": "Banner",
+      "id": "1"
+    }];
+  status: any;
   popup: any = {};
   errorMessage: any;
-  subscriptionId : any;
-
+  subscriptionId: any;
+  selectedType = "Advertisement";
   bannerFirstWeekPrice: any;
   bannerNextWeekPrice: any;
 
   addFirstWeekPrice: any;
   addNextWeekprice: any;
+  planIdType: any;
+
+
 
   constructor(
     public dialogRef: MatDialogRef<CategorylistComponent>,
@@ -34,35 +46,27 @@ export class UpdatepricepopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("show data:" + (this.data.name));
-    this.nameType = this.data.name;
-    if(this.nameType == "banner" || this.nameType == "Banner"){
-      this.bannerFirstWeekPrice = this.data.firstWeekPrice;
-      this.bannerNextWeekPrice = this.data.nextWeekPrice;
-      this.subscriptionId = this.data.subscriptionId;
+    console.log("show data:" + JSON.stringify(this.data));
+    this.status = this.data.status;
+    console.log("check status:" + this.status);
+    if (this.status == "add") {
+      this.status = "add";
+      this.selectedType = "";
 
+    } else {
+      this.status = "update";
+      if (this.data.isAdvertisement == 0) {
+        this.selectedType = "0";
+        this.planIdType = "0"
+      } else {
+        this.selectedType = "1"
+        this.planIdType = "1"
+      }
 
-      this.popup['name'] = this.nameType;
-      this.popup['firstPrice'] = this.bannerFirstWeekPrice;
-      this.popup['nextPrice'] = this.bannerNextWeekPrice;
-
-    }
-    else  if(this.nameType == "advertisement" || this.nameType == "Advertisement"){
-      this.addFirstWeekPrice = this.data.firstWeekPrice;
-      this.addNextWeekprice = this.data.nextWeekPrice;
-      this.subscriptionId = this.data.subscriptionId;
-
-      this.popup['name'] = this.nameType;
-      this.popup['firstPrice'] = this.addFirstWeekPrice;
-      this.popup['nextPrice'] = this.addNextWeekprice;
-    }
-    else{
-      this.bannerFirstWeekPrice = this.data.firstWeekPrice;
-      this.bannerNextWeekPrice = this.data.nextWeekPrice;
-
-      this.popup['name'] = this.nameType;
-      this.popup['firstPrice'] = this.bannerFirstWeekPrice;
-      this.popup['nextPrice'] = this.bannerNextWeekPrice;
+      this.popup['name'] = this.data.name;
+      this.popup['noofday'] = this.data.noOfDays;
+      this.popup['price'] = this.data.price;
+      this.subscriptionId = this.data.id;
     }
 
   }
@@ -73,20 +77,40 @@ export class UpdatepricepopupComponent implements OnInit {
 
   submit() {
 
-    console.log("show subscription id:"+this.subscriptionId);
+    console.log("show subscription id:" + this.subscriptionId);
     let send_date = {};
     send_date['name'] = this.popup['name'];
-    send_date['firstWeekPrice'] = this.popup['firstPrice'];
-    send_date['furtherOnwardsPrice'] = this.popup['nextPrice'];
+    send_date['isAdvertisement'] = this.planIdType;
+    send_date['noOfDays'] = this.popup['noofday'];
+    send_date['price'] = this.popup['price'];
 
-    let url = environment.main_url + "subscriptions/" + this.subscriptionId;
-    this.apiCall.put(url, send_date).subscribe(MyResponse => {
-      this.openSnackBar("Price updated successfully.")
-      this.dialogRef.close();
-    }, error => {
-      this.dialogRef.close();
-    });
 
+    if (this.status == "add") {
+      let url = environment.main_url + "subscriptions";
+      this.apiCall.post(url, send_date).subscribe(MyResponse => {
+        this.openSnackBar("Plan added successfully.")
+        this.dialogRef.close();
+      }, error => {
+        this.dialogRef.close();
+      });
+    } else {
+      let url = environment.main_url + "subscriptions/" + this.subscriptionId;
+      this.apiCall.put(url, send_date).subscribe(MyResponse => {
+        this.openSnackBar("Plan updated successfully.")
+        this.dialogRef.close();
+      }, error => {
+        this.dialogRef.close();
+      });
+    }
+
+
+
+
+  }
+
+  selectPlanType(type){
+this.planIdType = type;
+console.log("show type:"+type);
   }
 
   openSnackBar(msg) {

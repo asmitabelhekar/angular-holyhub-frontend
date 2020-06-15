@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
       window.history.back();
       this.sideMenu.activeIndex("2",this.title);
     }
-    else if(name == "Pricing"){
+    else if(name == "Plans"){
       console.log("show navbar  title :" + name);
       window.history.back();
       this.sideMenu.activeIndex(3,this.title);
