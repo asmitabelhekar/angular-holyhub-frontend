@@ -49,7 +49,7 @@ export class CategorylistComponent implements OnInit {
 
   ngOnInit() {
     this.broadCastMessage();
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=7";
     this.getCategoryList(this.url);
     this.showParentCategory();
   }
@@ -110,7 +110,7 @@ export class CategorylistComponent implements OnInit {
     })
   }
   ngOnChanges() {
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=7";
     // this.getCategoryList(this.url);
     this.showParentCategory();
   }
@@ -128,7 +128,7 @@ export class CategorylistComponent implements OnInit {
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=7";
 
     this.getCategoryList(this.url);
 
@@ -142,7 +142,7 @@ export class CategorylistComponent implements OnInit {
     if (categoryId == 9) {
       categoryId = 0;
     }
-    this.url = environment.main_url + "category/" + categoryId + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + categoryId + "/sub-category?page=" + this.currentPage + "&size=7";
     this.getCategoryList(this.url);
   }
 
@@ -176,7 +176,7 @@ export class CategorylistComponent implements OnInit {
       this.selectedCategory = result;
       console.log("check categoryId after popup close:"+result);
       
-      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
+      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=7";
       this.getCategoryList(this.url);
     });
   }
@@ -198,7 +198,7 @@ export class CategorylistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
+      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=7";
       this.getCategoryList(this.url);
     });
 
