@@ -30,6 +30,14 @@
   }
 
 
+.cl_label_css{
+  font-size:14px;
+  color: rgb(90, 88, 88);
+  margin-bottom:3px;
+  margin-left:5px;
+}
+
+
 .cl_filter_css{
     border: 1px solid grey;
     padding:5px 10px 5px 10px;
@@ -53,3 +61,16 @@
       padding-top:22px;
       padding-bottom:22px;
   }
+
+  .EditButton{
+    /* min-width: 70px !important;
+    height: 38px !important; */
+    color: rgb(117, 116, 116) !important;
+    /* border: 1px solid rgba(241, 128, 53, 0.87); */
+    font-size: 20px;
+    /* background-color: white ;
+    border-radius: 8px;
+    font-weight: 600; */
+    cursor: pointer;
+    margin-left: 10px;
+}

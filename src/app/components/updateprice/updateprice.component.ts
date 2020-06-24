@@ -28,7 +28,7 @@ export class UpdatepriceComponent implements OnInit {
  
   pageIndex : any = 0;
   lastPage : any = 0;
-
+  showFilter = 0;
   url  ;
 
 
@@ -155,5 +155,9 @@ export class UpdatepriceComponent implements OnInit {
       this.getAllPrice();
       
     });
+  }
+
+  search(data){
+
   }
 }
