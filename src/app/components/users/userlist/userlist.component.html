@@ -58,8 +58,8 @@
       <tr  *ngFor="let cust of dataArray ;let i = index" >
         <td *ngFor="let col of columnArray" class="row_padding">
       
-        
-          <label>{{cust[col.key]}}</label>
+        <label *ngIf="col.name == 'Mobile' && cust.mobile == null " style="margin-left:20px;">-</label>
+          <label >{{cust[col.key]}}</label>
          
 
         </td>
