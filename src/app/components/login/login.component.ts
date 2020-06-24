@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     this.apiCall.post(url, send_data).subscribe(MyResponse => {
     
       if(MyResponse['result']['userRole'] == 1){
+        localStorage.setItem("authToken",MyResponse['result']['token']);
         this.openSnackBar("Login successfully");
         this.router.navigate(['admin/dashboard']);
       }else{

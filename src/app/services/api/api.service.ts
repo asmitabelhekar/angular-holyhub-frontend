@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,64 +13,78 @@ export class ApiService {
   ) { }
 
 
-   //GET
+  //GET
 
-   public get(url) {
+  public get(url) {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
       })
     }
     console.log(url);
-    return this.http.get(url,httpOptions);
+    return this.http.get(url, httpOptions);
   }
 
 
-  
-//POST
-public post(url,data) {
+  public getAd(url) {
+    let auth_token = localStorage.getItem("authToken");
 
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      // 'Authorization':'Token' + " " +auth_token
-    })
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNzYmVsaGVrYXJAZ21haWwuY29tIiwibW9iaWxlIjoiOTUyNzkwMjYyMiIsImlkIjo0NCwiaWF0IjoxNTkzMDA2OTcyfQ.C9eWtZj19K66JihcU1Kji88oYEUSrSlpgVP6DOHdudM"
+      })
+    }
+    console.log(url);
+    return this.http.get(url, httpOptions);
   }
-  console.log(url);
-  
-  return this.http.post(url,data,httpOptions);
-}
 
 
-//PUT
 
-public put(url,data) {
+  //POST
+  public post(url, data) {
 
-  console.log(url);
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      // 'Authorization':'Token' + " " +auth_token
-    })
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+    console.log(url);
+
+    return this.http.post(url, data, httpOptions);
   }
-  return this.http.put(url,data,httpOptions);
-}
 
 
+  //PUT
 
-public delete(url,data) {
+  public put(url, data) {
 
-  console.log(url);
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      // 'Authorization':'Token' + " " +auth_token
-    })
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+    return this.http.put(url, data, httpOptions);
   }
-  
-  return this.http.delete(url,data);
-}
+
+
+
+  public delete(url, data) {
+
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+
+    return this.http.delete(url, data);
+  }
 
 
 
@@ -83,7 +97,7 @@ public delete(url,data) {
     return this.http.post(url, formData)
   }
 
-  
+
 
 
 }
