@@ -61,6 +61,7 @@
       
         
           <label *ngIf="col.name != 'Plan Type' ">{{cust[col.key]}}</label>
+          <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <div  *ngIf="col.name == 'Plan Type' ">
             <mat-chip-list>
             <mat-chip *ngIf="cust[col.key] == 0 " style="background-color: rgb(97, 95, 95);" selected>Advertisement</mat-chip>

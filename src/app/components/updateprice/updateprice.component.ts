@@ -17,6 +17,7 @@ export class UpdatepriceComponent implements OnInit {
   config : any;
   totalCount = 0;
   columnArray: any = [
+    { "name": "Sr No", "key": "index" },
     { "name": "Plan Type", "key": "isAdvertisement" },
     { "name": "Plan Name", "key": "name" },
     { "name": "Days", "key": "noOfDays" },
