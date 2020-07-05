@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'src/app/services/messages/message.service';
+import { NotificationpopupComponent } from '../showpopup/notificationpopup/notificationpopup.component';
+import { MatDialog,MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-notifications',
@@ -11,11 +14,13 @@ import { MessageService } from 'src/app/services/messages/message.service';
 })
 export class NotificationsComponent implements OnInit {
 
-  showAdd = 0;
+  showAdd = 1;
   checkLength : any;
   config : any;
   totalCount = 0;
-  showAction = 0;
+  showAction = 1;
+  showEdit =1;
+  showSend =1;
   showFilter = 0;
   displayedColumns: any = [
     { "name": "Title", "key": "title" },
@@ -29,9 +34,12 @@ export class NotificationsComponent implements OnInit {
   lastPage : any = 0;
 
   url : any ;
+  
 
   constructor(public router : Router,
     public messageService : MessageService,
+    public dialog: MatDialog,
+    public snackbar: MatSnackBar,
     public apiCall : ApiService) { }
 
   ngOnInit() {
@@ -69,6 +77,72 @@ export class NotificationsComponent implements OnInit {
 
     console.log("delete event",event);
     // this.router.navigate(['admin/addlanguage']);
+
+
+    let send_data = {};
+    send_data['status'] = "add";
+   
+
+    const dialogRef = this.dialog.open(NotificationpopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getNotificationList(this.url)
+    
+    });
+
+  }
+
+
+  edit(data){
+    console.log("show edit detail:"+JSON.stringify(data));
+
+    data['status'] = "update";
+    const dialogRef = this.dialog.open(NotificationpopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.getNotificationList(this.url)
+    
+    });
+  }
+
+
+  send(data){
+
+    console.log(data);
+
+    let send_date =  {
+      "type": 1,
+      "title": data.title,
+      "body":data.description,
+      "advertise_id": 0,
+      "details": {}
+    }
+
+
+    let url = environment.main_url + "admin/notification";
+    this.apiCall.post(url, send_date).subscribe(MyResponse => {
+      this.openSnackBar("Notification sent successfully.")
+      
+    }, error => {
+     
+    });
+
+  }
+
+  openSnackBar(msg) {
+    this.snackbar.open(msg, "", {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 
 

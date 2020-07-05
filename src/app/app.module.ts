@@ -50,6 +50,7 @@ import { LanguagepopupComponent } from './components/showpopup/languagepopup/lan
 import { AdvertisementlistComponent } from './components/advertisement/advertisementlist/advertisementlist.component';
 import { UpdatepriceComponent } from './components/updateprice/updateprice.component';
 import { UpdatepricepopupComponent } from './components/showpopup/updatepricepopup/updatepricepopup.component';
+import { NotificationpopupComponent } from './components/showpopup/notificationpopup/notificationpopup.component';
 import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.component';
 import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
@@ -63,6 +64,7 @@ import { CheckaddcategorytypeComponent } from './components/showpopup/checkaddca
     PopupComponent, 
     LanguagepopupComponent, 
     UpdatepricepopupComponent,
+    NotificationpopupComponent,
      AdvertisementdetailpopupComponent,
     CheckaddcategorytypeComponent],
   declarations: [
@@ -83,6 +85,7 @@ import { CheckaddcategorytypeComponent } from './components/showpopup/checkaddca
     AdvertisementlistComponent,
     UpdatepriceComponent,
     UpdatepricepopupComponent,
+    NotificationpopupComponent,
     BannerlistComponent,
     BannerupdateComponent,
     NotificationsComponent,

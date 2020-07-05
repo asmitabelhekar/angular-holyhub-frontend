@@ -58,7 +58,10 @@
           <label fxLayoutAlign="start start" class="cl_title_css check_width">
             {{item.title}}
           </label>
-          <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
+          <div  fxLayout="row" >
+          <label fxLayoutAlign="start start" style="margin-right:10px ;"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
+          <label fxLayoutAlign="end end" style="margin-left:10px ;"  (click)="sendNotif(item)" class="cl_view_detail_css"><u>Send Notif</u></label>
+          </div>
         </div>
 
         <!-- <div fxFlex="5" fxLayoutAlign="end start">

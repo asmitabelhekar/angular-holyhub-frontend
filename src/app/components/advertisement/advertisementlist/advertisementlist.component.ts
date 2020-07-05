@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material';
 import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 import { MessageService } from 'src/app/services/messages/message.service';
-
+import { NotificationpopupComponent } from '../../showpopup/notificationpopup/notificationpopup.component';
 @Component({
   selector: 'app-advertisementlist',
   templateUrl: './advertisementlist.component.html',
@@ -136,6 +136,35 @@ export class AdvertisementlistComponent implements OnInit {
       this.getAdvertisementList(this.url);
     });
   }
+
+
+  sendNotif(item){
+    console.log("show advertisement detail:"+JSON.stringify(item));
+
+    let send_data = {};
+    send_data['adId'] = item.id;
+    send_data['categoryId'] = item.categoryId;
+    // send_data['image'] = item.images[0];
+    // send_data['title'] ="";
+    // send_data['description'] = "";
+    // send_data['price'] = item.price;
+    // send_data['startDateTime'] = item.startDateTime;
+    // send_data['endDateTime'] = item.endDateTime;
+    send_data['status'] = "send";
+    const dialogRef = this.dialog.open(NotificationpopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.url = environment.main_url + " advertisements?page=" + this.currentPage + "&size=1000";
+      this.getAdvertisementList(this.url);
+    });
+
+    
+  }
+
 
   showPopup() {
   
