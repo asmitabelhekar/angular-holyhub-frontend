@@ -144,6 +144,7 @@ export class AdvertisementlistComponent implements OnInit {
     let send_data = {};
     send_data['adId'] = item.id;
     send_data['categoryId'] = item.categoryId;
+    send_data['isBookmarked'] = item.isBookmarked;
     // send_data['image'] = item.images[0];
     // send_data['title'] ="";
     // send_data['description'] = "";

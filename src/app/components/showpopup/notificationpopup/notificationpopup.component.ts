@@ -116,7 +116,8 @@ export class NotificationpopupComponent implements OnInit {
           "id" :  this.data.adId,
           "categoryId": this.data.categoryId,
           "status": "category",
-          "adType": 1
+          "adType": 1,
+          "isBookmarked":this.data.isBookmarked
         }
       }
 
