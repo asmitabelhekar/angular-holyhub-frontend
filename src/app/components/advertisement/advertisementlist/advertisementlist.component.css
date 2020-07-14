@@ -30,6 +30,14 @@
    cursor: pointer;
 }
 
+.cl_add_course_css1{
+  border: 1px solid grey;
+  padding:5px 10px 5px 10px;
+  border-radius: 5px;
+   /* margin-right:20px; */
+   cursor: pointer;
+}
+
 .cl_search_css{
   border: 1px solid grey;
   padding:10px;
@@ -37,6 +45,13 @@
    /* margin-right:20px; */
    cursor: pointer;
   
+}
+
+.cl_filter_css{
+  border: 1px solid grey;
+  padding:5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-left:2%;
 }
 
 

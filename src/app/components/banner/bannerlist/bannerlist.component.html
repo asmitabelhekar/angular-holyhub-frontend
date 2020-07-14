@@ -12,28 +12,34 @@
     <div fxLayout="row" fxLayoutAlign="start end" style="padding:15px">
   
       <div fxLayout="row" class="cl_div_w_h">
-        <div fxLayoutAlign="start center" style="width: 40%;" class="cl_search_css">
+        <div fxLayoutAlign="start center" style="width: 40%;" class="cl_add_course_css1">
           <input placeholder="Search here.." (input)="search($event)" style="background: white;width: 100%;height: 30px;"/>
           <mat-icon>search</mat-icon>
         </div>
   
       </div>
 
-      <!-- <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
 
+
+     
+
+
+
+       <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
+<!-- 
         <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" >
           <mat-icon>add_circle_outline</mat-icon>
           <mat-label class="cl_label_css">ADD</mat-label>
-        </div>
+        </div> -->
        
-        <div fxLayout="row" fxLayoutAlign="end end" [matMenuTriggerFor]="menu" class="cl_add_course_css" >
+        <div fxLayout="row" fxLayoutAlign="end end" [matMenuTriggerFor]="menu" class="cl_filter_css" >
           <img src="./assets/filter_list-24px.svg" />
           <mat-label class="cl_label_css">Filter</mat-label>
         </div>
         <mat-menu #menu="matMenu" >
       
           <mat-list>
-            <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
+            <mat-list-item style="cursor: pointer;" *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
               <img matListAvatar src="{{item.image}}" alt="...">
               <h3 matLine> {{item.name}} </h3>
              
@@ -42,8 +48,25 @@
         
          
         </mat-menu>
+
+        <div fxLayout="row" fxLayoutAlign="end end"  [matMenuTriggerFor]="menu1" class="cl_filter_css" >
+          <img src="./assets/sort.png" />
+          <mat-label class="cl_label_css">Sort</mat-label>
+        </div>
   
-      </div> -->
+        
+        <mat-menu #menu1="matMenu" >
+      
+          <mat-list>
+            <mat-list-item style="cursor: pointer;" *ngFor="let item of sortArray" (click)="sort(item)" >
+              <!-- <img matListAvatar src="{{item.image}}" alt="..."> -->
+              <h3 matLine> {{item.name}} </h3>
+             
+            </mat-list-item>
+          </mat-list>
+        </mat-menu>
+  
+      </div> 
   
     
     </div>
@@ -61,14 +84,18 @@
             <div fxLayout="column" fxFlex="93" style=" width:100%; height:auto">
               <!-- <label  style="font-family:sans-serif;margin-top:5px; font-size:20px" fxLayoutAlign="start start">₹{{item.price}}</label> -->
     
-              <label fxLayoutAlign="start start" class="cl_title_css check_width">
+              <label  fxLayoutAlign="start start" class="cl_title_css check_width">
                 {{item.title}}
               </label>
               <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
             </div>
     
-            <div fxFlex="7" fxLayoutAlign="end start">
-              <mat-icon style="color:gray; font-size:22px;cursor:pointer" (click)="editBanner(item)">edit</mat-icon>
+            <div fxFlex="7" fxLayoutAlign="end end">
+              <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="editBanner(item)">edit</mat-icon>
+            </div>
+
+            <div fxFlex="7" fxLayoutAlign="end end">
+              <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-left: 15px;" (click)="deleteBanner(item)"> delete </mat-icon>
             </div>
         
            </div>

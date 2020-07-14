@@ -73,7 +73,7 @@
       <tr  *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
         <td *ngFor="let col of displayedColumns" class="row_padding">
       
-        
+          <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <label>{{cust[col.key]}}</label>
          
           <!-- <label *ngIf="col.name == 'Description' ">{{cust[col.key]}}</label> -->
@@ -82,12 +82,22 @@
       
         <td>
           <span>
-            <button *ngIf="showEdit == 1" mat-raised-button class="EditButton" (click)="edit(cust)">Edit</button>
+
+            <mat-icon style="color: #3f51b5; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="send(cust)">send</mat-icon>
+  
             &nbsp;
-            <button *ngIf="showSend == 1" mat-raised-button class="ViewButton" (click)="send(cust)">Send</button>
+
+            <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="edit(cust)">edit</mat-icon>
+  
+            <!-- <button *ngIf="showEdit == 1" mat-raised-button class="EditButton" (click)="edit(cust)">Edit</button> -->
+        
+           
+            <!-- <button *ngIf="showSend == 1" mat-raised-button class="ViewButton" (click)="send(cust)">Send</button> -->
 
             &nbsp;
-            <button *ngIf="showDelete == 1" mat-raised-button class="ViewButton" (click)="delete(cust)">Delete</button>
+            <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="delete(cust)">delete</mat-icon>
+  
+            <!-- <button *ngIf="showDelete == 1" mat-raised-button class="ViewButton" (click)="delete(cust)">Delete</button> -->
 
 
           </span>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
-import { MatDialog } from '@angular/material';
+import { MatDialog ,MatSnackBar} from '@angular/material';
 import { PopupComponent } from '../../showpopup/popup/popup.component';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { CheckaddcategorytypeComponent } from '../../showpopup/checkaddcategorytype/checkaddcategorytype.component';
@@ -13,6 +13,7 @@ import { CheckaddcategorytypeComponent } from '../../showpopup/checkaddcategoryt
   styleUrls: ['./categorylist.component.css']
 })
 export class CategorylistComponent implements OnInit {
+  
 
   selectedCategory = 9;
   checkCategoryType = [
@@ -28,6 +29,7 @@ export class CategorylistComponent implements OnInit {
   config: any;
   totalCount = 0;
   columnArray: any = [
+    { "name": "Sr No", "key": "index" },
     { "name": "Category Name", "key": "name" },
     { "name": "Image", "key": "image" }
 
@@ -39,12 +41,14 @@ export class CategorylistComponent implements OnInit {
   pageIndex: any = 0;
   lastPage: any = 0;
   checkType = 1;
+  checkLength : any;
   url;
   noDataFound: any;
 
   constructor(public router: Router,
     public dialog: MatDialog,
     public messageService: MessageService,
+    public snackbar: MatSnackBar,
     public apiCall: ApiService) { }
 
   ngOnInit() {
@@ -121,8 +125,6 @@ export class CategorylistComponent implements OnInit {
     // this.router.navigate(['admin/addcategory']);
   }
 
-
-
   paginate(event) {
     console.log("currentPage::" + event);
 
@@ -133,8 +135,18 @@ export class CategorylistComponent implements OnInit {
     this.getCategoryList(this.url);
 
   }
-  search(data){
-    
+
+  search(event){
+    console.log("kkk",""+JSON.stringify(event));
+    this.checkLength = event.target.value;
+    console.log("search event",this.checkLength);
+    if (this.checkLength.length > 2) {
+      this.url = environment.main_url +"category/0/sub-category"+ "?search=" + event.target.value;
+      this.getCategoryList(this.url);
+    } else {
+      this.url = environment.main_url +"category/0/sub-category";
+      this.getCategoryList(this.url);    
+    }
   }
 
   selectCategory(categoryId) {
@@ -175,6 +187,10 @@ export class CategorylistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       this.selectedCategory = result;
       console.log("check categoryId after popup close:"+result);
+
+      if(result== undefined){
+        result = 0;
+      }
       
       this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
       this.getCategoryList(this.url);
@@ -198,9 +214,34 @@ export class CategorylistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
+      if(result == undefined){
+        result =0;
+      }
       this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
       this.getCategoryList(this.url);
     });
 
   }
+
+  delete(item){
+    if(confirm("Are you sure to delete " +item.name +" ?")) {
+      console.log("Implement delete functionality here");
+
+       // /api/v1.0.0/categories/{categoryId}/sub-categories/{id}
+    this.url = environment.main_url  + "category/"+item.parentId+"/sub-category/"+item.id;
+    this.apiCall.deleteEntry(this.url).subscribe((response)=>{
+      this.openSnackBar("Deleted successfully.")
+      this.getCategoryList(this.url);
+      
+    })
+    }
+}
+
+openSnackBar(msg) {
+  this.snackbar.open(msg, "", {
+    duration: 3000,
+    horizontalPosition: 'right',
+    verticalPosition: 'top',
+  });
+}
 }

@@ -86,6 +86,19 @@ export class ApiService {
     return this.http.delete(url, data);
   }
 
+  public deleteEntry(url) {
+
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+
+    return this.http.delete(url);
+  }
+
 
 
   //Image Upload Post

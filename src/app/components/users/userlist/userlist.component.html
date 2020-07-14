@@ -28,19 +28,19 @@
         <img src="./assets/filter_list-24px.svg" />
         <mat-label class="cl_label_css">FILTER</mat-label>
       </div>
-      <!-- <mat-menu #menu="matMenu" >
+      <mat-menu #menu="matMenu" >
        
 
         <mat-list>
-          <mat-list-item *ngFor="let item of categoryArray" (click)="filter(item.id)" [ngClass]="item.id == categoryId ? 'selected-category-back' : 'category-back' ">
-            <img matListAvatar src="{{item.image}}" alt="...">
+          <mat-list-item *ngFor="let item of filterArray" (click)="filter(item.id)" >
+            <!-- <img matListAvatar src="{{item.image}}" alt="..."> -->
             <h3 matLine> {{item.name}} </h3>
            
           </mat-list-item>
         </mat-list>
       
        
-      </mat-menu> -->
+      </mat-menu>
 
     </div>
   </div>
@@ -52,15 +52,19 @@
     <table>
       <tr >
         <th *ngFor="let col of columnArray">{{col.name}}</th>
-      
+        <th>Payment Logs</th>
 
       </tr>
       <tr  *ngFor="let cust of dataArray ;let i = index" >
         <td *ngFor="let col of columnArray" class="row_padding">
-      
+          <div  *ngIf="col.name == 'Sr No' "> {{i+1}} </div>
         <label *ngIf="col.name == 'Mobile' && cust.mobile == null " style="margin-left:20px;">-</label>
-          <label >{{cust[col.key]}}</label>
-         
+        <label *ngIf="col.key == 'totalEarning'" style="font-weight: bold;">₹ {{cust[col.key]}}</label>
+        <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
+        <label *ngIf="col.key != 'image' && col.key !='totalEarning'" >{{cust[col.key]}}</label>
+        </td>
+        <td>
+  <button *ngIf="showView == 1" mat-raised-button class="ViewButton" (click)="view(cust)">View</button>
 
         </td>
       

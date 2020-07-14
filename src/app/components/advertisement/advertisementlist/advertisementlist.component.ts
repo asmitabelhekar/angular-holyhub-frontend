@@ -30,7 +30,9 @@ export class AdvertisementlistComponent implements OnInit {
   pageIndex : any = 0;
   lastPage : any = 0;
   categoryId = 4;
+  
   categoryArray : any;
+  sortArray = [{"id":1,"name":"Low to High","parameter":"low_to_high"},{"id":2,"name":"High to Low","parameter":"high_to_low"},{"id":3,"name":"Clear","parameter":"clear"}]
 
   url : any; ;
 
@@ -84,14 +86,33 @@ export class AdvertisementlistComponent implements OnInit {
   filter(event) {
   console.log("show filter data:"+event);
     this.categoryId = event;
-    this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000";
+    this.url = environment.main_url +"categories/"+this.categoryId+ "/advertisements?page=" + this.currentPage + "&size=1000";
     this.getAdvertisementList(this.url);
+  }
+  sort(event){
+
+    if(this.categoryId !=4){
+
+      this.url = environment.main_url +"categories/"+this.categoryId + "/advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+  
+
+    }else{
+
+      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+  
+
+    }
+    
+    this.getAdvertisementList(this.url);
+
   }
 
   getCategory() {
     let url = environment.main_url + "category/" + 0 + "/sub-category"
     this.apiCall.get(url).subscribe(MyResponse => {
       this.categoryArray = MyResponse['result']['list'];
+
+      console.log("jjjj",""+JSON.stringify(this.categoryArray));
     },
       error => {
        

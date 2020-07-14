@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
@@ -13,11 +13,10 @@ import { MessageService } from 'src/app/services/messages/message.service';
 })
 export class LanguagelistComponent implements OnInit {
 
- 
-
   config : any;
   totalCount = 0;
   columnArray: any = [
+    { "name": "Sr No", "key": "index" },
     { "name": "Language Name", "key": "name" },
     { "name": "Image", "key": "image" }
   ];
@@ -83,6 +82,22 @@ export class LanguagelistComponent implements OnInit {
     });
   }
 
+  
+
+  delete(item){
+
+    if(confirm("Are you sure to delete " +item.name +" language ?")) {
+    this.url = environment.main_url  + "languages/"+item.id;
+    this.apiCall.deleteEntry(this.url).subscribe((response)=>{
+     
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.getLanguagesList(this.url);
+      
+    })
+   }
+
+  }
+
 
   paginate(event) {
     console.log("currentPage::" +event);
@@ -90,6 +105,14 @@ export class LanguagelistComponent implements OnInit {
     this.currentPage = event;
     this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
     this.getLanguagesList(this.url);
+
+  }
+
+ 
+  search(event){
+
+    console.log("show search event:"+JSON.stringify(event));
+
 
   }
 

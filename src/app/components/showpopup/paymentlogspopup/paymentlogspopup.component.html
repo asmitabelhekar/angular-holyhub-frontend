@@ -1,0 +1,99 @@
+
+<form #userForm="ngForm" style="width:100%;" fxLayout="column">
+  <div style="width:100%;">
+   <div fxFlex="95">
+     <label style="color:black; font-family: sans-serif; font-weight:bold;font-size:18px; ">{{formName}} of {{allData[0].user_name}}</label>
+   </div>
+   <div fxFlex="5">
+     <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
+   </div>
+  </div>
+  <mat-divider style="width:100%;margin-top:15px"></mat-divider>
+
+
+  <div  *ngFor="let item of allData" fxLayout="column" >
+
+    <div fxFlex="100"class="row_padding" > <label  fxLayoutAlign="start start" class="cl_title_css">{{item.modified | date}}</label></div>
+
+  <div fxFlex="100" class="row_padding" >
+    <div fxFlex="50">
+      <label  fxLayoutAlign="start start" class="cl_title_css">Payment Title : {{item.title}}</label>
+    </div>
+    <div fxFlex="50">
+      <label  class="cl_date_css" fxLayoutAlign="end end">Payment Id : {{item.paymentId}}</label>
+    </div>
+  </div>
+
+  
+
+  <div fxFlex="100"  class="row_padding">
+    <div fxFlex="50">
+      <label *ngIf="item.isSuccess==1" fxLayoutAlign="start start" class="cl_title_css">Transaction Status :  Successfull</label>
+      <label  *ngIf="item.isSuccess==0" fxLayoutAlign="start start" class="cl_title_css">Transaction Status :  Failed</label>
+    </div>
+    <div fxFlex="50">
+      <label  class="cl_date_css" fxLayoutAlign="end end"> ₹ {{item.amount}}</label>
+    </div>
+  </div>
+
+  <mat-divider style="width:100%;margin-top:15px"></mat-divider>
+
+  </div>
+ 
+  
+    <!-- <mat-form-field class="cl_matformfield_dropdown cl_select_week" >
+      <label style="color:black;font-size:12px; margin-bottom:10px">Select Type</label>
+     
+
+        <mat-select matNativeControl #week (selectionChange)="selectPlanType(week.value)" style="width:100% " [(value)]="selectedType">
+          <mat-option *ngFor="let check of planType" [value]="check.id" style="color:black"> {{check.type}}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      
+     <!-- <mat-form-field style="width:100%">
+      <input matInput class="form-control " name="name" required [(ngModel)]="popup.name" 
+        #name="ngModel" placeholder="Title" />
+      <mat-error>
+        <div class="form-group">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            Name Is Requird
+          </div>
+        </div>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field style="width:100%">
+      <input matInput class="form-control " name="description" required [(ngModel)]="popup.description" 
+        #description="ngModel" placeholder="Description" />
+      <mat-error>
+        <div class="form-group">
+          <div *ngIf="description.invalid && (description.dirty || description.touched)">
+            Description Is Requird
+          </div>
+        </div>
+      </mat-error>
+    </mat-form-field> -->
+
+    
+  <div fxLayout="row" fxLayoutAlign="space-around" style="margin-top:25px;" fxFlex="100">
+    <!-- <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px" [disabled]="formControl.categoryName.invalid">{{buttonText}}</button> -->
+    <!-- <div fxFlex="49"  fxLayoutAlign="end center">
+      <button mat-raised-button (click)="closeDialog()" class="button-cancel" style="font-size:13px; width:70%"
+      >CANCEL</button>
+    </div>
+    <div fxFlex="3"></div> -->
+    <!-- <div fxFlex="48" fxLayoutAlign="start center">
+      
+    <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
+    >{{formName}}</button>
+    </div> -->
+   
+
+  </div>
+   </form>
+ 
+  
+ 
+ 
+ 

@@ -1,9 +1,12 @@
 
 <form #userForm="ngForm" style="width:100%;" fxLayout="column">
   <div style="width:100%;">
-   <div fxFlex="95">
-     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Update {{selectedType}} Plan</label>
+   <div *ngIf="status=='add'" fxFlex="95">
+     <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Add Plan</label>
    </div>
+   <div *ngIf="status!='add'" fxFlex="95">
+    <label style="color:black; font-family: sans-serif; font-weight:normal;font-size:18px; ">Update Plan</label>
+  </div>
    <div fxFlex="5">
      <mat-icon (click)="closeDialog()" style="color:gray">close</mat-icon>
    </div>
@@ -80,11 +83,17 @@
        >CANCEL</button>
      </div>
      <div fxFlex="3"></div>
-     <div fxFlex="48" fxLayoutAlign="start center">
+     <div *ngIf="status=='add'"    fxFlex="48" fxLayoutAlign="start center">
        
      <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
-     [disabled]="name.invalid || noofday.invalid || price.invalid">UPDATE</button>
+     [disabled]="name.invalid || noofday.invalid || price.invalid">Add</button>
      </div>
+
+     <div *ngIf="status!='add'"    fxFlex="48" fxLayoutAlign="start center">
+       
+      <button color="primary" mat-raised-button (click)="submit()" class="button-content" style="font-size:13px; width:70%"
+      [disabled]="name.invalid || noofday.invalid || price.invalid">Update</button>
+      </div>
     
  
    </div>

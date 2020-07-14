@@ -64,6 +64,8 @@ export class SidemenuComponent implements OnInit {
     // console.log("show sidemenu url:"+url);
     // this.broadCastMessage();
 
+    console.log("kkkk",""+index);
+
     this.indexActive = index;
     this.url = url;
     console.log("show sidemenu index:"+index);

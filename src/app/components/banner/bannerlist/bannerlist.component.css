@@ -11,6 +11,13 @@
     padding-bottom: 9px;
   }
 
+  .cl_add_course_css1{
+    border: 1px solid grey;
+    padding:5px 10px 5px 10px;
+    border-radius: 5px;
+     /* margin-right:20px; */
+     cursor: pointer;
+  }
 
 .cl_add_course_css{
   border: 1px solid grey;
@@ -21,6 +28,21 @@
   border-radius: 5px;
    /* margin-right:20px; */
    cursor: pointer;
+}
+
+.cl_label_css{
+  font-size:15px;
+  color: rgb(104, 102, 102);
+  margin-bottom:5px;
+  margin-left:5px;
+}
+
+
+.cl_filter_css{
+  border: 1px solid grey;
+  padding:5px 10px 5px 10px;
+  border-radius: 5px;
+  margin-left:2%;
 }
 
 .cl_search_css{

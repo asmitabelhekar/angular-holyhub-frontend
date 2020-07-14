@@ -22,10 +22,24 @@ export class PopupComponent implements OnInit {
   buttonText = "ADD";
   button = "Add";
   categoryId : any;
+  categoryIdN : any;
   errorMessage: any;
+  is_parent_category_to_add = -1;
+  is_update_flow = 0;
   formControl = {
     categoryName: new FormControl('', [Validators.required]),
   };
+
+  checkCategoryType = [
+    {
+      "name": "Parent",
+      "id": "1"
+    },
+    {
+      "name": "Sub-Category",
+      "id": "2"
+    }
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<CategorylistComponent>,
@@ -44,12 +58,15 @@ export class PopupComponent implements OnInit {
       this.categoryId = this.data.id;
       console.log("show status of category:" + this.categoryId);
     } else {
+      this.is_update_flow =1;
       this.buttonText = "UPDATE";
       this.button = "Update";
       this.categoryId = this.data.parent_id;
       if(this.data.parent_id == 0)
-      {
+      { this.is_parent_category_to_add =1;
         this.categoryId = 9;
+      }else{
+        this.is_parent_category_to_add = -1;
       }
       console.log("show category id:"+this.categoryId);
       this.popup['categoryName'] = this.data.name;
@@ -99,6 +116,24 @@ console.log("seleccted categoryid:"+this.categoryId);
       this.categoryId = selectedCategory;
       console.log("selectedCategory : " + selectedCategory);
     }
+  }
+
+  selectCategoryToAdd(selectedCategory) {
+
+
+    this.is_parent_category_to_add = selectedCategory;
+
+  
+
+    console.log(" parent category: " +  this.is_parent_category_to_add);
+    // if (selectedCategory == 9) {
+    //   this.categoryId = 0;
+    //   console.log("selectedCategory parent category: " + selectedCategory);
+    // } else {
+    //   this.categoryId = selectedCategory;
+    //   console.log("selectedCategory : " + selectedCategory);
+    // }
+  
   }
 
 
@@ -153,6 +188,12 @@ console.log("seleccted categoryid:"+this.categoryId);
       send_data['image'] = this.firstImage;
       send_data['isActive'] = 1;
       send_data['sequenceNumber'] = 0;
+
+      if(this.is_parent_category_to_add == 1){
+
+        this.categoryId = 0;
+
+      }
 
       let url = environment.main_url + "category/" + this.categoryId + "/sub-category";
       this.apiCall.post(url, send_data).subscribe(MyResponse => {

@@ -24,6 +24,9 @@ export class BannerlistComponent implements OnInit {
     { "name": "Address", "key": "city" },
     
   ];
+
+  sortArray = [{"id":1,"name":"Latest","parameter":"latest"},{"id":2,"name":"Old","parameter":"old"},{"id":3,"name":"Clear","parameter":"clear"}]
+
   
   currentPage = 0;
   dataArray : any = [];
@@ -38,6 +41,7 @@ export class BannerlistComponent implements OnInit {
 
   constructor(public router : Router,
     public dialog : MatDialog,
+    public snackbar: MatSnackBar,
     public messageService : MessageService,
     public apiCall : ApiService) { }
 
@@ -87,20 +91,40 @@ export class BannerlistComponent implements OnInit {
   filter(event) {
   console.log("show filter data:"+event);
     this.categoryId = event;
-    this.url = environment.main_url  + "banners?" + "&size=1000";
-    // this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
+   
+    // this.url = environment.main_url  + "banners?" + "&size=1000";
+    this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
+    this.getBannerList(this.url);
+  }
+
+  sort(event){
+
+     if(this.categoryId !="1"){
+
+      this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+
+
+     }else{
+
+      this.url = environment.main_url + "banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+
+     }
+  
     this.getBannerList(this.url);
   }
 
 
   search(event) {
+   
     this.checkLength = event.target.value;
+   
     console.log("search event",this.checkLength);
+    
     if (this.checkLength.length > 2) {
-      this.url = environment.main_url  + "banners?" + "&size=1000";
-    // this.url = environment.main_url + "category/" + this.categoryId + "/banners?search=" + event.target.value;
 
+      this.url = environment.main_url +  "banners?search=" + event.target.value;
       this.getBannerList(this.url);
+
     } else {
       this.url = environment.main_url  + "banners?" + "&size=1000";
       // this.url = environment.main_url + "category/" + this.categoryId + "/banners";
@@ -162,6 +186,28 @@ export class BannerlistComponent implements OnInit {
     this.broadCastMessage();
     console.log("show banner date for edit:"+JSON.stringify(item));
     this.router.navigate(['admin/bannerupdate', { bannerData : JSON.stringify(item)}]);
+  }
+
+  deleteBanner(item){
+
+    if(confirm("Are you sure to delete " +item.title +" banner ?")) {
+    this.url = environment.main_url  + "banners/"+item.id;
+    this.apiCall.deleteEntry(this.url).subscribe((response)=>{
+      this.openSnackBar("Deleted successfully.")
+      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.getBannerList(this.url);
+    })
+  }
+
+
+  }
+
+  openSnackBar(msg) {
+    this.snackbar.open(msg, "", {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 
   broadCastMessage(): void {

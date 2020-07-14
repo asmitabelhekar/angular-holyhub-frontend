@@ -1,19 +1,17 @@
 <div class="container" fxLayout="column" fxFlex="100" fxLayout="row" fxLayoutAlign="space-around">
+        <div  *ngFor="let item of allData" fxFlex="100"  >
+        <div fxFlex="100" class="value-card" fxLayoutALign="center center" (click)="redirectToDetails(item)"> 
 
-    <!-- <div class="container-row" > -->
-
-        <div fxFlex="25" class="value-card" fxLayoutALign="center center">
-
-            <mat-card class="mat-card">
+            <mat-card class="mat-card" style="cursor: pointer;">
 
                 <div class="content_div" fxLayout="row" fxLayoutAlign="center center">
                     <div fxFlex="70" fxLayoutAlign="start center">
                         <label style="font-size:35px" >
-                            60
+                           {{item.count}}
                         </label>
                     </div>
                     <div  fxFlex="30" fxLayoutAlign="end center">
-                      <img src="../../../assets/advertisement.jpg" style="width:60px; height:60px"/>
+                      <img src="{{item.image}}" style="width:60px; height:60px"/>
                     </div>
                   
 
@@ -21,15 +19,16 @@
                 <div class="content_div" fxLayout="column" style="margin-top:30px">
                         <div style="border: 1px solid #82d9ff; width:100px"></div>
                         <h2 style="margin-top:18px">
-                            Advertisement
+                            {{item.title}}
                         </h2>
                  
                 </div>
             </mat-card>
 
         </div>
+        </div>
 
-        <div fxFlex="25" class="value-card">
+        <!-- <div fxFlex="25" class="value-card">
 
             <mat-card class="mat-card">
                 <div class="content_div" fxLayout="row" fxLayoutAlign="center center">
@@ -105,7 +104,7 @@
             </mat-card>
 
 
-        </div>
+        </div> -->
 
      
 

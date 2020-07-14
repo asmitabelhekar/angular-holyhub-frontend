@@ -33,6 +33,7 @@ export class TableViewComponent implements OnInit {
   @Input() showView: any = 0;
   @Input() showAdd: any = 0;
   @Input() showFilter: any = 0;
+  @Input() showSearch: any = 1;
   @Input() showAction: any = 1;
   
 
@@ -46,6 +47,7 @@ export class TableViewComponent implements OnInit {
   @Output() pageClicked = new EventEmitter<any>();
   @Output() inputChange = new EventEmitter<any>();
   @Output() filterClicked = new EventEmitter<any>();
+  @Output() searchClicked = new EventEmitter<any>();
 
   data = "Dance";
   categoryId: any;

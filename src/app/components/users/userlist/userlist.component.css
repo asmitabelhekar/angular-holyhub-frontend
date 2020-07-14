@@ -20,6 +20,13 @@
      height:100%;
   }
 
+  .cl_label_css{
+    font-size:15px;
+    color: rgb(104, 102, 102);
+    margin-bottom:5px;
+    margin-left:5px;
+  }
+
 
 .cl_add_course_css{
     border: 1px solid grey;

@@ -77,6 +77,7 @@
       </tr>
       <tr *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
         <td *ngFor="let col of columnArray" class="min-width">
+          <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <div ngf="noDataFound == 0 ">
             <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
             <label *ngIf="col.key == 'name' ">{{cust[col.key]}}</label>
@@ -87,6 +88,9 @@
           <div ngf="noDataFound == 0 ">
             <span>
               <mat-icon mat-raised-button class="EditButton" (click)="edit(cust)">edit</mat-icon>
+              
+              &nbsp;
+              <mat-icon mat-raised-button class="EditButton" (click)="delete(cust)">delete</mat-icon>
 
             </span>
           </div>

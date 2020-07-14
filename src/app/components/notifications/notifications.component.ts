@@ -22,7 +22,9 @@ export class NotificationsComponent implements OnInit {
   showEdit =1;
   showSend =1;
   showFilter = 0;
+  showDelete =1;
   displayedColumns: any = [
+    { "name": "Sr No", "key": "index" },
     { "name": "Title", "key": "title" },
     { "name": "Description", "key": "description" },
   ];
@@ -113,11 +115,28 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
+  delete(data){
+
+    console.log("checking",""+JSON.stringify(data));
+
+    if(confirm("Are you sure to delete " +data.title +" notification ?")) {
+      this.url = environment.main_url  + "notifications/"+data.id;
+      this.apiCall.deleteEntry(this.url).subscribe((response)=>{
+        this.openSnackBar("Deleted successfully.")
+        this.url = environment.main_url + "notifications?page=" + this.currentPage + "&size=10";
+        this.getNotificationList(this.url);
+        
+      })
+     }
+
+  }
+
 
   send(data){
 
     console.log(data);
 
+    if(confirm("Are you sure to send " +data.title +" notification ?")) {
     let send_date =  {
       "type": 1,
       "title": data.title,
@@ -125,8 +144,6 @@ export class NotificationsComponent implements OnInit {
       "advertise_id": 0,
       "details": {}
     }
-
-
     let url = environment.main_url + "admin/notification";
     this.apiCall.post(url, send_date).subscribe(MyResponse => {
       this.openSnackBar("Notification sent successfully.")
@@ -134,6 +151,8 @@ export class NotificationsComponent implements OnInit {
     }, error => {
      
     });
+   }
+
 
   }
 

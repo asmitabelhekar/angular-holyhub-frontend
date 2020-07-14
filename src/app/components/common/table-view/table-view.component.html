@@ -4,7 +4,7 @@
 
 
     <div fxLayout="row" class="cl_div_w_h">
-      <div fxLayoutAlign="start center" style="width: 40%;" class="cl_add_course_css">
+      <div fxLayoutAlign="start center" style="width: 40%;" class="cl_add_course_css1">
         <input placeholder="Search here.." (input)="search($event)" style="background: white;width: 100%;height: 30px;"/>
         <mat-icon>search</mat-icon>
       </div>
@@ -26,7 +26,7 @@
 
     <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end" >
 
-      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" *ngIf="showAdd == 1">
+      <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css1" *ngIf="showAdd == 1">
         <mat-icon>add_circle_outline</mat-icon>
         <mat-label class="cl_label_css">ADD</mat-label>
       </div>
@@ -65,7 +65,9 @@
 
       </tr>
       <tr  *ngFor="let cust of dataSource;let i = index">
+      
         <td *ngFor="let col of displayedColumns" [ngClass]="col.name == 'Description' ? 'max-width' : 'min-width' ">
+          <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <img *ngIf="col.key == 'image' && col.name == 'Image' " style="width:60px; height:40px" src="{{cust.image}}" />
           <img *ngIf="col.key == 'image' && col.name == 'Banner Image' " style="width:100px; height:60px" src="{{cust.image}}" />
           <img *ngIf="col.key == 'images' " style="width:100px; height:60px" src="{{cust.images[0]}}" />
@@ -89,7 +91,8 @@
             <button *ngIf="showView == 1" mat-raised-button class="ViewButton" (click)="view(cust)">View</button>
 
             &nbsp;
-            <button *ngIf="showDelete == 1" mat-raised-button class="ViewButton" (click)="delete(cust)">Delete</button>
+            <mat-icon *ngIf="showDelete == 1" mat-raised-button class="EditButton" (click)="delete(cust)">delete</mat-icon>
+            <!-- <button *ngIf="showDelete == 1" mat-raised-button class="ViewButton" (click)="delete(cust)">Delete</button> -->
 
 
           </span>
