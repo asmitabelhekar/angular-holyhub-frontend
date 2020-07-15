@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { environment } from 'src/environments/environment';
-import { MatDialog } from '@angular/material';
+import { MatDialog,MatSnackBar } from '@angular/material';
 import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { NotificationpopupComponent } from '../../showpopup/notificationpopup/notificationpopup.component';
@@ -40,6 +40,7 @@ export class AdvertisementlistComponent implements OnInit {
   constructor(public router : Router,
     public dialog : MatDialog,
     public messageService : MessageService,
+    public snackbar: MatSnackBar,
     public apiCall : ApiService) { }
 
   ngOnInit() {
@@ -75,6 +76,22 @@ export class AdvertisementlistComponent implements OnInit {
 
     this.getAdvertisementList(this.url);
 
+  }
+
+  disableComponent(event) {
+    let userId =48;
+    this.url = environment.main_url +"users/"+userId+ "/advertisementsActiveInactive/"+event.id;
+    
+    this.apiCall.putWithoutData(this.url).subscribe((response)=>{
+      if(event.isActive){
+        this.openSnackBar("Disabled successfully.")
+      }else{
+        this.openSnackBar("Enabled successfully.")
+      }
+
+      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000";
+      this.getAdvertisementList(this.url);
+    })
   }
 
 
@@ -211,6 +228,14 @@ export class AdvertisementlistComponent implements OnInit {
     //   this.getLanguagesList();
     // });
    
+  }
+
+  openSnackBar(msg) {
+    this.snackbar.open(msg, "", {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 }
 

@@ -144,6 +144,7 @@ export class BannerlistComponent implements OnInit {
     send_data['price'] = "";
     send_data['startDateTime'] = item.startDateTime;
     send_data['endDateTime'] = item.endDateTime;
+    send_data['viewCount'] = item.view_count;
 
     const dialogRef = this.dialog.open(AdvertisementdetailpopupComponent, {
       width: '30%',
@@ -157,6 +158,23 @@ export class BannerlistComponent implements OnInit {
     
       this.getBannerList(this.url);
     });
+  }
+
+
+  disableComponent(event) {
+    let userId =48;
+    this.url = environment.main_url +"users/"+userId+ "/advertisementsActiveInactive/"+event.id;
+    
+    this.apiCall.putWithoutData(this.url).subscribe((response)=>{
+      if(event.isActive){
+        this.openSnackBar("Disabled successfully.")
+      }else{
+        this.openSnackBar("Enabled successfully.")
+      }
+
+      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.getBannerList(this.url);
+    })
   }
 
 

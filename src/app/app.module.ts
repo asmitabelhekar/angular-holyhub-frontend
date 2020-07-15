@@ -58,6 +58,7 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { AdvertisementdetailpopupComponent } from './components/showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 import { CheckaddcategorytypeComponent } from './components/showpopup/checkaddcategorytype/checkaddcategorytype.component';
 import { PaymentlogspopupComponent } from './components/showpopup/paymentlogspopup/paymentlogspopup.component';
+import { PaymentlogsComponent } from './components/paymentlogs/paymentlogs.component';
 
 @NgModule({
   entryComponents:
@@ -93,7 +94,8 @@ import { PaymentlogspopupComponent } from './components/showpopup/paymentlogspop
     NotificationsComponent,
     AdvertisementdetailpopupComponent,
     CheckaddcategorytypeComponent,
-    PaymentlogspopupComponent
+    PaymentlogspopupComponent,
+    PaymentlogsComponent
   ],
   imports: [
     BrowserModule,

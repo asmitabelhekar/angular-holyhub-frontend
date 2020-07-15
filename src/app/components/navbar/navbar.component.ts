@@ -78,7 +78,12 @@ export class NavbarComponent implements OnInit {
     else if(name == "Notification"){
       console.log("show navbar  title :" + name);
       window.history.back();
+      this.sideMenu.activeIndex(8,this.title);
+    }else if(name == "Payments Logs"){
+
+      window.history.back();
       this.sideMenu.activeIndex(7,this.title);
+
     }else{
 
     }

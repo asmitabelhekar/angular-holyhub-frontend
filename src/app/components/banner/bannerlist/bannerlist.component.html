@@ -81,13 +81,17 @@
           <div  fxLayout="column" fxLayoutAlign="start start" class="cl_div1_css bannercard">
             <img src={{item.image}} fxLayoutAlign="center center" class="cl_image_css" (click)="showAdvertisementDetail(image, item.id)"/>
            <div fxLayout="row" fxFlex="100" style="padding:18px; width:100%">
-            <div fxLayout="column" fxFlex="93" style=" width:100%; height:auto">
+            <div fxLayout="column" fxFlex="100" style=" width:100%; height:auto">
               <!-- <label  style="font-family:sans-serif;margin-top:5px; font-size:20px" fxLayoutAlign="start start">₹{{item.price}}</label> -->
     
+            
               <label  fxLayoutAlign="start start" class="cl_title_css check_width">
                 {{item.title}}
               </label>
+             
+             
               <label fxLayoutAlign="start start"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
+              
             </div>
     
             <div fxFlex="7" fxLayoutAlign="end end">
@@ -97,8 +101,21 @@
             <div fxFlex="7" fxLayoutAlign="end end">
               <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-left: 15px;" (click)="deleteBanner(item)"> delete </mat-icon>
             </div>
+
+            
         
            </div>
+           <div  fxLayout="row" fxLayoutAlign="start end"  >
+            <label  style="margin: 0px 15px 15px 15 px;" class="cl_title_css check_width1">Total Views : {{item.view_count}}</label>
+            <!-- <mat-slide-toggle *ngIf="item.isActive==0" [checked]="false" (change)="disableComponent(item)"></mat-slide-toggle> -->
+            <!-- <mat-slide-toggle *ngIf="item.isActive!=0" [checked]="true" (change)="disableComponent(item)"></mat-slide-toggle> -->
+            </div>
+
+            <div  fxLayout="row" fxLayoutAlign="end end">
+              <mat-slide-toggle  style="margin:0px 10px 10px 10px;" *ngIf="item.isActive==0" [checked]="false" (change)="disableComponent(item)"></mat-slide-toggle>
+              <mat-slide-toggle style="margin:0px 10px 10px 10px;" *ngIf="item.isActive!=0" [checked]="true" (change)="disableComponent(item)"></mat-slide-toggle>
+             </div>
+          
           </div>
          
         </div>

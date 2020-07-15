@@ -14,6 +14,8 @@ import { UpdatepriceComponent } from './components/updateprice/updateprice.compo
 import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.component';
 import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import {PaymentlogsComponent} from './components/paymentlogs/paymentlogs.component'
+
 
 const routes: Routes = [
 
@@ -40,6 +42,8 @@ const routes: Routes = [
       {path: 'bannerupdate', component: BannerupdateComponent},
 
       {path: 'notifications', component: NotificationsComponent},
+
+      {path:'paymentlogs',component:PaymentlogsComponent}
 
 
 

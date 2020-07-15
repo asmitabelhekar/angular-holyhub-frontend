@@ -85,13 +85,26 @@
           <label fxLayoutAlign="start start" style="margin-right:10px ;"  (click)="viewDetail(item)" class="cl_view_detail_css"><u>View Detail</u></label>
           <label fxLayoutAlign="end end" style="margin-left:10px ;"  (click)="sendNotif(item)" class="cl_view_detail_css"><u>Send Notif</u></label>
           </div>
+          <div  fxLayout="row" fxLayoutAlign="start end">
+          <mat-slide-toggle  style="margin:10px 10px 0px 0px;" *ngIf="item.isActive==0" [checked]="false" (change)="disableComponent(item)"></mat-slide-toggle>
+          <mat-slide-toggle style="margin:10px 0px 0px;" *ngIf="item.isActive!=0" [checked]="true" (change)="disableComponent(item)"></mat-slide-toggle>
+         </div>
         </div>
 
+        
         <!-- <div fxFlex="5" fxLayoutAlign="end start">
           <mat-icon style="color:gray; font-size:22px">edit</mat-icon>
         </div> -->
     
        </div>
+       
+       <!-- <div  fxLayout="row" fxLayoutAlign="center end"  >
+       <div> -->
+        <div  fxLayout="column" fxLayoutAlign="end end" >
+        
+      </div>
+       <!-- </div> -->
+      <!-- </div> -->
       </div>
      
     </div>

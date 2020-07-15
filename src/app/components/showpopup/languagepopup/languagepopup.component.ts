@@ -116,7 +116,7 @@ export class LanguagepopupComponent implements OnInit {
     } else {
       let send_data = {};
 
-      send_data['name'] = this.languageName;
+      send_data['name'] = this.popup['languageName'];
       send_data['image'] = this.firstImage;
       send_data['isActive'] = 1;
       send_data['sequenceNumber'] = 0;

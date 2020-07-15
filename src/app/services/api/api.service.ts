@@ -72,6 +72,18 @@ export class ApiService {
   }
 
 
+  public putWithoutData(url) {
+
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+    return this.http.put(url, httpOptions);
+  }
+
 
   public delete(url, data) {
 

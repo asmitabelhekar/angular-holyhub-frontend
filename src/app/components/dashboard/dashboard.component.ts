@@ -184,7 +184,7 @@ export class DashboardComponent implements OnInit {
 
       case "Payment Gateway":  
       this.sideMenu.activeIndex(6,item.title);     
-      this.router.navigate(['/admin/userlist']);
+      this.router.navigate(['/admin/paymentlogs']);
       break;
 
 

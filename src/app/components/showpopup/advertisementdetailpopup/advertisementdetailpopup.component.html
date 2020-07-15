@@ -36,6 +36,8 @@
 
       <label *ngIf="type != 'Banner'" fxLayoutAlign="start start" class="cl_title_css">{{title}}</label>
 
+      <label *ngIf="type == 'Banner'" fxLayoutAlign="start start" class="cl_title_css">Views: {{viewCount}}</label>
+
       <label fxLayoutAlign="start start" class="cl_description_label">{{description}} </label>
 
      

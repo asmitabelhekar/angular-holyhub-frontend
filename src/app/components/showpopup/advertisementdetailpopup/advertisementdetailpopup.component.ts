@@ -19,6 +19,7 @@ export class AdvertisementdetailpopupComponent implements OnInit {
   type : any;
   image: any;
   title: any;
+  viewCount:any;
   description: any;
   price: any;
   startDateTime : any;
@@ -45,6 +46,8 @@ export class AdvertisementdetailpopupComponent implements OnInit {
 
 
   ngOnInit() {
+
+    console.log("kkkkkkk",""+JSON.stringify( this.data));
     this.type = this.data.type;
     this.title= this.data.title;
     this.description= this.data.description;
@@ -52,6 +55,7 @@ export class AdvertisementdetailpopupComponent implements OnInit {
     this.price= this.data.price;
     this.startDateTime = this.data.startDateTime;
     this.endDateTime = this.data.endDateTime;
+    this.viewCount =  this.data.viewCount;
     this.selectedWeek = this.getBannerDate(this.startDateTime, this.endDateTime);
     console.log("show dates:"+this.startDateTime);
 

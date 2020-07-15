@@ -46,11 +46,18 @@ export class SidemenuComponent implements OnInit {
       icon: 'people',
       name: 'Users',
       url: '/admin/userlist'
-    }, {
+    },
+    {
+      icon: 'description',
+      name: 'Payment Logs',
+      url: '/admin/paymentlogs'
+    },
+     {
       icon: 'notifications_none',
       name: 'Notification',
       url: '/admin/notifications'
-    }
+    },
+   
    
   ]
 
