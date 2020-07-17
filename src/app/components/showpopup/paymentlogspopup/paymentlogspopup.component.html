@@ -28,8 +28,8 @@
 
   <div fxFlex="100"  class="row_padding">
     <div fxFlex="50">
-      <label *ngIf="item.isSuccess==1" fxLayoutAlign="start start" class="cl_title_css">Transaction Status :  Successfull</label>
-      <label  *ngIf="item.isSuccess==0" fxLayoutAlign="start start" class="cl_title_css">Transaction Status :  Failed</label>
+      <label *ngIf="item.isSuccess==1" fxLayoutAlign="start start" class="cl_title_css">Transaction Status : <span style="color: red;">Failed</span></label>
+      <label  *ngIf="item.isSuccess==0" fxLayoutAlign="start start" class="cl_title_css">Transaction Status : <span style="color: green;">Successfull</span> </label>
     </div>
     <div fxFlex="50">
       <label  class="cl_date_css" fxLayoutAlign="end end"> ₹ {{item.amount}}</label>

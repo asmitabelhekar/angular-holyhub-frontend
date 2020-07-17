@@ -65,8 +65,8 @@
         </td>
         <td>
   <button *ngIf="showView == 1" mat-raised-button class="ViewButton" (click)="view(cust)">View</button> &nbsp; &nbsp;
-  <mat-slide-toggle *ngIf="cust['isActive']==0" [checked]="false" (change)="disableComponent(item)"></mat-slide-toggle> 
-  <mat-slide-toggle *ngIf="cust['isActive']==1" [checked]="true" (change)="disableComponent(item)"></mat-slide-toggle> 
+  <mat-slide-toggle *ngIf="cust['isActive']==0" [checked]="false" (change)="disableComponent(cust)"></mat-slide-toggle> 
+  <mat-slide-toggle *ngIf="cust['isActive']==1" [checked]="true" (change)="disableComponent(cust)"></mat-slide-toggle> 
 
         </td>
       

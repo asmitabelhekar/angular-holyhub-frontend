@@ -14,6 +14,14 @@
     margin-top:2%;
   }
 
+  ::ng-deep.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #363535 !important;
+  }
+  
+  ::ng-deep.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color:  #000000 !important;
+  }
+
 
 .cl_div_w_h{
     width:50%;

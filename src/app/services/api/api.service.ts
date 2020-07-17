@@ -75,14 +75,29 @@ export class ApiService {
   public putWithoutData(url) {
 
     console.log(url);
+    let auth_token = localStorage.getItem("authToken");
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Authorization':'Token' + " " +auth_token
+        'Authorization': auth_token
       })
     }
+
+    console.log("kjjjj",""+JSON.stringify(httpOptions));
     return this.http.put(url, httpOptions);
   }
+
+  // public putAuth(url,data) {
+  //   let auth_token = localStorage.getItem("authToken");
+  //   console.log(url);
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/json',
+  //       'Authorization':auth_token
+  //     })
+  //   }
+  //   return this.http.put(url,data,httpOptions);
+  // }
 
 
   public delete(url, data) {

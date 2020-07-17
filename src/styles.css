@@ -60,6 +60,11 @@ body {
 
   }
 
+  .mat-menu-panel {
+    background: #fff;
+    max-height: 400px !important;
+}
+
   .mat-toolbar{
     background-color: white !important;
   }

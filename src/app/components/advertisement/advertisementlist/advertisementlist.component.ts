@@ -46,7 +46,7 @@ export class AdvertisementlistComponent implements OnInit {
   ngOnInit() {
     this.broadCastMessage();
     this.getCategory();
-    this.url = environment.main_url + "advertisements?" + "size=1000";
+    this.url = environment.main_url + "advertisements?" + "size=1000&is_admin=1";
     // this.url = environment.main_url +  "advertisements?page=" + this.currentPage + "&size=1000";
     this.getAdvertisementList(this.url);
   }
@@ -72,24 +72,24 @@ export class AdvertisementlistComponent implements OnInit {
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000";
+    this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
 
     this.getAdvertisementList(this.url);
 
   }
 
   disableComponent(event) {
-    let userId =48;
-    this.url = environment.main_url +"users/"+userId+ "/advertisementsActiveInactive/"+event.id;
+    
+    this.url = environment.main_url +"advertisements/"+event.id+ "/advertisementsActiveInactive";
     
     this.apiCall.putWithoutData(this.url).subscribe((response)=>{
       if(event.isActive){
-        this.openSnackBar("Disabled successfully.")
+        this.openSnackBar("Advertise disabled successfully.")
       }else{
-        this.openSnackBar("Enabled successfully.")
+        this.openSnackBar("Advertise enabled successfully.")
       }
 
-      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000";
+      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
       this.getAdvertisementList(this.url);
     })
   }
@@ -103,19 +103,19 @@ export class AdvertisementlistComponent implements OnInit {
   filter(event) {
   console.log("show filter data:"+event);
     this.categoryId = event;
-    this.url = environment.main_url +"categories/"+this.categoryId+ "/advertisements?page=" + this.currentPage + "&size=1000";
+    this.url = environment.main_url +"categories/"+this.categoryId+ "/advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
     this.getAdvertisementList(this.url);
   }
   sort(event){
 
     if(this.categoryId !=4){
 
-      this.url = environment.main_url +"categories/"+this.categoryId + "/advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+      this.url = environment.main_url +"categories/"+this.categoryId + "/advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000&is_admin=1";
   
 
     }else{
 
-      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000&is_admin=1";
   
 
     }
@@ -141,11 +141,11 @@ export class AdvertisementlistComponent implements OnInit {
     this.checkLength = event.target.value;
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
-    this.url = environment.main_url +  "advertisements?search=" + event.target.value;
+    this.url = environment.main_url +  "advertisements?is_admin=1&search=" + event.target.value;
 
       this.getAdvertisementList(this.url);
     } else {
-      this.url = environment.main_url + "advertisements";
+      this.url = environment.main_url + "advertisements?is_admin=1";
       this.getAdvertisementList(this.url);
     }
 
@@ -170,7 +170,7 @@ export class AdvertisementlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + " advertisements?page=" + this.currentPage + "&size=1000";
+      this.url = environment.main_url + " advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
       this.getAdvertisementList(this.url);
     });
   }
@@ -197,7 +197,7 @@ export class AdvertisementlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + " advertisements?page=" + this.currentPage + "&size=1000";
+      this.url = environment.main_url + " advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
       this.getAdvertisementList(this.url);
     });
 

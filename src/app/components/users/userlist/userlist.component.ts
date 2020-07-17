@@ -155,6 +155,23 @@ export class UserlistComponent implements OnInit {
   }
 
 
+  disableComponent(event) {
+   
+
+    this.url = environment.main_url +"users/"+event.id+ "/userActiveInactive";
+    
+    this.apiCall.putWithoutData(this.url).subscribe((response)=>{
+      if(event.isActive){
+        this.openSnackBar("User disabled successfully.")
+      }else{
+        this.openSnackBar("User enabled successfully.")
+      }
+      this.url = environment.main_url + "users?page=" + this.currentPage + "&size=10000";
+      this.getUsersList(this.url);
+    })
+  }
+
+
   search(event) {
     this.checkLength = event.target.value;
     console.log("search event",this.checkLength);
@@ -162,7 +179,7 @@ export class UserlistComponent implements OnInit {
       this.url = environment.main_url +  "users?search=" + event.target.value;
       this.getUsersList(this.url);
     } else {
-      this.url = environment.main_url + "users";
+      this.url = environment.main_url + "users?page=" + this.currentPage + "&size=10000";
       this.getUsersList(this.url);
     }
 

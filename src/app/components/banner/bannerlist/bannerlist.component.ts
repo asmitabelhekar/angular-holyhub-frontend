@@ -48,7 +48,7 @@ export class BannerlistComponent implements OnInit {
   ngOnInit() {
     this.getCategory();
     this.broadCastMessage();
-    this.url = environment.main_url  + "banners?" + "&size=1000";
+    this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
     this.getBannerList(this.url);
   }
 
@@ -66,7 +66,7 @@ export class BannerlistComponent implements OnInit {
     console.log("currentPage::" +event);
 
     this.currentPage = event;
-    this.url = environment.main_url  + "banners?" + "&size=1000";
+    this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
     // this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
 
     this.getBannerList(this.url);
@@ -93,7 +93,7 @@ export class BannerlistComponent implements OnInit {
     this.categoryId = event;
    
     // this.url = environment.main_url  + "banners?" + "&size=1000";
-    this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
+    this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=1000&is_admin=1";
     this.getBannerList(this.url);
   }
 
@@ -101,12 +101,12 @@ export class BannerlistComponent implements OnInit {
 
      if(this.categoryId !="1"){
 
-      this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+      this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000&is_admin=1";
 
 
      }else{
 
-      this.url = environment.main_url + "banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000";
+      this.url = environment.main_url + "banners?page=" + this.currentPage + "&sort="+event.parameter+"&size=1000&is_admin=1";
 
      }
   
@@ -122,11 +122,11 @@ export class BannerlistComponent implements OnInit {
     
     if (this.checkLength.length > 2) {
 
-      this.url = environment.main_url +  "banners?search=" + event.target.value;
+      this.url = environment.main_url +  "banners?is_admin=1&search=" + event.target.value;
       this.getBannerList(this.url);
 
     } else {
-      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
       // this.url = environment.main_url + "category/" + this.categoryId + "/banners";
       this.getBannerList(this.url);
     }
@@ -153,7 +153,7 @@ export class BannerlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
       // this.url = environment.main_url + "category/" + this.categoryId + "/banners?page=" + this.currentPage + "&size=5";
     
       this.getBannerList(this.url);
@@ -162,17 +162,17 @@ export class BannerlistComponent implements OnInit {
 
 
   disableComponent(event) {
-    let userId =48;
-    this.url = environment.main_url +"users/"+userId+ "/advertisementsActiveInactive/"+event.id;
+   
+    this.url = environment.main_url +"banners/"+event.id+ "/bannersActiveInactive";
     
     this.apiCall.putWithoutData(this.url).subscribe((response)=>{
       if(event.isActive){
-        this.openSnackBar("Disabled successfully.")
+        this.openSnackBar("Banner disabled successfully.")
       }else{
-        this.openSnackBar("Enabled successfully.")
+        this.openSnackBar("Banner enabled successfully.")
       }
 
-      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
       this.getBannerList(this.url);
     })
   }
@@ -212,7 +212,7 @@ export class BannerlistComponent implements OnInit {
     this.url = environment.main_url  + "banners/"+item.id;
     this.apiCall.deleteEntry(this.url).subscribe((response)=>{
       this.openSnackBar("Deleted successfully.")
-      this.url = environment.main_url  + "banners?" + "&size=1000";
+      this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
       this.getBannerList(this.url);
     })
   }

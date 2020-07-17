@@ -11,7 +11,13 @@
     padding-bottom: 9px;
   }
 
+  ::ng-deep.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #363535 !important;
+  }
   
+  ::ng-deep.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color:  #000000 !important;
+  }
 
 .cl_label_css{
   font-size:15px;

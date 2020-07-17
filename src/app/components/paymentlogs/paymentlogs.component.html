@@ -55,12 +55,14 @@
       </tr>
       <tr  *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
         <td *ngFor="let col of displayedColumns" class="row_padding">
-      
-          <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
+          <div   *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <label *ngIf="col.name == 'Date' ">{{cust[col.key] | date}} </label>
-          <label *ngIf="col.name != 'Date' ">{{cust[col.key]}}</label>
-         
-
+          <label *ngIf="col.name == 'Status' && cust[col.key] ==0 "  style="color: green;"> Successfull  </label>
+          <label *ngIf="col.name == 'Status' && cust[col.key] ==1 " style="color: red;"> Failed  </label>
+          <label *ngIf="col.name == 'Amount'">₹ {{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Ad start date' || col.name == 'Ad end date' || col.name == 'Banner start date' || col.name == 'Banner end date' ">{{cust[col.key] | date}}</label>
+          
+          <label *ngIf="col.name == 'Title' || col.name == 'Payment Id' ">{{cust[col.key]}}</label>
         </td>
       
         <!-- <td>

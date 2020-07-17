@@ -39,11 +39,17 @@ export class PaymentlogsComponent implements OnInit {
   url:any;
   showFilter = 0;
   displayedColumns: any = [
+    // advertisementStartDate
     { "name": "Sr No", "key": "index" },
     { "name": "Title", "key": "title" },
     { "name": "Payment Id", "key": "paymentId" },
     { "name": "Date", "key": "modified" },
     { "name": "Amount", "key": "amount" },
+    { "name": "Status", "key": "isSuccess" },
+    {"name" :"Ad start date","key":"advertisementStartDate"},
+    {"name" :"Ad end date","key":"advertisementEndDate"},
+    {"name" :"Banner start date","key":"bannerStartDate"},
+    {"name" :"Banner end date","key":"bannerEndDate"}
   ];
 
  
@@ -64,7 +70,7 @@ export class PaymentlogsComponent implements OnInit {
 
 
   broadCastMessage(): void {
-    this.messageService.broadCastMessage("Payments Logs");
+    this.messageService.broadCastMessage("Payment Logs");
  }
 
 
