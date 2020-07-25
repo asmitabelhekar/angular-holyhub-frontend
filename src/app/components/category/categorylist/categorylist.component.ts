@@ -53,7 +53,7 @@ export class CategorylistComponent implements OnInit {
 
   ngOnInit() {
     this.broadCastMessage();
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=1000";
     this.getCategoryList(this.url);
     this.showParentCategory();
   }
@@ -74,7 +74,7 @@ export class CategorylistComponent implements OnInit {
   }
 
   showParentCategory() {
-    let parentCategoryUrl = environment.main_url + "category/" + 0 + "/sub-category";
+    let parentCategoryUrl = environment.main_url + "category/" + 0 + "/sub-category?size=1000";
     this.apiCall.get(parentCategoryUrl).subscribe((response) => {
 
       this.parentCategoryArray = response['result']['list'];
@@ -114,7 +114,7 @@ export class CategorylistComponent implements OnInit {
     })
   }
   ngOnChanges() {
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=1000";
     // this.getCategoryList(this.url);
     this.showParentCategory();
   }
@@ -130,7 +130,7 @@ export class CategorylistComponent implements OnInit {
 
     this.currentPage = event;
 
-    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + 0 + "/sub-category?page=" + this.currentPage + "&size=1000";
 
     this.getCategoryList(this.url);
 
@@ -141,10 +141,10 @@ export class CategorylistComponent implements OnInit {
     this.checkLength = event.target.value;
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
-      this.url = environment.main_url +"category/0/sub-category"+ "?search=" + event.target.value;
+      this.url = environment.main_url +"category/0/sub-category"+ "?size=1000&search=" + event.target.value;
       this.getCategoryList(this.url);
     } else {
-      this.url = environment.main_url +"category/0/sub-category";
+      this.url = environment.main_url +"category/0/sub-category?size=1000";
       this.getCategoryList(this.url);    
     }
   }
@@ -154,7 +154,7 @@ export class CategorylistComponent implements OnInit {
     if (categoryId == 9) {
       categoryId = 0;
     }
-    this.url = environment.main_url + "category/" + categoryId + "/sub-category?page=" + this.currentPage + "&size=10";
+    this.url = environment.main_url + "category/" + categoryId + "/sub-category?page=" + this.currentPage + "&size=1000";
     this.getCategoryList(this.url);
   }
 
@@ -192,7 +192,7 @@ export class CategorylistComponent implements OnInit {
         result = 0;
       }
       
-      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
+      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=1000";
       this.getCategoryList(this.url);
     });
   }
@@ -217,7 +217,7 @@ export class CategorylistComponent implements OnInit {
       if(result == undefined){
         result =0;
       }
-      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=10";
+      this.url = environment.main_url + "category/" + result + "/sub-category?page=" + this.currentPage + "&size=1000";
       this.getCategoryList(this.url);
     });
 
@@ -231,6 +231,7 @@ export class CategorylistComponent implements OnInit {
     this.url = environment.main_url  + "category/"+item.parentId+"/sub-category/"+item.id;
     this.apiCall.deleteEntry(this.url).subscribe((response)=>{
       this.openSnackBar("Deleted successfully.")
+      this.url = environment.main_url +"category/0/sub-category?size=1000";
       this.getCategoryList(this.url);
       
     })

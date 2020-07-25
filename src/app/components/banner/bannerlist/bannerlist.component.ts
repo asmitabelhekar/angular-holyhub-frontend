@@ -8,6 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { BannerupdateComponent } from '../bannerupdate/bannerupdate.component';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
+import { DisablecomponentpopupComponent } from '../../showpopup/disablecomponentpopup/disablecomponentpopup.component';
 @Component({
   selector: 'app-bannerlist',
   templateUrl: './bannerlist.component.html',
@@ -79,7 +80,7 @@ export class BannerlistComponent implements OnInit {
   }
 
   getCategory() {
-    let url = environment.main_url + "category/" + 0 + "/sub-category"
+    let url = environment.main_url + "category/" + 0 + "/sub-category?size=1000"
     this.apiCall.get(url).subscribe(MyResponse => {
       this.categoryArray = MyResponse['result']['list'];
     },
@@ -161,12 +162,35 @@ export class BannerlistComponent implements OnInit {
   }
 
 
-  disableComponent(event) {
+  disableComponent(item) {
    
-    this.url = environment.main_url +"banners/"+event.id+ "/bannersActiveInactive";
+   
+    if(item.isActive){
+
+    let send_data = {};
+    send_data['adId'] = item.id;
+    send_data['categoryId'] = item.categoryId;
+    send_data['isBookmarked'] = item.isBookmarked;
+    send_data['status'] = "disable";
+    send_data['type'] = "Banner";
+    send_data['isActive'] = item.isActive;
+    const dialogRef = this.dialog.open(DisablecomponentpopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
+      this.getBannerList(this.url);
+    });
+  
+  }else{
+
+     this.url = environment.main_url +"banners/"+item.id+ "/bannersActiveInactive";
     
-    this.apiCall.putWithoutData(this.url).subscribe((response)=>{
-      if(event.isActive){
+     this.apiCall.putWithoutData(this.url).subscribe((response)=>{
+      if(item.isActive){
         this.openSnackBar("Banner disabled successfully.")
       }else{
         this.openSnackBar("Banner enabled successfully.")
@@ -175,6 +199,10 @@ export class BannerlistComponent implements OnInit {
       this.url = environment.main_url  + "banners?" + "size=1000&is_admin=1";
       this.getBannerList(this.url);
     })
+
+
+  }
+
   }
 
 

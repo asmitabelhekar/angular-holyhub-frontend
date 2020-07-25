@@ -1,0 +1,113 @@
+<div class="cl_div_background">
+
+  <div class="cl_margin_top" fxLayout="row" fxLayoutAlign="start end">
+
+
+    <div fxLayout="row" class="cl_div_w_h">
+      <div fxLayoutAlign="start center" style="width: 40%;" class="cl_add_course_css">
+        <input placeholder="Search here.." (input)="search($event)"
+          style="background: white;width: 100%;height: 30px;" />
+        <mat-icon>search</mat-icon>
+      </div>
+
+
+    </div>
+
+    <div fxLayout="row" class="cl_div_w_h" fxLayoutAlign="end end">
+
+      <!-- <div fxLayout="row" fxLayoutAlign="end end" (click)="add()" class="cl_add_course_css" *ngIf="showAdd == 1">
+        <mat-icon>add_circle_outline</mat-icon>
+        <mat-label class="cl_label_css">ADD</mat-label>
+      </div> -->
+
+      <div fxLayout="row" fxLayoutAlign="end end" [matMenuTriggerFor]="menu1" class="cl_filter_css">
+        <img src="./assets/filter_list-24px.svg" />
+        <mat-label class="cl_label_css">Filter</mat-label>
+      </div>
+      <mat-menu #menu1="matMenu">
+        <mat-list>
+          <mat-list-item style="cursor: pointer;" *ngFor="let item of filterArray" (click)="filter(item)">
+            <h3 matLine> {{item.name}} </h3>
+          </mat-list-item>
+        </mat-list>
+      </mat-menu>
+
+
+      <div fxLayout="row" fxLayoutAlign="end end"  [matMenuTriggerFor]="menu" class="cl_filter_css" >
+        <img src="./assets/sort.png" />
+        <mat-label class="cl_label_css">Sort By Price</mat-label>
+      </div>
+
+      
+      <mat-menu #menu="matMenu" >
+    
+        <mat-list>
+          <mat-list-item style="cursor: pointer;" *ngFor="let item of sortArray" (click)="sort(item)" >
+            <!-- <img matListAvatar src="{{item.image}}" alt="..."> -->
+            <h3 matLine> {{item.name}} </h3>
+           
+          </mat-list-item>
+        </mat-list>
+      </mat-menu>
+
+
+     
+
+    </div>
+  </div>
+  <mat-divider class="cl_margin_top2"></mat-divider>
+
+  <div class="cl_margin_top2">
+
+    <table>
+      <tr>
+        <th *ngFor="let col of displayedColumns">{{col.name}}</th>
+        <!-- <th *ngIf="showAction == 1">Action</th> -->
+        <!-- <th *ngIf="showAction == 0"></th> -->
+
+      </tr>
+      <tr *ngFor="let cust of dataArray ;let i = index" style="padding:20px">
+        <td *ngFor="let col of displayedColumns" class="row_padding">
+          <div *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
+          <label *ngIf="col.name == 'Transaction Date' ">{{cust[col.key] | date}} </label>
+          <label *ngIf="col.name == 'Status' && cust[col.key] ==1 " style="color: green;"> Successfull </label>
+          <label *ngIf="col.name == 'Status' && cust[col.key] ==0 " style="color: red;"> Failed </label>
+          <label *ngIf="col.name == 'Amount'">₹ {{cust[col.key]}}</label>
+
+          <label *ngIf="col.name =='Banner Plan' && cust[col.key]==null">--</label>
+          <label *ngIf="col.name =='Banner Plan' && cust[col.key]!=null">{{cust[col.key]}}</label>
+
+          <label *ngIf="col.name =='Baneer remaining days' && cust[col.key]==null">--</label>
+          <label *ngIf="col.name =='Baneer remaining days' && cust[col.key]!=null">{{cust[col.key]}}</label>
+         
+          <label *ngIf="col.name =='Advertise Plan' && cust[col.key]==null">--</label>
+          <label *ngIf="col.name =='Advertise Plan' && cust[col.key]!=null">{{cust[col.key]}}</label>
+          <!-- <label
+            *ngIf="col.name == 'Ad start date' || col.name == 'Ad end date' || col.name == 'Banner start date' || col.name == 'Banner end date' ">{{cust[col.key] | date}}</label> -->
+
+          <label *ngIf="col.name == 'Ad/Banner Title'   || col.name =='User name' || col.name == 'Ad type' || col.name == 'Ad remaining days'  ">{{cust[col.key]}}</label>
+        </td>
+        <!-- || col.name == 'Payment Id' -->
+        <!-- <td>
+          <span>
+
+            <mat-icon style="color: #3f51b5; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="send(cust)">send</mat-icon>
+  
+            &nbsp;
+
+            <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="edit(cust)">edit</mat-icon>
+  
+           
+            &nbsp;
+            <mat-icon style="color:gray; font-size:22px;cursor:pointer;margin-right: 15px;" (click)="delete(cust)">delete</mat-icon>
+  
+            
+
+          </span>
+        </td> -->
+      </tr>
+    </table>
+
+  </div>
+
+</div>

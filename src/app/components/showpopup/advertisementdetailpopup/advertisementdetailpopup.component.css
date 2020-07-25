@@ -39,6 +39,15 @@
     color:rgb(73, 72, 72);
 }
 
+.cl_title_css_new{
+    font-family:sans-serif; 
+    font-size:16px;
+    font-weight: bold;
+    margin-top:8px;
+    word-break: break-all;
+    color:rgb(73, 72, 72);
+}
+
 .cl_description_label{
     font-family:sans-serif;
     margin-top:8px;
@@ -52,3 +61,18 @@
     color:gray;
     font-size:14px;
 }
+
+.cl_date_css_logs{
+    /* margin-top:8px; 
+    color:gray;
+    font-size:14px; */
+}
+
+
+::ng-deep.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    overflow: auto;
+    pointer-events: auto;  
+  }

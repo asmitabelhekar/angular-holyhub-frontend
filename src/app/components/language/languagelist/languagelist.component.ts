@@ -23,6 +23,7 @@ export class LanguagelistComponent implements OnInit {
   
   currentPage = 0;
   dataArray : any = [];
+  checkLength : any;
  
   pageIndex : any = 0;
   lastPage : any = 0;
@@ -37,7 +38,7 @@ export class LanguagelistComponent implements OnInit {
 
   ngOnInit() {
     this.broadCastMessage();
-    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
 
     this.getLanguagesList(this.url);
 
@@ -77,7 +78,7 @@ export class LanguagelistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
       this.getLanguagesList(this.url);
     });
   }
@@ -90,7 +91,7 @@ export class LanguagelistComponent implements OnInit {
     this.url = environment.main_url  + "languages/"+item.id;
     this.apiCall.deleteEntry(this.url).subscribe((response)=>{
      
-      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
       this.getLanguagesList(this.url);
       
     })
@@ -103,7 +104,7 @@ export class LanguagelistComponent implements OnInit {
     console.log("currentPage::" +event);
 
     this.currentPage = event;
-    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+    this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
     this.getLanguagesList(this.url);
 
   }
@@ -112,6 +113,22 @@ export class LanguagelistComponent implements OnInit {
   search(event){
 
     console.log("show search event:"+JSON.stringify(event));
+    this.checkLength = event.target.value;
+    console.log("search event",this.checkLength);
+    if (this.checkLength.length > 2) {
+
+      this.url = environment.main_url + "languages?search=" + event.target.value;
+      this.apiCall.get(this.url).subscribe((response)=>{
+  
+        this.dataArray = response['result']['list'];
+  
+      });
+
+    } else {
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
+      this.getLanguagesList(this.url);
+
+    }
 
 
   }
@@ -132,7 +149,7 @@ export class LanguagelistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=5";
+      this.url = environment.main_url + "languages?page=" + this.currentPage + "&size=1000";
       this.getLanguagesList(this.url);
     });
    

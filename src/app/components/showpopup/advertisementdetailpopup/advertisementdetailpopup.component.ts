@@ -35,6 +35,8 @@ export class AdvertisementdetailpopupComponent implements OnInit {
   sdod : any;
   edoy : any;
 
+ allData = []
+
   constructor(
     public dialogRef: MatDialogRef<AdvertisementlistComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -57,6 +59,13 @@ export class AdvertisementdetailpopupComponent implements OnInit {
     this.endDateTime = this.data.endDateTime;
     this.viewCount =  this.data.viewCount;
     this.selectedWeek = this.getBannerDate(this.startDateTime, this.endDateTime);
+   
+    if(this.data.paymentDetails !=null){
+      this.allData = this.data.paymentDetails.list
+    }else{
+      this.allData = [];
+    }
+   
     console.log("show dates:"+this.startDateTime);
 
   }

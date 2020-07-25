@@ -52,12 +52,28 @@ export class SidemenuComponent implements OnInit {
       name: 'Payment Logs',
       url: '/admin/paymentlogs'
     },
+    {
+      icon: 'description',
+      name: 'Subscriptions Details',
+      url: '/admin/subscriptionsdetails'
+    },
+    {
+      icon: 'description',
+      name: 'Inactive Advertise',
+      url: '/admin/inactiveadvertiselist'
+    },
+    {
+      icon: 'description',
+      name: 'Inactive Banner',
+      url: '/admin/inactivebannerlist'
+    },
      {
       icon: 'notifications_none',
       name: 'Notification',
       url: '/admin/notifications'
     },
-   
+
+    
    
   ]
 

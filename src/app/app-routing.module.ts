@@ -15,6 +15,9 @@ import { BannerlistComponent } from './components/banner/bannerlist/bannerlist.c
 import { BannerupdateComponent } from './components/banner/bannerupdate/bannerupdate.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import {PaymentlogsComponent} from './components/paymentlogs/paymentlogs.component'
+import { InactivebannerlistComponent } from './components/inactivebannerlist/inactivebannerlist.component';
+import { InactiveadvertiselistComponent } from './components/inactiveadvertiselist/inactiveadvertiselist.component';
+import { SubscriptionsdetailsComponent } from './components/subscriptionsdetails/subscriptionsdetails.component';
 
 
 const routes: Routes = [
@@ -43,7 +46,13 @@ const routes: Routes = [
 
       {path: 'notifications', component: NotificationsComponent},
 
-      {path:'paymentlogs',component:PaymentlogsComponent}
+      {path:'paymentlogs',component:PaymentlogsComponent},
+
+      {path:'inactivebannerlist',component:InactivebannerlistComponent},
+
+      {path:'inactiveadvertiselist',component:InactiveadvertiselistComponent},
+
+      {path:'subscriptionsdetails',component:SubscriptionsdetailsComponent}
 
 
 

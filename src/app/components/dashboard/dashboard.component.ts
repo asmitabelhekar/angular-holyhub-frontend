@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
 	},
 
 	{
-		"title": "Payment Gateway",
+		"title": "Payment Logs",
 		"count": "10",
 		"image": "http://d3lgrseqpnv6xt.cloudfront.net/1594457654648.jpg",
 	
@@ -154,6 +154,26 @@ export class DashboardComponent implements OnInit {
     this.apiCall.getAd(url).subscribe((response)=>{
 
       this.allData = response['result'];
+
+      // let temp =   {
+      //   "title": "Inactive Advertise",
+      //   "count": "7",
+      //   "image": "http://d3lgrseqpnv6xt.cloudfront.net/1594457654648.jpg",
+      //   "is_success": "0",
+      //   "is_failure": "7"
+      // };
+
+      // let temp2 =   {
+      //   "title": "Inactive Banners",
+      //   "count": "7",
+      //   "image": "http://d3lgrseqpnv6xt.cloudfront.net/1594457654648.jpg",
+      //   "is_success": "0",
+      //   "is_failure": "7"
+      // }
+      // this.allData.push(temp);
+      // this.allData.push(temp2);
+
+
       // this.totalCount = response['result']['count'];
       // this.lastPage = Math.ceil(this.totalCount / 5);
     })
@@ -182,10 +202,27 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/admin/bannerlist']);
       break;
 
-      case "Payment Gateway":  
+      case "Payment Logs":  
       this.sideMenu.activeIndex(6,item.title);     
       this.router.navigate(['/admin/paymentlogs']);
       break;
+
+      case "Inactive Advertise":  
+      this.sideMenu.activeIndex(7,item.title);     
+      this.router.navigate(['/admin/inactiveadvertiselist']);
+      break;
+
+
+      case "Inactive Banners":  
+      this.sideMenu.activeIndex(8,item.title);     
+      this.router.navigate(['/admin/inactivebannerlist']);
+      break;
+
+
+    //   {path:'inactivebannerlist',component:InactivebannerlistComponent},
+
+    // {path:'inactiveadvertiselist',component:InactiveadvertiselistComponent}
+
 
 
 

@@ -40,7 +40,67 @@
 
       <label fxLayoutAlign="start start" class="cl_description_label">{{description}} </label>
 
+
+      <div fxFlex="100" *ngIf="type != 'Banner'">
+        <div fxFlex="100">
+          <label  *ngIf="allData.length == 0" fxLayoutAlign="center center" class="cl_title_css_new">No Payment Logs Available</label>
+          <label  *ngIf="allData.length > 0" fxLayoutAlign="center center" class="cl_title_css_new">Payment Logs</label>
+        </div>
+
+      </div>
+       
+        <div  *ngFor="let item of allData"  fxLayout="column" >
+
+          <!-- <div fxFlex="100"class="row_padding" > <label  fxLayoutAlign="start start" class="cl_title_css">{{item.modified | date}}</label></div> -->
+      
+          <!-- <div fxFlex="100" class="row_padding" >
+            <div fxFlex="50">
+              <label  fxLayoutAlign="start start" class="cl_title_css">{{item.created | date}}</label>
+            </div>
+            <div fxFlex="50">
+              <label  class="cl_date_css_logs" fxLayoutAlign="end end">{{item.userName}}</label>
+            </div>
+          </div> -->
+
+
+        <div fxFlex="100" class="row_padding" >
+          <div fxFlex="50">
+            <label  fxLayoutAlign="start start" class="cl_title_css">Transaction date : {{item.created | date}}</label>
+          </div>
+          <div fxFlex="50">
+            <label  class="cl_title_css" fxLayoutAlign="end end">Payment by : {{item.userName}}</label>
+          </div>
+        </div>
+
+        <div fxFlex="100" class="row_padding" >
+          <div fxFlex="50">
+            <label  fxLayoutAlign="start start" class="cl_title_css">Plan name : {{item.planIdAdvertiseName}}</label>
+          </div>
+          <div fxFlex="50">
+            <label  class="cl_title_css" fxLayoutAlign="end end">Remaining days : {{item.adRemanningDays}}</label>
+          </div>
+        </div>
+      
+        
+      
+        <div fxFlex="100"  class="row_padding">
+          <div fxFlex="50">
+            <label *ngIf="item.isSuccess==0" fxLayoutAlign="start start" class="cl_title_css">Transaction Status : <span style="color: red;">Failed</span></label>
+            <label  *ngIf="item.isSuccess==1" fxLayoutAlign="start start" class="cl_title_css">Transaction Status : <span style="color: green;">Successfull</span> </label>
+          </div>
+          <div fxFlex="50">
+            <label  class="cl_title_css" fxLayoutAlign="end end"> Amount : ₹ {{item.amount}}</label>
+          </div>
+        </div>
+      
+        <mat-divider style="width:100%;margin-top:15px;margin-bottom: 15px;"></mat-divider>
+      
+        </div>
+
+        
      
+
+
     </div>
 
     <div class="cl_clode_div">

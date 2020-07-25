@@ -37,21 +37,32 @@ export class PaymentlogsComponent implements OnInit {
   dataArray:any;
   currentPage = 0;
   url:any;
-  showFilter = 0;
+  showFilter = 1;
   displayedColumns: any = [
     // advertisementStartDate
     { "name": "Sr No", "key": "index" },
-    { "name": "Title", "key": "title" },
-    { "name": "Payment Id", "key": "paymentId" },
-    { "name": "Date", "key": "modified" },
+    { "name": "Ad/Banner Title", "key": "title" },
+   
+    { "name": "User name", "key": "userName" },
+    { "name": "Ad type", "key": "adType" },
+    { "name": "Transaction Date", "key": "modified" },
     { "name": "Amount", "key": "amount" },
     { "name": "Status", "key": "isSuccess" },
+    // {"name":"Ad Plan", "key" : "planIdAdvertiseName"},
+    // {"name":"Banner Plan","key" : "planIdBannerName"},
+    // {"name" :"Ad remaining days","key":"adRemanningDays"},
+    // {"name" :"Baneer remaining days","key":"bannerRemanningDays"},
+    // { "name": "Payment Id", "key": "paymentId" },
     {"name" :"Ad start date","key":"advertisementStartDate"},
     {"name" :"Ad end date","key":"advertisementEndDate"},
     {"name" :"Banner start date","key":"bannerStartDate"},
     {"name" :"Banner end date","key":"bannerEndDate"}
   ];
 
+  filterArray = [{"id":1,"name":"Advertise","parameter":"advertise"},{"id":2,"name":"Advertise + Banner","parameter":"banner+advertise"},{"id":3,"name":"Clear","parameter":"clear"}]
+  sortArray = [{"id":1,"name":"Low to High","parameter":"low_to_high"},{"id":2,"name":"High to Low","parameter":"high_to_low"},{"id":3,"name":"Clear","parameter":"clear"}]
+
+  filterPlans =[];
  
   constructor(
     public changeDetectorRef: ChangeDetectorRef,
@@ -64,7 +75,9 @@ export class PaymentlogsComponent implements OnInit {
   ngOnInit() {
     this.broadCastMessage();
     this.formName = "Payment logs";
-    this.getAllPaymentLogs();
+    this.url = environment.main_url + "payment-gateway-logs?&size=1000" ;
+
+    this.getAllPaymentLogs(this.url);
     
   }
 
@@ -74,13 +87,12 @@ export class PaymentlogsComponent implements OnInit {
  }
 
 
-  getAllPaymentLogs(){
+  getAllPaymentLogs(url){
 
-    this.url = environment.main_url + "payment-gateway-logs" ;
-
+   
     let send_data ;
     // send_data['status'] = "add";
-    this.apiCall.get(this.url).subscribe((response)=>{
+    this.apiCall.get(url).subscribe((response)=>{
 
       this.dataArray = response['result']['list'];
 
@@ -95,7 +107,7 @@ export class PaymentlogsComponent implements OnInit {
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
 
-      this.url = environment.main_url + "payment-gateway-logs?search=" + event.target.value;
+      this.url = environment.main_url + "payment-gateway-logs?size=1000&search=" + event.target.value;
       this.apiCall.get(this.url).subscribe((response)=>{
   
         this.dataArray = response['result']['list'];
@@ -103,7 +115,8 @@ export class PaymentlogsComponent implements OnInit {
       });
 
     } else {
-      this.getAllPaymentLogs();
+      this.url = environment.main_url + "payment-gateway-logs?&size=1000" ;
+      this.getAllPaymentLogs(this.url);
     }
 
   }
@@ -122,5 +135,33 @@ console.log("show type:"+type);
       verticalPosition: 'top',
     });
   }
+
+  filter(event) {
+    console.log("show filter data:"+event);
+
+    // let filter = {"isAdvertisement":event.id};
+
+    if(event.id !=2){
+
+      let filter = {"adType" : event.parameter};
+
+      this.url = environment.main_url + "payment-gateway-logs?&size=1000&filters="+JSON.stringify(filter) ;
+      this.getAllPaymentLogs(this.url); 
+    }else{
+      this.url = environment.main_url + "payment-gateway-logs?&size=1000" ;
+      this.getAllPaymentLogs(this.url);
+    }
+   
+   }
+
+   sort(event){
+
+  
+      this.url = environment.main_url +"payment-gateway-logs?"+ "sort="+event.parameter+"&size=1000";
+
+      this.getAllPaymentLogs(this.url);
+
+
+   }
 
 }

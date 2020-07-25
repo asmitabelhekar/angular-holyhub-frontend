@@ -128,7 +128,7 @@ export class TableViewComponent implements OnInit {
   }
 
   search(event) {
-    this.inputChange.emit(event);
+    this.searchClicked.emit(event);
   }
 
   getCategory() {

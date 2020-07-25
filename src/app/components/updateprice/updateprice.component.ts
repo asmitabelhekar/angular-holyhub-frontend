@@ -44,6 +44,10 @@ export class UpdatepriceComponent implements OnInit {
   addFirstWeekPrice: any = "7";
   addNextWeekPrice: any = "5";
 
+  filterArray = [{"id":1,"name":"Banner","parameter":"banner"},{"id":0,"name":"Advertise","parameter":"advertise"},{"id":2,"name":"Clear","parameter":"clear"}]
+
+ 
+
 
   constructor(
     public dialog: MatDialog,
@@ -54,7 +58,8 @@ export class UpdatepriceComponent implements OnInit {
 
   ngOnInit() {
     this.broadCastMessage();
-    this.getAllPrice();
+    let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+    this.getAllPrice(bannerUrl);
   }
 
 
@@ -64,8 +69,7 @@ export class UpdatepriceComponent implements OnInit {
 
  
 
-  getAllPrice() {
-    let bannerUrl = environment.main_url + "subscriptions";
+  getAllPrice(bannerUrl) {
     this.apiService.get(bannerUrl).subscribe((response) => {
 
       this.dataArray = response['result']['list'];
@@ -91,32 +95,7 @@ export class UpdatepriceComponent implements OnInit {
     })
   }
 
-  getAllPriceWithSearch(search) {
-    let bannerUrl = environment.main_url + "subscriptions"+ "?search=" + search;
-    this.apiService.get(bannerUrl).subscribe((response) => {
-
-      this.dataArray = response['result']['list'];
-
-      for(let i=0; i< this.dataArray.length; i++){
-        if(this.dataArray[i]['name'] == "banner" || this.dataArray[i]['name'] == "Banner"){
-          this.bannerFirstWeekPrice = this.dataArray[i]['firstWeekPrice'];
-          this.bannerNextWeekPrice = this.dataArray[i]['furtherOnwardsPrice'];
-          this.bannerSubscriptionId = this.dataArray[i]['id'];
-        }
-        else  if(this.dataArray[i]['name'] == "advertisement" || this.dataArray[i]['name'] == "Advertisement"){
-          this.addFirstWeekPrice = this.dataArray[i]['firstWeekPrice'];
-          this.addNextWeekPrice = this.dataArray[i]['furtherOnwardsPrice'];
-          this.addSubscriptionId = this.dataArray[i]['id'];
-        }
-        else{
-          this.bannerFirstWeekPrice = this.dataArray[i]['firstWeekPrice'];
-          this.bannerNextWeekPrice = this.dataArray[i]['furtherOnwardsPrice'];
-          this.bannerSubscriptionId = this.dataArray[i]['id'];
-        }
-      }
-
-    })
-  }
+ 
 
   add() {
     let send_data = {};
@@ -130,7 +109,8 @@ export class UpdatepriceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getAllPrice();
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+      this.getAllPrice(bannerUrl);
     
     });
   }
@@ -145,7 +125,9 @@ export class UpdatepriceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getAllPrice();
+    
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+      this.getAllPrice(bannerUrl);
     
     });
   }
@@ -156,7 +138,8 @@ export class UpdatepriceComponent implements OnInit {
     this.apiService.deleteEntry(this.url).subscribe((response) => {
       
       this.openSnackBar("Deleted successfully.");
-      this.getAllPrice();
+    let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+    this.getAllPrice(bannerUrl);
      
     })
    }
@@ -184,7 +167,9 @@ export class UpdatepriceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getAllPrice();
+      
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+      this.getAllPrice(bannerUrl);
     
     });
   }
@@ -204,19 +189,41 @@ export class UpdatepriceComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.getAllPrice();
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+    this.getAllPrice(bannerUrl);
       
     });
   }
+
+  filter(event) {
+    console.log("show filter data:"+event);
+
+    let filter = {"isAdvertisement":event.id};
+
+    if(event.id !=2){
+
+      let bannerUrl = environment.main_url + "subscriptions"+ "?filters=" + JSON.stringify(filter);
+  
+      this.getAllPrice(bannerUrl);
+
+    }else{
+
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+      this.getAllPrice(bannerUrl);
+    }
+   
+   }
 
   search(event){
 
     this.checkLength = event.target.value;
     console.log("search event",this.checkLength);
     if (this.checkLength.length > 2) {
-      this.getAllPriceWithSearch(event.target.value);
+      let bannerUrl = environment.main_url + "subscriptions"+ "?search=" + event.target.value;
+      this.getAllPrice(bannerUrl);
     } else {
-      this.getAllPrice(); 
+      let bannerUrl = environment.main_url + "subscriptions?&size=1000";
+      this.getAllPrice(bannerUrl);
     }
 
 

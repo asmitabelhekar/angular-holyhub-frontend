@@ -59,6 +59,10 @@ import { AdvertisementdetailpopupComponent } from './components/showpopup/advert
 import { CheckaddcategorytypeComponent } from './components/showpopup/checkaddcategorytype/checkaddcategorytype.component';
 import { PaymentlogspopupComponent } from './components/showpopup/paymentlogspopup/paymentlogspopup.component';
 import { PaymentlogsComponent } from './components/paymentlogs/paymentlogs.component';
+import { DisablecomponentpopupComponent } from './components/showpopup/disablecomponentpopup/disablecomponentpopup.component';
+import { InactivebannerlistComponent } from './components/inactivebannerlist/inactivebannerlist.component';
+import { InactiveadvertiselistComponent } from './components/inactiveadvertiselist/inactiveadvertiselist.component';
+import { SubscriptionsdetailsComponent } from './components/subscriptionsdetails/subscriptionsdetails.component';
 
 @NgModule({
   entryComponents:
@@ -69,6 +73,7 @@ import { PaymentlogsComponent } from './components/paymentlogs/paymentlogs.compo
     NotificationpopupComponent,
      AdvertisementdetailpopupComponent,
      PaymentlogspopupComponent,
+     DisablecomponentpopupComponent,
     CheckaddcategorytypeComponent],
   declarations: [
     AppComponent,
@@ -95,7 +100,11 @@ import { PaymentlogsComponent } from './components/paymentlogs/paymentlogs.compo
     AdvertisementdetailpopupComponent,
     CheckaddcategorytypeComponent,
     PaymentlogspopupComponent,
-    PaymentlogsComponent
+    PaymentlogsComponent,
+    DisablecomponentpopupComponent,
+    InactivebannerlistComponent,
+    InactiveadvertiselistComponent,
+    SubscriptionsdetailsComponent
   ],
   imports: [
     BrowserModule,

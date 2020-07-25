@@ -78,11 +78,26 @@ export class NavbarComponent implements OnInit {
     else if(name == "Notification"){
       console.log("show navbar  title :" + name);
       window.history.back();
-      this.sideMenu.activeIndex(8,this.title);
-    }else if(name == "Payments Logs"){
+      this.sideMenu.activeIndex(11,this.title);
+    }else if(name == "Payment Logs"){
 
       window.history.back();
       this.sideMenu.activeIndex(7,this.title);
+
+    }else if(name == "Subscriptions Details"){
+
+      window.history.back();
+      this.sideMenu.activeIndex(8,this.title);
+
+    }else if(name == "Inactive Advertise"){
+
+      window.history.back();
+      this.sideMenu.activeIndex(9,this.title);
+
+    }else if(name == "Inactive Banners"){
+
+      window.history.back();
+      this.sideMenu.activeIndex(10,this.title);
 
     }else{
 
@@ -93,3 +108,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 }
+
+
+   

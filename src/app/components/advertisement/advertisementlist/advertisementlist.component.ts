@@ -6,6 +6,7 @@ import { MatDialog,MatSnackBar } from '@angular/material';
 import { AdvertisementdetailpopupComponent } from '../../showpopup/advertisementdetailpopup/advertisementdetailpopup.component';
 import { MessageService } from 'src/app/services/messages/message.service';
 import { NotificationpopupComponent } from '../../showpopup/notificationpopup/notificationpopup.component';
+import { DisablecomponentpopupComponent } from '../../showpopup/disablecomponentpopup/disablecomponentpopup.component';
 @Component({
   selector: 'app-advertisementlist',
   templateUrl: './advertisementlist.component.html',
@@ -78,20 +79,44 @@ export class AdvertisementlistComponent implements OnInit {
 
   }
 
-  disableComponent(event) {
-    
-    this.url = environment.main_url +"advertisements/"+event.id+ "/advertisementsActiveInactive";
+  disableComponent(item) {
+
+    if(item.isActive){
+    let send_data = {};
+    send_data['adId'] = item.id;
+    send_data['categoryId'] = item.categoryId;
+    send_data['isBookmarked'] = item.isBookmarked;
+    send_data['status'] = "disable";
+    send_data['type'] = "Advertise";
+    send_data['isActive'] = item.isActive;
+    const dialogRef = this.dialog.open(DisablecomponentpopupComponent, {
+      width: '27%',
+      panelClass: 'custom-dialog-container',
+      data: send_data
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      this.url = environment.main_url + "advertisements?size=1000&is_admin=1";
+      this.getAdvertisementList(this.url);
+    });
+
+  }else{
+
+    this.url = environment.main_url +"advertisements/"+item.id+ "/advertisementsActiveInactive";
     
     this.apiCall.putWithoutData(this.url).subscribe((response)=>{
-      if(event.isActive){
+      if(item.isActive){
         this.openSnackBar("Advertise disabled successfully.")
       }else{
         this.openSnackBar("Advertise enabled successfully.")
       }
 
-      this.url = environment.main_url + "advertisements?page=" + this.currentPage + "&size=1000&is_admin=1";
+      this.url = environment.main_url + "advertisements?size=1000&is_admin=1";
       this.getAdvertisementList(this.url);
     })
+
+  }
+
   }
 
 
@@ -125,7 +150,7 @@ export class AdvertisementlistComponent implements OnInit {
   }
 
   getCategory() {
-    let url = environment.main_url + "category/" + 0 + "/sub-category"
+    let url = environment.main_url + "category/" + 0 + "/sub-category?size=1000"
     this.apiCall.get(url).subscribe(MyResponse => {
       this.categoryArray = MyResponse['result']['list'];
 
@@ -162,9 +187,11 @@ export class AdvertisementlistComponent implements OnInit {
     send_data['price'] = item.price;
     send_data['startDateTime'] = item.startDateTime;
     send_data['endDateTime'] = item.endDateTime;
+    send_data['paymentDetails'] = item.paymentDetails;
+    
 
     const dialogRef = this.dialog.open(AdvertisementdetailpopupComponent, {
-      width: '30%',
+      width: '50%',
       panelClass: 'custom-ad-dialog-container',
       data: send_data
     });
@@ -183,12 +210,6 @@ export class AdvertisementlistComponent implements OnInit {
     send_data['adId'] = item.id;
     send_data['categoryId'] = item.categoryId;
     send_data['isBookmarked'] = item.isBookmarked;
-    // send_data['image'] = item.images[0];
-    // send_data['title'] ="";
-    // send_data['description'] = "";
-    // send_data['price'] = item.price;
-    // send_data['startDateTime'] = item.startDateTime;
-    // send_data['endDateTime'] = item.endDateTime;
     send_data['status'] = "send";
     const dialogRef = this.dialog.open(NotificationpopupComponent, {
       width: '27%',
@@ -203,6 +224,8 @@ export class AdvertisementlistComponent implements OnInit {
 
     
   }
+
+  
 
 
   showPopup() {

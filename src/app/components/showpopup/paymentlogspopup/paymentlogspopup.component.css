@@ -2,3 +2,11 @@
     padding-top:22px;
     /* padding-bottom:22px; */
   }
+
+  ::ng-deep.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    overflow: auto;
+    pointer-events: auto;  
+  }
