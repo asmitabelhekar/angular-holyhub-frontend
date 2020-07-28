@@ -59,7 +59,8 @@
         <td *ngFor="let col of columnArray" class="row_padding">
       
         
-          <label *ngIf="col.name != 'Plan Type' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name != 'Plan Type' && col.name != 'Price' ">{{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Price'">$ {{cust[col.key]}}</label>
           <div  *ngIf="col.name == 'Sr No' "> {{i+1}}</div>
           <div  *ngIf="col.name == 'Plan Type' ">
             <mat-chip-list>

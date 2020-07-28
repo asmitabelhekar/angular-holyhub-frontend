@@ -72,7 +72,7 @@
           <label *ngIf="col.name == 'Transaction Date' ">{{cust[col.key] | date}} </label>
           <label *ngIf="col.name == 'Status' && cust[col.key] ==1 " style="color: green;"> Successfull </label>
           <label *ngIf="col.name == 'Status' && cust[col.key] ==0 " style="color: red;"> Failed </label>
-          <label *ngIf="col.name == 'Amount'">₹ {{cust[col.key]}}</label>
+          <label *ngIf="col.name == 'Amount'">$ {{cust[col.key]}}</label>
 
           <!-- <label *ngIf="col.name =='Banner Plan' && cust[col.key]==null">--</label>
           <label *ngIf="col.name =='Banner Plan' && cust[col.key]!=null">{{cust[col.key]}}</label>

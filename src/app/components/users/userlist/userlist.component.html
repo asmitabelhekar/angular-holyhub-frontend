@@ -59,7 +59,7 @@
         <td *ngFor="let col of columnArray" class="row_padding">
           <div  *ngIf="col.name == 'Sr No' "> {{i+1}} </div>
         <label *ngIf="col.name == 'Mobile' && cust.mobile == null " style="margin-left:20px;">-</label>
-        <label *ngIf="col.key == 'totalEarning'" style="font-weight: bold;">₹ {{cust[col.key]}}</label>
+        <label *ngIf="col.key == 'totalEarning'" style="font-weight: bold;">$ {{cust[col.key]}}</label>
         <img *ngIf="col.key == 'image'  " style="width:60px; height:40px" src="{{cust.image}}" />
         <label *ngIf="col.key != 'image' && col.key !='totalEarning'" >{{cust[col.key]}}</label>
         </td>
