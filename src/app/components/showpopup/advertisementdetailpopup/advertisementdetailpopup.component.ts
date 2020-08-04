@@ -22,6 +22,7 @@ export class AdvertisementdetailpopupComponent implements OnInit {
   viewCount:any;
   description: any;
   price: any;
+  adPriceType :any 
   startDateTime : any;
   endDateTime : any;
   getAdvertisementDetail: any;
@@ -55,6 +56,7 @@ export class AdvertisementdetailpopupComponent implements OnInit {
     this.description= this.data.description;
     this.image= this.data.image;
     this.price= this.data.price;
+    this.adPriceType = this.data.adPriceType;
     this.startDateTime = this.data.startDateTime;
     this.endDateTime = this.data.endDateTime;
     this.viewCount =  this.data.viewCount;

@@ -17,7 +17,8 @@
     <div fxLayout="column" fxFlex="100" class="cl_text_css">
       <div fxLayout="row" fxFlex="100">
      <div fxFlex="30">
-      <label *ngIf="type != 'Banner'" class="cl_price_css" fxLayoutAlign="start start">₹{{price}}</label>
+      <label *ngIf="type != 'Banner' && (adPriceType==null || adPriceType ==0)" class="cl_price_css" fxLayoutAlign="start start">₹ {{price}}</label>
+      <label *ngIf="type != 'Banner' && (adPriceType!=null && adPriceType ==1)" class="cl_price_css" fxLayoutAlign="start start">$ {{price}}</label>
      </div>
      <div fxFlex="70">
       <label *ngIf="type != 'Banner'" class="cl_date_css" fxLayoutAlign="end end">{{sdod}} {{sdom | date:'MMM'}} - {{edod}} {{edom | date:'MMM'}} {{edoy}}</label>
