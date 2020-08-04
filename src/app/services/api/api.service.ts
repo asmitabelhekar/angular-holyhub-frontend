@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-
+    public router : Router
   ) { }
 
 
@@ -30,10 +30,14 @@ export class ApiService {
   public getAd(url) {
     let auth_token = localStorage.getItem("authToken");
 
+    if(auth_token ==null){
+      this.router.navigate(['/login']);
+    }
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNzYmVsaGVrYXJAZ21haWwuY29tIiwibW9iaWxlIjoiOTUyNzkwMjYyMiIsImlkIjo0NCwiaWF0IjoxNTkzMDA2OTcyfQ.C9eWtZj19K66JihcU1Kji88oYEUSrSlpgVP6DOHdudM"
+        'Authorization': auth_token
       })
     }
     console.log(url);
@@ -76,6 +80,9 @@ export class ApiService {
 
     console.log(url);
     let auth_token = localStorage.getItem("authToken");
+    if(auth_token ==null){
+      this.router.navigate(['/login']);
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
