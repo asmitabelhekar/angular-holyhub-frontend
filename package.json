@@ -42,7 +42,7 @@
     "html2canvas": "^1.0.0-rc.3",
     "i": "^0.3.6",
     "jquery": "^3.3.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "mdbootstrap": "^4.7.1",
     "ng-simple-slideshow": "^1.2.8",
     "ng2-search-filter": "^0.4.7",
